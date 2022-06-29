@@ -6,13 +6,13 @@ function controls_init() {
 function toggle_init() {
     button = createButton('Play');
     button.id('playPauseControl');
-    button.position(windowWidth/2, windowHeight/2);
+    button.position(0, 0);
     button.mousePressed(playPauseToggle);
 }
 
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
-    button.position(windowWidth/2, windowHeight/2);
+    button.position(0, 0);
 }
 
 function playPauseToggle() {
