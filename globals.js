@@ -1,3 +1,4 @@
 let sound;
 let button;
-let fa;
+let table;
+let cursor;

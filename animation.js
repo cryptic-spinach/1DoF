@@ -1,10 +1,11 @@
 function preload() {
   soundFormats('mp3');
   sound = loadSound('assets/sepia-sky.mp3');
+  table = loadTable('assets/mouse-recording(13).csv')
 }
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(windowWidth, windowHeight - 200);
   controls_init();
 }
   
