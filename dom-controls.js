@@ -54,11 +54,34 @@ function play() {
         
         let button = document.querySelector(".play-button")
         button.innerHTML = "Play"
+
+        clearInterval(moveMouse)
     }
     else {
         sound.play();
 
         let button = document.querySelector(".play-button")
         button.innerHTML = "Pause"
+        setInterval(moveMouse, 1);
     }
 }
+
+
+
+
+
+function moveMouse() {
+    let timestampKey = parseInt(sound.currentTime() * 1000).toString();
+    if (hasMouseChange(timestampKey)) {
+      console.log("Found!")
+      let mouse = document.querySelector(".mouse-container");
+      let mousePos = table[timestampKey];
+    
+      mouse.style.top = mousePos.y + "%";
+      mouse.style.left = mousePos.x + "%";
+    }
+  }
+  
+  function hasMouseChange(timestampKey) {
+    return table[timestampKey] != null;
+  }

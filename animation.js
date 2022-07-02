@@ -14,28 +14,10 @@ function draw() {
   background(0);
   translate(windowWidth/2, windowHeight/2);
   scale(1, -1);
-
-  moveMouse();
 }
 
 function toSeconds (milliseconds) {
   return (milliseconds / 1000).toFixed(2);
-}
-
-function moveMouse() {
-  let timestampKey = parseInt(sound.currentTime() * 1000).toString();
-  if (hasMouseChange(timestampKey)) {
-    console.log("Found!")
-    let mouse = document.querySelector(".mouse-container");
-    let mousePos = table[timestampKey];
-  
-    mouse.style.top = mousePos.y + "%";
-    mouse.style.left = mousePos.x + "%";
-  }
-}
-
-function hasMouseChange(timestampKey) {
-  return table[timestampKey] != null;
 }
 
 function formatTableAsJson () {
