@@ -6,7 +6,6 @@ function preload() {
 function setup() {
   let canvas = createCanvas(windowWidth, windowHeight - 200);
   canvas.parent("sketch-container");
-  controls_init();
 }
   
 function draw() {
