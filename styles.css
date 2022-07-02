@@ -13,6 +13,6 @@ button {
     position: relative;
 }
 
-.cursor {
+.mouse-container {
     position: absolute;
 }
