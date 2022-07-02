@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>New Project</title>
-    <link rel="stylesheet" type="text/css" href ="styles.css"/>
+    <link rel="stylesheet" type="text/css" href="styles.css"/>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/addons/p5.sound.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.7/dat.gui.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/fontawesome.min.css"/>
     <script src="configs.js"></script>
     <script src="globals.js"></script>
     <script src="controls.js"></script>
@@ -16,8 +15,11 @@
     <script src="animation.js"></script>
   </head>
   <body>
-    <span id="mouse">
-      <img src="mouse-svg-cursor.png">
-    </span>
+  <div class="project-container">
+    <div class="mouse-container">
+      <img class="cursor" src="assets/cursor.png" width="40px" height="40px">
+    </div>
+    <div id="sketch-container"></div>
+  </div>
   </body>
 </html>

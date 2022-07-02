@@ -1,11 +1,11 @@
 function preload() {
-  soundFormats('mp3');
   sound = loadSound('assets/sepia-sky.mp3');
-  table = loadTable('assets/mouse-recording(13).csv')
+  table = loadTable('assets/mouse-recording.csv')
 }
 
 function setup() {
-  createCanvas(windowWidth, windowHeight - 200);
+  let canvas = createCanvas(windowWidth, windowHeight - 200);
+  canvas.parent("sketch-container");
   controls_init();
 }
   

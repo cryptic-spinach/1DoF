@@ -8,3 +8,11 @@ button {
     width: 100px;
     height: 100px;
 }
+
+.project-container {
+    position: relative;
+}
+
+.cursor {
+    position: absolute;
+}
