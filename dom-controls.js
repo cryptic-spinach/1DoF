@@ -4,8 +4,8 @@ let isRecording = false;
 
 let listen = function(e) {
     let elapsedTime = Date.now() - startTime;
-    let percentX = parseFloat(e.clientX / window.innerWidth * 100).toFixed(2);
-    let percentY = parseFloat(e.clientY / window.innerHeight * 100).toFixed(2);
+    let percentX = parseFloat(e.clientX / window.innerWidth * 100).toFixed(4);
+    let percentY = parseFloat(e.clientY / window.innerHeight * 100).toFixed(4);
     mouseRecording.push(elapsedTime + "," + percentX + "," + percentY);
 }
 
@@ -62,7 +62,7 @@ function play() {
 
         let button = document.querySelector(".play-button")
         button.innerHTML = "Pause"
-        setInterval(moveMouse, 1);
+        setInterval(moveMouse, 0.1);
     }
 }
 
