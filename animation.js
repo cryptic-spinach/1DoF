@@ -4,7 +4,7 @@ function preload() {
 }
 
 function setup() {
-  let canvas = createCanvas(windowWidth, windowHeight - 200);
+  let canvas = createCanvas(windowWidth - canvasConfig.trimX, windowHeight - canvasConfig.trimY);
   canvas.parent("sketch-container");
 
   table = formatTableAsJson();
@@ -12,6 +12,9 @@ function setup() {
   
 function draw() {
   background(0);
-  translate(windowWidth/2, windowHeight/2);
+  translate((windowWidth - canvasConfig.trimX)/2, (windowHeight - canvasConfig.trimY)/2);
   scale(1, -1);
+
+  let testPoint = new Point(0, 0, "A");
+  testPoint.show();
 }
