@@ -15,4 +15,5 @@ button {
 
 .mouse-container {
     position: absolute;
+    visibility: hidden;
 }

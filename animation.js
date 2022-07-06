@@ -15,6 +15,14 @@ function draw() {
   translate((windowWidth - canvasConfig.trimX)/2, (windowHeight - canvasConfig.trimY)/2);
   scale(1, -1);
 
-  let testPoint = new Point(0, 0, "A");
-  testPoint.show();
+  let yAxisStart = new Point(-500, -300);
+  let yAxisEnd = new Point(-500, 300);
+  let yAxis = new Segment(yAxisStart, yAxisEnd);
+
+  let xAxisStart = new Point(-550, -250);
+  let xAxisEnd = new Point(450, -250);
+  let xAxis = new Segment(xAxisStart, xAxisEnd);
+
+  xAxis.showSlopeVec();
+  yAxis.showSlopeVec();
 }

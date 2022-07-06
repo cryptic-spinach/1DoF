@@ -4,7 +4,9 @@ let palette = {
     pointStroke: "#ff9200", 
     pointFill: "#000000",
 
-    labelFill: "#1fced9" 
+    labelFill: "#1fced9",
+
+    segmentFill: "#20c5c5"
 };
 
 let styles = {
@@ -14,9 +16,10 @@ let styles = {
     labelTextSize: 35,
     labelOffsetX: 30,
     labelOffsetY: 0,
+    
 }
 
 let canvasConfig = {
-    trimX: 450,
-    trimY: 200
+    trimX: 550,
+    trimY: 150
 }
