@@ -1,6 +1,6 @@
 function preload() {
   sound = loadSound('assets/sepia-sky.mp3');
-  table = loadTable('assets/mouse-recording.csv', 'csv', 'header');
+  table = loadTable('data/mouse-recording.csv', 'csv', 'header');
 }
 
 function setup() {
