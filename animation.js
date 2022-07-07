@@ -23,6 +23,6 @@ function draw() {
   let xAxisEnd = new Point(450, -250);
   let xAxis = new Segment(xAxisStart, xAxisEnd);
 
-  xAxis.showSlopeVec();
-  yAxis.showSlopeVec();
+  xAxis.showAsAxis();
+  yAxis.showAsAxis();
 }

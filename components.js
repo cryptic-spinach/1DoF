@@ -39,20 +39,26 @@ class Segment {
         return createVector(this.point_2.x - this.point_1.x, this.point_2.y - this.point_1.y);
     }
 
-    showSlopeVec() {
+    showAsVector(color = palette.segmentFill) {
         let slopeVec = this.getSlopeVec();
-        this.showVec(this.point_1, slopeVec, palette.segmentFill, true)
+        this.showVec(this.point_1, slopeVec, color, true);
     }
     
-    showSegment() {
+    showAsSegment(color = palette.segmentFill) {
         let slopeVec = this.getSlopeVec();
-        this.showVec(this.point_1, slopeVec, palette.segmentFill, false)
+        this.showVec(this.point_1, slopeVec, color, false);
+    }
+
+    showAsAxis(color = palette.segmentFill) {
+        let slopeVec = this.getSlopeVec();
+        this.showVec(this.point_1, slopeVec, color, true);
+        this.showVec(this.point_2, slopeVec.mult(-1), color, true);
     }
 
     showVec(base, vec, color, showArrowTip) {
         push();
         stroke(color);
-        strokeWeight(1);
+        strokeWeight(3);
         fill(color);
         translate(base.x, base.y);
         line(0, 0, vec.x, vec.y);
