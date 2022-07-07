@@ -17,9 +17,15 @@ let styles = {
     labelOffsetX: 30,
     labelOffsetY: 0,
     
+    segmentArrowSize: 15
 }
 
 let canvasConfig = {
     trimX: 550,
     trimY: 150
+}
+
+let axisOffset = {
+    x: -300,
+    y: 0,
 }

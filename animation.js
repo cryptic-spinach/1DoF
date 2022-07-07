@@ -15,12 +15,12 @@ function draw() {
   translate((windowWidth - canvasConfig.trimX)/2, (windowHeight - canvasConfig.trimY)/2);
   scale(1, -1);
 
-  let yAxisStart = new Point(-500, -300);
-  let yAxisEnd = new Point(-500, 300);
+  let yAxisStart = new Point(0 + axisOffset.x, -200 + axisOffset.y);
+  let yAxisEnd = new Point(0 + axisOffset.x, 200 + axisOffset.y);
   let yAxis = new Segment(yAxisStart, yAxisEnd);
 
-  let xAxisStart = new Point(-550, -250);
-  let xAxisEnd = new Point(450, -250);
+  let xAxisStart = new Point(-200 + axisOffset.x, 0 + axisOffset.y);
+  let xAxisEnd = new Point(200 + axisOffset.x, 0 + axisOffset.y);
   let xAxis = new Segment(xAxisStart, xAxisEnd);
 
   xAxis.showAsAxis();

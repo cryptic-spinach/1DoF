@@ -64,9 +64,8 @@ class Segment {
         line(0, 0, vec.x, vec.y);
         if(showArrowTip) {
             rotate(vec.heading());
-            let arrowSize = 20;
-            translate(vec.mag() - arrowSize, 0);
-            triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
+            translate(vec.mag() - styles.segmentArrowSize, 0);
+            triangle(0, styles.segmentArrowSize / 2, 0, -styles.segmentArrowSize / 2, styles.segmentArrowSize, 0);
         }
         pop();
     }
