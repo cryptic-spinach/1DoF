@@ -25,12 +25,15 @@ let canvasConfig = {
     trimY: 0,
 }
 
-let axisOffset = {
-    x: -300,
+let axisControls = {
+    x: -350,
     y: 0,
+    w: 500,
+    h: 500,
+    size: 500,
 }
 
 let sliderOffset = { 
-    x: 148, 
+    x: 198, 
     y: -11 
 }
