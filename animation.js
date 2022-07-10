@@ -21,4 +21,9 @@ function draw() {
 
   let testAxes = new Axes(axisControls.x, axisControls.y, axisControls.size, axisControls.size);
   testAxes.show();
+
+  let trendlineStart = new Point(axisControls.x - axisControls.w/2, axisControls.y - axisControls.h/2 + slider.value());
+  let trendlineEnd   = new Point(axisControls.x + axisControls.w/2, axisControls.y + axisControls.h/2 + slider.value());
+  let trendline = new Segment(trendlineStart, trendlineEnd);
+  trendline.showAsSegment();
 }

@@ -14,7 +14,7 @@ function windowResized() {
 }
 
 function slider_init() {
-    slider = createSlider(-10, 10, 0, 0.1);
+    slider = createSlider(-axisControls.h/2, axisControls.h/2, 0, 0.1);
     slider.position((windowWidth - canvasConfig.trimX)/2 + sliderOffset.x, (windowHeight - canvasConfig.trimY)/2 + sliderOffset.y);
     slider.style('width', '300px');
 }
