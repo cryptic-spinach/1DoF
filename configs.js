@@ -6,7 +6,7 @@ let palette = {
 
     labelFill: "#1fced9",
 
-    segmentFill: "#20c5c5"
+    segmentFill: "#20c5c5",
 };
 
 let styles = {
@@ -17,15 +17,20 @@ let styles = {
     labelOffsetX: 30,
     labelOffsetY: 0,
     
-    segmentArrowSize: 15
+    segmentArrowSize: 15,
 }
 
 let canvasConfig = {
     trimX: 550,
-    trimY: 150
+    trimY: 150,
 }
 
 let axisOffset = {
     x: -300,
     y: 0,
+}
+
+let sliderOffset = {
+    x: 150,
+    y: -10,
 }
