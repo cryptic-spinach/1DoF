@@ -21,8 +21,8 @@ let styles = {
 }
 
 let canvasConfig = {
-    trimX: 550,
-    trimY: 150,
+    trimX: 0,
+    trimY: 0,
 }
 
 let axisOffset = {
@@ -30,7 +30,7 @@ let axisOffset = {
     y: 0,
 }
 
-let sliderOffset = {
-    x: 150,
-    y: -10,
+let sliderOffset = { 
+    x: 148, 
+    y: -11 
 }
