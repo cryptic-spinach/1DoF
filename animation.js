@@ -10,6 +10,7 @@ function setup() {
   controls_init();
 
   table = formatTableAsJson();
+  points = generateRandomPoints(10);
 }
   
 function draw() {
@@ -25,6 +26,9 @@ function draw() {
   let trendlineStart = new Point(axisControls.x - axisControls.w/2, axisControls.y - axisControls.h/2 + slider.value());
   let trendlineEnd   = new Point(axisControls.x + axisControls.w/2, axisControls.y + axisControls.h/2 + slider.value());
   let trendline = new Segment(trendlineStart, trendlineEnd);
-  
+
   trendline.showAsSegment("#ffffff", 1);
+
+  points.forEach(p => p.show());
+
 }
