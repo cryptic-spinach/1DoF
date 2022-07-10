@@ -18,6 +18,7 @@ let styles = {
     labelOffsetY: 0,
     
     segmentArrowSize: 15,
+    segmentWeight: 3
 }
 
 let canvasConfig = {

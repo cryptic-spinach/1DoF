@@ -39,27 +39,27 @@ class Segment {
         return createVector(this.point_2.x - this.point_1.x, this.point_2.y - this.point_1.y);
     }
 
-    showAsVector(color = palette.segmentFill) {
+    showAsVector(myColor = palette.segmentFill, myWeight = styles.segmentWeight) {
         let slopeVec = this.getSlopeVec();
-        this.showVec(this.point_1, slopeVec, color, true);
+        this.showVec(this.point_1, slopeVec, myColor, myWeight, true);
     }
     
-    showAsSegment(color = palette.segmentFill) {
+    showAsSegment(myColor = palette.segmentFill, myWeight = styles.segmentWeight) {
         let slopeVec = this.getSlopeVec();
-        this.showVec(this.point_1, slopeVec, color, false);
+        this.showVec(this.point_1, slopeVec, myColor, myWeight, false);
     }
 
-    showAsAxis(color = palette.segmentFill) {
+    showAsAxis(myColor = palette.segmentFill, myWeight = styles.segmentWeight) {
         let slopeVec = this.getSlopeVec();
-        this.showVec(this.point_1, slopeVec, color, true);
-        this.showVec(this.point_2, slopeVec.mult(-1), color, true);
+        this.showVec(this.point_1, slopeVec, myColor, myWeight, true);
+        this.showVec(this.point_2, slopeVec.mult(-1), myColor, myWeight, true);
     }
 
-    showVec(base, vec, color, showArrowTip) {
+    showVec(base, vec, myColor, myWeight, showArrowTip) {
         push();
-        stroke(color);
-        strokeWeight(3);
-        fill(color);
+        stroke(myColor);
+        strokeWeight(myWeight);
+        fill(myColor);
         translate(base.x, base.y);
         line(0, 0, vec.x, vec.y);
         if(showArrowTip) {

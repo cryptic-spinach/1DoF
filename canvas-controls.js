@@ -4,8 +4,8 @@ function controls_init() {
 
     slider_init();
 
-    sliderGUI();
-    axesGUI();
+    // sliderGUI();
+    // axesGUI();
 }
 
 function windowResized() {
