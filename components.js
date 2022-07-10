@@ -70,3 +70,25 @@ class Segment {
         pop();
     }
 }
+
+class Axes {
+    constructor(x, y, w, h) {
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+    }
+
+    show() {
+        let xAxisStart = new Point(-this.w/2 + this.x, 0 + this.y);
+        let xAxisEnd = new Point(this.w/2 + this.x, 0 + this.y);
+        let xAxis = new Segment(xAxisStart, xAxisEnd);
+
+        let yAxisStart = new Point(0 + this.x, -this.h/2 + this.y);
+        let yAxisEnd = new Point(0 + this.x, this.h/2 + this.y);
+        let yAxis = new Segment(yAxisStart, yAxisEnd);
+            
+        xAxis.showAsAxis();
+        yAxis.showAsAxis();
+    }
+}
