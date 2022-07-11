@@ -1,4 +1,4 @@
-let palette = { 
+export let palette = { 
     backgroundFill: "#202020",
 
     pointStroke: "#ff9200", 
@@ -9,7 +9,7 @@ let palette = {
     segmentFill: "#20c5c5",
 };
 
-let styles = {
+export let styles = {
     pointRadius: 15,
     pointStrokeWeight: 3,
 
@@ -21,12 +21,12 @@ let styles = {
     segmentWeight: 3
 }
 
-let canvasConfig = {
+export let canvasConfig = {
     trimX: 0,
     trimY: 0,
 }
 
-let axisControls = {
+export let axisControls = {
     x: -350,
     y: 0,
     w: 500,
@@ -34,7 +34,7 @@ let axisControls = {
     size: 500,
 }
 
-let sliderOffset = { 
+export let sliderOffset = { 
     x: 198, 
     y: -11 
 }

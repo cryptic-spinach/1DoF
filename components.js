@@ -1,77 +1,79 @@
-class Point {
+import { palette, styles } from "./configs.js";
+
+export class Point {
     constructor (x, y, label = "") {
         this.x = x;
         this.y = y;
         this.label = label
     }
 
-    show() {
-        push();
-        fill(palette.pointFill);
-        stroke(palette.pointStroke);
-        strokeWeight(styles.pointStrokeWeight);
-        ellipse(this.x, this.y, styles.pointRadius, styles.pointRadius);
-        pop();
+    show(p5) {
+        p5.push();
+        p5.fill(palette.pointFill);
+        p5.stroke(palette.pointStroke);
+        p5.strokeWeight(styles.pointStrokeWeight);
+        p5.ellipse(this.x, this.y, styles.pointRadius, styles.pointRadius);
+        p5.pop();
     }
 
-    showLabel() {
-        push();
+    showLabel(p5) {
+        p5.push();
         
-        translate(this.x, this.y)
-        scale(1, -1);
+        p5.translate(this.x, this.y)
+        p5.scale(1, -1);
 
-        noStroke();
-        fill(palette.labelFill);
-        textSize(styles.labelTextSize);
-        text(this.label, styles.labelOffsetX, styles.labelOffsetY)
+        p5.noStroke();
+        p5.fill(palette.labelFill);
+        p5.textSize(styles.labelTextSize);
+        p5.text(this.label, styles.labelOffsetX, styles.labelOffsetY)
 
-        pop();
+        p5.pop();
     }
 }
 
-class Segment {
+export class Segment {
     constructor (point_1, point_2, label = "") {
         this.point_1 = point_1;
         this.point_2 = point_2;
     }
 
-    getSlopeVec() {
-        return createVector(this.point_2.x - this.point_1.x, this.point_2.y - this.point_1.y);
+    getSlopeVec(p5) {
+        return p5.createVector(this.point_2.x - this.point_1.x, this.point_2.y - this.point_1.y);
     }
 
-    showAsVector(myColor = palette.segmentFill, myWeight = styles.segmentWeight) {
-        let slopeVec = this.getSlopeVec();
-        this.showVec(this.point_1, slopeVec, myColor, myWeight, true);
+    showAsVector(p5, myColor = palette.segmentFill, myWeight = styles.segmentWeight) {
+        let slopeVec = this.getSlopeVec(p5);
+        this.showVec(p5, this.point_1, slopeVec, myColor, myWeight, true);
     }
     
-    showAsSegment(myColor = palette.segmentFill, myWeight = styles.segmentWeight) {
-        let slopeVec = this.getSlopeVec();
-        this.showVec(this.point_1, slopeVec, myColor, myWeight, false);
+    showAsSegment(p5, myColor = palette.segmentFill, myWeight = styles.segmentWeight) {
+        let slopeVec = this.getSlopeVec(p5);
+        this.showVec(p5, this.point_1, slopeVec, myColor, myWeight, false);
     }
 
-    showAsAxis(myColor = palette.segmentFill, myWeight = styles.segmentWeight) {
-        let slopeVec = this.getSlopeVec();
-        this.showVec(this.point_1, slopeVec, myColor, myWeight, true);
-        this.showVec(this.point_2, slopeVec.mult(-1), myColor, myWeight, true);
+    showAsAxis(p5, myColor = palette.segmentFill, myWeight = styles.segmentWeight) {
+        let slopeVec = this.getSlopeVec(p5);
+        this.showVec(p5, this.point_1, slopeVec, myColor, myWeight, true);
+        this.showVec(p5, this.point_2, slopeVec.mult(-1), myColor, myWeight, true);
     }
 
-    showVec(base, vec, myColor, myWeight, showArrowTip) {
-        push();
-        stroke(myColor);
-        strokeWeight(myWeight);
-        fill(myColor);
-        translate(base.x, base.y);
-        line(0, 0, vec.x, vec.y);
+    showVec(p5, base, vec, myColor, myWeight, showArrowTip) {
+        p5.push();
+        p5.stroke(myColor);
+        p5.strokeWeight(myWeight);
+        p5.fill(myColor);
+        p5.translate(base.x, base.y);
+        p5.line(0, 0, vec.x, vec.y);
         if(showArrowTip) {
-            rotate(vec.heading());
-            translate(vec.mag() - styles.segmentArrowSize, 0);
-            triangle(0, styles.segmentArrowSize / 2, 0, -styles.segmentArrowSize / 2, styles.segmentArrowSize, 0);
+            p5.rotate(vec.heading());
+            p5.translate(vec.mag() - styles.segmentArrowSize, 0);
+            p5.triangle(0, styles.segmentArrowSize / 2, 0, -styles.segmentArrowSize / 2, styles.segmentArrowSize, 0);
         }
-        pop();
+        p5.pop();
     }
 }
 
-class Axes {
+export class Axes {
     constructor(x, y, w, h) {
         this.x = x;
         this.y = y;
@@ -79,7 +81,7 @@ class Axes {
         this.h = h;
     }
 
-    show() {
+    show(p5) {
         let xAxisStart = new Point(-this.w/2 + this.x, 0 + this.y);
         let xAxisEnd = new Point(this.w/2 + this.x, 0 + this.y);
         let xAxis = new Segment(xAxisStart, xAxisEnd);
@@ -88,7 +90,7 @@ class Axes {
         let yAxisEnd = new Point(0 + this.x, this.h/2 + this.y);
         let yAxis = new Segment(yAxisStart, yAxisEnd);
             
-        xAxis.showAsAxis();
-        yAxis.showAsAxis();
+        xAxis.showAsAxis(p5);
+        yAxis.showAsAxis(p5);
     }
 }

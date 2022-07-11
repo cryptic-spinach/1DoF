@@ -1,34 +1,53 @@
-function preload() {
-  sound = loadSound('assets/sepia-sky.mp3');
-  table = loadTable('data/mouse-recording.csv', 'csv', 'header');
-}
+import { canvasConfig, sliderOffset, axisControls, palette} from "./configs.js";
+import { controls_init } from "./controls.js";
+import { formatTableAsJson, generateRandomPoints, slider_init } from "./helpers.js"
+import { Point, Segment, Axes } from "./components.js";
 
-function setup() {
-  let canvas = createCanvas(windowWidth - canvasConfig.trimX, windowHeight - canvasConfig.trimY);
-  canvas.parent("sketch-container");
+const part_1DoF = p5 => {
+  let sound;
+  let table;
+  let slider;
+  let points;
+  let data;
 
-  controls_init();
+  p5.preload = function() {
+    sound = p5.loadSound('assets/sepia-sky.mp3');
+    data = p5.loadTable('data/mouse-recording.csv', 'csv', 'header');
+  }
 
-  table = formatTableAsJson();
-  points = generateRandomPoints(10);
-}
+  p5.setup = function() {
+    p5.createCanvas(p5.windowWidth - canvasConfig.trimX, p5.windowHeight - canvasConfig.trimY);
   
-function draw() {
-  background(0);
-  translate((windowWidth - canvasConfig.trimX)/2, (windowHeight - canvasConfig.trimY)/2);
-  scale(1, -1);
+    controls_init();
+    slider = slider_init(p5);
+  
+    table = formatTableAsJson(data);
+    points = generateRandomPoints(p5, 10);
+  };
 
-  slider.position((windowWidth - canvasConfig.trimX)/2 + sliderOffset.x, (windowHeight - canvasConfig.trimY)/2 + sliderOffset.y);
+  p5.draw = function() {
+    p5.background(palette.backgroundFill);
+    p5.translate((p5.windowWidth - canvasConfig.trimX)/2, (p5.windowHeight - canvasConfig.trimY)/2);
+    p5.scale(1, -1);
 
-  let testAxes = new Axes(axisControls.x, axisControls.y, axisControls.size, axisControls.size);
-  testAxes.show();
+    slider.position((p5.windowWidth - canvasConfig.trimX)/2 + sliderOffset.x, (p5.windowHeight - canvasConfig.trimY)/2 + sliderOffset.y);
 
-  let trendlineStart = new Point(axisControls.x - axisControls.w/2, axisControls.y - axisControls.h/2 + slider.value());
-  let trendlineEnd   = new Point(axisControls.x + axisControls.w/2, axisControls.y + axisControls.h/2 + slider.value());
-  let trendline = new Segment(trendlineStart, trendlineEnd);
+    let testAxes = new Axes(axisControls.x, axisControls.y, axisControls.size, axisControls.size);
+    testAxes.show(p5);
 
-  trendline.showAsSegment("#ffffff", 1);
+    let trendlineStart = new Point(axisControls.x - axisControls.w/2, axisControls.y - axisControls.h/2 + slider.value());
+    let trendlineEnd   = new Point(axisControls.x + axisControls.w/2, axisControls.y + axisControls.h/2 + slider.value());
+    let trendline = new Segment(trendlineStart, trendlineEnd);
 
-  points.forEach(p => p.show());
+    trendline.showAsSegment(p5, "#ffffff", 1);
 
-}
+    points.forEach(p => p.show(p5));
+  };
+
+  p5.windowResized = () => {
+    p5.resizeCanvas(p5.windowWidth - canvasConfig.trimX, p5.windowHeight - canvasConfig.trimY);
+    slider.position((p5.windowWidth - canvasConfig.trimX)/2 + sliderOffset.x, (p5.windowHeight - canvasConfig.trimY)/2 + sliderOffset.y);
+  }
+};
+
+new p5(part_1DoF, document.querySelector("#sketch-container"));
