@@ -11,8 +11,8 @@ const part_1DoF = p5 => {
   let data;
 
   p5.preload = function() {
-    sound = p5.loadSound('assets/sepia-sky.mp3');
-    data = p5.loadTable('data/mouse-recording.csv', 'csv', 'header');
+    sound = p5.loadSound('content/1DoF/assets/sepia-sky.mp3');
+    data = p5.loadTable('content/1DoF/assets/mouse-recording.csv', 'csv', 'header');
   }
 
   p5.setup = function() {
