@@ -21,11 +21,14 @@ export function generateRandomPoints(p5, numberOfPoints) {
   let ret = []
 
   let m = 1;
-  let b = 425;
+  let b = 100 - axisControls.x;
   let errorRange = 50;
 
   for (let i = 0; i < numberOfPoints; i++) {
-    let x = p5.random(axisControls.x - axisControls.w/2, axisControls.x + axisControls.w/2);
+    let xMin = axisControls.x - axisControls.w/2;
+    let xMax = axisControls.x + axisControls.w/2;
+
+    let x = p5.random(xMin, xMax);
     let y = p5.random(m*x + b - errorRange, m*x + b + errorRange);
     let point = new Point(x, y);
     ret.push(point);

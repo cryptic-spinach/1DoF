@@ -10,12 +10,12 @@ const part_1DoF = p5 => {
   let points;
   let data;
 
-  p5.preload = function() {
+  p5.preload = () => {
     sound = p5.loadSound('content/1DoF/assets/sepia-sky.mp3');
     data = p5.loadTable('content/1DoF/assets/mouse-recording.csv', 'csv', 'header');
   }
 
-  p5.setup = function() {
+  p5.setup = () => {
     p5.createCanvas(p5.windowWidth - canvasConfig.trimX, p5.windowHeight - canvasConfig.trimY);
   
     controls_init();
@@ -25,7 +25,7 @@ const part_1DoF = p5 => {
     points = generateRandomPoints(p5, 10);
   };
 
-  p5.draw = function() {
+  p5.draw = () => {
     p5.background(palette.backgroundFill);
     p5.translate((p5.windowWidth - canvasConfig.trimX)/2, (p5.windowHeight - canvasConfig.trimY)/2);
     p5.scale(1, -1);
