@@ -1,11 +1,14 @@
-import { axisControls, sliderOffset, palette } from "./configs.js";
+import { axisControls, sliderOffset, palette, trendlineConfig} from "./configs.js";
 
-export function controls_init() {
+export function controlsInit() {
     let gui = new dat.GUI();
     gui.width = 300;
 
+    
+
     // sliderGUI(gui);
     // axesGUI(gui);
+    trendlineGUI(gui);
 }
 
 export function sliderGUI(gui) {
@@ -20,4 +23,8 @@ export function axesGUI(gui) {
     // gui.add(axisControls, "w", 0, 600).name("Axis width");
     // gui.add(axisControls, "h", 0, 600).name("Axis height");
     gui.add(axisControls, "size", 20, 600).name("Axis size");
+}
+
+export function trendlineGUI(gui) {
+    gui.add(trendlineConfig, "bInit", -axisControls.h/2, axisControls.h/2).name("b");
 }

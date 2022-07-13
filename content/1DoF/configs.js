@@ -38,3 +38,8 @@ export let sliderOffset = {
     x: 198, 
     y: -11 
 }
+
+export let trendlineConfig = {
+    mInit: 1,
+    bInit: 100
+}

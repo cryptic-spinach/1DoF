@@ -1,4 +1,4 @@
-import { axisControls, canvasConfig, sliderOffset } from "./configs.js";
+import { axisControls, canvasConfig, sliderOffset, trendlineConfig } from "./configs.js";
 import { Point } from "./components.js"
 
 export function toSeconds (milliseconds) {
@@ -20,8 +20,8 @@ export function formatTableAsJson (data) {
 export function generateRandomPoints(p5, numberOfPoints) {
   let ret = []
 
-  let m = 1;
-  let b = 100 - axisControls.x;
+  let m = trendlineConfig.mInit;
+  let b = trendlineConfig.bInit - axisControls.x;
   let errorRange = 50;
 
   for (let i = 0; i < numberOfPoints; i++) {
@@ -37,9 +37,9 @@ export function generateRandomPoints(p5, numberOfPoints) {
   return ret;
 }
 
-export function slider_init(p5) {
+export function sliderInit(p5) {
   let ret;
-  ret = p5.createSlider(-axisControls.h/2, axisControls.h/2, 0, 0.1);
+  ret = p5.createSlider(0, p5.PI, 0, 0.1);
   ret.position((p5.windowWidth - canvasConfig.trimX)/2 + sliderOffset.x, (p5.windowHeight - canvasConfig.trimY)/2 + sliderOffset.y);
   ret.style('width', '300px');
   return ret;

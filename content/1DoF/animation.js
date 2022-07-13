@@ -1,6 +1,6 @@
-import { canvasConfig, sliderOffset, axisControls, palette} from "./configs.js";
-import { controls_init } from "./controls.js";
-import { formatTableAsJson, generateRandomPoints, slider_init } from "./helpers.js"
+import { canvasConfig, sliderOffset, axisControls, palette, trendlineConfig} from "./configs.js";
+import { controlsInit } from "./controls.js";
+import { formatTableAsJson, generateRandomPoints, sliderInit } from "./helpers.js"
 import { Point, Segment, Axes } from "./components.js";
 
 const part_1DoF = p5 => {
@@ -18,8 +18,8 @@ const part_1DoF = p5 => {
   p5.setup = () => {
     p5.createCanvas(p5.windowWidth - canvasConfig.trimX, p5.windowHeight - canvasConfig.trimY);
   
-    controls_init();
-    slider = slider_init(p5);
+    controlsInit();
+    slider = sliderInit(p5);
   
     table = formatTableAsJson(data);
     points = generateRandomPoints(p5, 10);
@@ -35,11 +35,16 @@ const part_1DoF = p5 => {
     let testAxes = new Axes(axisControls.x, axisControls.y, axisControls.size, axisControls.size);
     testAxes.show(p5);
 
-    let trendlineStart = new Point(axisControls.x - axisControls.w/2, axisControls.y - axisControls.h/2 + slider.value());
-    let trendlineEnd   = new Point(axisControls.x + axisControls.w/2, axisControls.y + axisControls.h/2 + slider.value());
+    let trendlineStart = new Point(- axisControls.w/2, axisControls.y - axisControls.h/2);
+    let trendlineEnd   = new Point(  axisControls.w/2, axisControls.y + axisControls.h/2);
     let trendline = new Segment(trendlineStart, trendlineEnd);
 
+    p5.push();
+    p5.angleMode(p5.RADIANS)
+    p5.translate(axisControls.x, trendlineConfig.bInit);
+    p5.rotate(slider.value());
     trendline.showAsSegment(p5, "#ffffff", 1);
+    p5.pop();
 
     points.forEach(p => p.show(p5));
   };
