@@ -39,6 +39,7 @@ const part_1DoF = p5 => {
     let trendlineEnd   = new Point(  axisControls.w/2, axisControls.y + axisControls.h/2);
     let trendline = new Segment(trendlineStart, trendlineEnd);
 
+    // move this into the segment class and add a method to return m
     p5.push();
     p5.angleMode(p5.RADIANS)
     p5.translate(axisControls.x, trendlineConfig.bInit);
