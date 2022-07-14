@@ -32,20 +32,20 @@ const part_1DoF = p5 => {
 
     slider.position((p5.windowWidth - canvasConfig.trimX)/2 + sliderOffset.x, (p5.windowHeight - canvasConfig.trimY)/2 + sliderOffset.y);
 
-    let testAxes = new Axes(axisControls.x, axisControls.y, axisControls.size, axisControls.size);
+    let testAxes = new Axes(axisControls.x, axisControls.y, axisControls.w, axisControls.h);
     testAxes.show(p5);
 
-    let trendlineStart = new Point(- axisControls.w/2, axisControls.y - axisControls.h/2);
-    let trendlineEnd   = new Point(  axisControls.w/2, axisControls.y + axisControls.h/2);
+    let trendlineStart = new Point(- axisControls.w/2, - axisControls.h/2);
+    let trendlineEnd   = new Point(  axisControls.w/2,   axisControls.h/2);
     let trendline = new Segment(trendlineStart, trendlineEnd);
 
-    // move this into the segment class and add a method to return m
-    p5.push();
-    p5.angleMode(p5.RADIANS)
-    p5.translate(axisControls.x, trendlineConfig.bInit);
-    p5.rotate(slider.value());
-    trendline.showAsSegment(p5, "#ffffff", 1);
-    p5.pop();
+    // debugging
+    let roundedTheta = parseFloat(trendline.getNumericSlope(p5, slider.value())).toFixed(2); 
+    let testPoint = new Point(0, 0, roundedTheta); 
+    testPoint.showLabel(p5, "#ffffff"); // value of m
+
+    let rotateAbout = new Point(axisControls.x, trendlineConfig.bInit + axisControls.y)
+    trendline.showAsRotatedSegment(p5, slider.value(), rotateAbout)
 
     points.forEach(p => p.show(p5));
   };

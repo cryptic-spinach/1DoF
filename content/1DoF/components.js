@@ -16,14 +16,14 @@ export class Point {
         p5.pop();
     }
 
-    showLabel(p5) {
+    showLabel(p5, myColor = palette.labelFill) {
         p5.push();
         
         p5.translate(this.x, this.y)
         p5.scale(1, -1);
 
         p5.noStroke();
-        p5.fill(palette.labelFill);
+        p5.fill(myColor);
         p5.textSize(styles.labelTextSize);
         p5.text(this.label, styles.labelOffsetX, styles.labelOffsetY)
 
@@ -39,6 +39,18 @@ export class Segment {
 
     getSlopeVec(p5) {
         return p5.createVector(this.point_2.x - this.point_1.x, this.point_2.y - this.point_1.y);
+    }
+
+    getNumericSlope(p5, theta) {
+        let slopeVec = this.getSlopeVec(p5);
+        slopeVec.rotate(theta);
+        if (slopeVec.x == 0) {
+            return;
+        }
+        else {
+            return slopeVec.y/slopeVec.x;
+        }
+        
     }
 
     showAsVector(p5, myColor = palette.segmentFill, myWeight = styles.segmentWeight) {
@@ -69,6 +81,15 @@ export class Segment {
             p5.translate(vec.mag() - styles.segmentArrowSize, 0);
             p5.triangle(0, styles.segmentArrowSize / 2, 0, -styles.segmentArrowSize / 2, styles.segmentArrowSize, 0);
         }
+        p5.pop();
+    }
+
+    showAsRotatedSegment(p5, theta, rotateAboutPoint) {
+        p5.push();
+        p5.angleMode(p5.RADIANS)
+        p5.translate(rotateAboutPoint.x, rotateAboutPoint.y);
+        p5.rotate(theta);
+        this.showAsSegment(p5, "#ffffff", 1);
         p5.pop();
     }
 }
