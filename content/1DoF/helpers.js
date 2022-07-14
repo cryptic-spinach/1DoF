@@ -1,4 +1,4 @@
-import { axisControls, canvasConfig, sliderOffset, trendlineConfig } from "./configs.js";
+import { axisControls, canvasConfig, sliderOffset, trendlineConfig, debugConfig } from "./configs.js";
 import { Point } from "./components.js"
 
 export function toSeconds (milliseconds) {
@@ -45,3 +45,15 @@ export function sliderInit(p5) {
   return ret;
 }
 
+export function showValues(p5, pairs) {
+  for (let i = 0; i < pairs.length; i++) {
+    showValue(p5, pairs[i].key, pairs[i].value, i);
+  }
+}
+
+export function showValue(p5, key, value, position = 0) {
+  let keyPoint = new Point(debugConfig.showValueX, debugConfig.showValueY + position * 50, key);
+  let valuePoint = new Point(debugConfig.showValueX + debugConfig.showValueSpacer, debugConfig.showValueY + position * 50, value);  
+  keyPoint.showLabel(p5, "#ffffff");
+  valuePoint.showLabel(p5, "#ffffff");
+}

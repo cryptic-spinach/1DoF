@@ -43,3 +43,9 @@ export let trendlineConfig = {
     mInit: 1,
     bInit: 100
 }
+
+export let debugConfig = {
+    showValueX: 620,
+    showValueY: 200,
+    showValueSpacer: 50
+}
