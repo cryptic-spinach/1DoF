@@ -1,4 +1,4 @@
-import { axisControls, canvasConfig, sliderOffset, trendlineConfig, debugConfig } from "./configs.js";
+import { axisConfig, canvasConfig, sliderConfig, trendlineConfig, debugConfig } from "./configs.js";
 import { Point } from "./components.js"
 
 export function toSeconds (milliseconds) {
@@ -21,12 +21,12 @@ export function generateRandomPoints(p5, numberOfPoints) {
   let ret = []
 
   let m = trendlineConfig.mInit;
-  let b = trendlineConfig.bInit - axisControls.x;
+  let b = trendlineConfig.bInit - axisConfig.x;
   let errorRange = 50;
 
   for (let i = 0; i < numberOfPoints; i++) {
-    let xMin = axisControls.x - axisControls.w/2;
-    let xMax = axisControls.x + axisControls.w/2;
+    let xMin = axisConfig.x - axisConfig.w/2;
+    let xMax = axisConfig.x + axisConfig.w/2;
 
     let x = p5.random(xMin, xMax);
     let y = p5.random(m*x + b - errorRange, m*x + b + errorRange);
@@ -40,7 +40,7 @@ export function generateRandomPoints(p5, numberOfPoints) {
 export function sliderInit(p5) {
   let ret;
   ret = p5.createSlider(-p5.PI/4, p5.PI/4, 0, 0.01);
-  ret.position((p5.windowWidth - canvasConfig.trimX)/2 + sliderOffset.x, (p5.windowHeight - canvasConfig.trimY)/2 + sliderOffset.y);
+  ret.position((p5.windowWidth - canvasConfig.trimX)/2 + sliderConfig.x, (p5.windowHeight - canvasConfig.trimY)/2 + sliderConfig.y);
   ret.style('width', '300px');
   return ret;
 }

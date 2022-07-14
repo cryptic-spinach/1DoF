@@ -1,4 +1,4 @@
-import { canvasConfig, sliderOffset, axisControls, palette, trendlineConfig} from "./configs.js";
+import { canvasConfig, sliderConfig, axisConfig, palette, trendlineConfig} from "./configs.js";
 import { controlsInit } from "./controls.js";
 import { formatTableAsJson, generateRandomPoints, showValue, showValues, sliderInit } from "./helpers.js"
 import { Point, Segment, Axes } from "./components.js";
@@ -30,16 +30,16 @@ const part_1DoF = p5 => {
     p5.translate((p5.windowWidth - canvasConfig.trimX)/2, (p5.windowHeight - canvasConfig.trimY)/2);
     p5.scale(1, -1);
 
-    slider.position((p5.windowWidth - canvasConfig.trimX)/2 + sliderOffset.x, (p5.windowHeight - canvasConfig.trimY)/2 + sliderOffset.y);
+    slider.position((p5.windowWidth - canvasConfig.trimX)/2 + sliderConfig.x, (p5.windowHeight - canvasConfig.trimY)/2 + sliderConfig.y);
 
-    let axes = new Axes(axisControls.x, axisControls.y, axisControls.w, axisControls.h);
+    let axes = new Axes(axisConfig.x, axisConfig.y, axisConfig.w, axisConfig.h);
     axes.show(p5);
 
-    let trendlineStart = new Point(- axisControls.w/2, - axisControls.h/2);
-    let trendlineEnd   = new Point(  axisControls.w/2,   axisControls.h/2);
+    let trendlineStart = new Point(- axisConfig.w/2, - axisConfig.h/2);
+    let trendlineEnd   = new Point(  axisConfig.w/2,   axisConfig.h/2);
     let trendline = new Segment(trendlineStart, trendlineEnd);
 
-    let rotateAbout = new Point(axisControls.x, trendlineConfig.bInit + axisControls.y)
+    let rotateAbout = new Point(axisConfig.x, trendlineConfig.bInit + axisConfig.y)
     trendline.showAsRotatedSegment(p5, slider.value(), rotateAbout)
 
     points.forEach(p => p.show(p5));
@@ -54,7 +54,7 @@ const part_1DoF = p5 => {
 
   p5.windowResized = () => {
     p5.resizeCanvas(p5.windowWidth - canvasConfig.trimX, p5.windowHeight - canvasConfig.trimY);
-    slider.position((p5.windowWidth - canvasConfig.trimX)/2 + sliderOffset.x, (p5.windowHeight - canvasConfig.trimY)/2 + sliderOffset.y);
+    slider.position((p5.windowWidth - canvasConfig.trimX)/2 + sliderConfig.x, (p5.windowHeight - canvasConfig.trimY)/2 + sliderConfig.y);
   }
 };
 

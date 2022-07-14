@@ -26,7 +26,7 @@ export let canvasConfig = {
     trimY: 0,
 }
 
-export let axisControls = {
+export let axisConfig = {
     x: -350,
     y: 0,
     w: 500,
@@ -34,7 +34,7 @@ export let axisControls = {
     size: 500,
 }
 
-export let sliderOffset = { 
+export let sliderConfig = { 
     x: 198, 
     y: -11 
 }
@@ -47,5 +47,5 @@ export let trendlineConfig = {
 export let debugConfig = {
     showValueX: 620,
     showValueY: 200,
-    showValueSpacer: 50
+    showValueSpacer: 100
 }
