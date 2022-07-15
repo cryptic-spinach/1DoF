@@ -29,20 +29,27 @@ const part_1DoF = p5 => {
     p5.background(palette.backgroundFill);
     p5.translate((p5.windowWidth - canvasConfig.trimX)/2, (p5.windowHeight - canvasConfig.trimY)/2);
     p5.scale(1, -1);
+    p5.angleMode(p5.RADIANS);
 
     slider.position((p5.windowWidth - canvasConfig.trimX)/2 + sliderConfig.x, (p5.windowHeight - canvasConfig.trimY)/2 + sliderConfig.y);
 
     let axes = new Axes(axisConfig.x, axisConfig.y, axisConfig.w, axisConfig.h);
-    axes.show(p5);
+    //axes.show(p5);
 
-    let trendlineStart = new Point(- axisConfig.w/2, - axisConfig.h/2);
-    let trendlineEnd   = new Point(  axisConfig.w/2,   axisConfig.h/2);
+    let trendlineStart = new Point(- axisConfig.w/2 + axisConfig.x, - axisConfig.h/2 + trendlineConfig.bInit + axisConfig.y);
+    let trendlineEnd   = new Point(  axisConfig.w/2 + axisConfig.x,   axisConfig.h/2 + trendlineConfig.bInit + axisConfig.y);
     let trendline = new Segment(trendlineStart, trendlineEnd);
 
     let rotateAbout = new Point(axisConfig.x, trendlineConfig.bInit + axisConfig.y)
-    trendline.showAsRotatedSegment(p5, slider.value(), rotateAbout)
+    trendline.rotateSegment(p5, slider.value(), rotateAbout)
 
-    points.forEach(p => p.show(p5));
+    trendline.showAsSegment(p5, "#ffffff", 1);
+
+    trendline.getPerpendicularDistance(p5, points[0]);
+
+    //points.forEach(p => p.show(p5));
+    points[0].show(p5);
+    //rotateAbout.show(p5);
 
     let myDebug = [
       {key: "Slope", value: parseFloat(trendline.getNumericSlope(p5, slider.value())).toFixed(2)},

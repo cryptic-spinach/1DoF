@@ -1,4 +1,4 @@
-import { palette, styles } from "./configs.js";
+import { axisConfig, palette, styles } from "./configs.js";
 
 export class Point {
     constructor (x, y, label = "") {
@@ -53,6 +53,35 @@ export class Segment {
         
     }
 
+    getProjection(p5, u, v) {
+        if (v.copy().dot(v) == 0) {
+            return;
+        }
+        else {
+            return v.copy().mult(u.copy().dot(v) / v.copy().dot(v)) ;
+        }
+    }
+
+
+    getPerpendicularDistance(p5, m) {
+        // Displaying perpendicular distance from line l to point m
+        p5.push();
+        // 1) Choose the origin along l.
+        // 2) Create a vector u with tip at m.
+        let u = p5.createVector(m.x - this.point_1.x, m.y - this.point_1.y);
+        this.showVec(p5, this.point_1, u, "#17e860", 1, true);
+        // 3) Create unit vector v pointing along l.
+        let v = this.getSlopeVec(p5).normalize();
+        this.showVec(p5, this.point_1, v, "#d94343", 1, true);
+        // 4) Calculate the projection of u onto v. Call it w.
+        let w = this.getProjection(p5, u, v)
+        this.showVec(p5, this.point_1, w, "#2c2ce8", 1, true);
+        // 5) Draw a line connecting m and the tip of w.
+        //p5.stroke("#17e860");
+        //p5.line(w.x, w.y, m.x, m.y);
+        p5.pop();
+    }
+
     showAsVector(p5, myColor = palette.segmentFill, myWeight = styles.segmentWeight) {
         let slopeVec = this.getSlopeVec(p5);
         this.showVec(p5, this.point_1, slopeVec, myColor, myWeight, true);
@@ -84,13 +113,25 @@ export class Segment {
         p5.pop();
     }
 
-    showAsRotatedSegment(p5, theta, rotateAboutPoint) {
-        p5.push();
-        p5.angleMode(p5.RADIANS)
-        p5.translate(rotateAboutPoint.x, rotateAboutPoint.y);
-        p5.rotate(theta);
-        this.showAsSegment(p5, "#ffffff", 1);
-        p5.pop();
+    rotateSegment(p5, theta, rotateAboutPoint) {
+        let vec1 = p5.createVector(this.point_1.x - rotateAboutPoint.x, this.point_1.y - rotateAboutPoint.y)
+        let transVec1 = vec1.copy().rotate(theta);
+
+        let vec2 = p5.createVector(this.point_2.x - rotateAboutPoint.x, this.point_2.y - rotateAboutPoint.y)
+        let transVec2 = vec2.copy().rotate(theta);
+
+        this.updatePoint1(transVec1, rotateAboutPoint);
+        this.updatePoint2(transVec2, rotateAboutPoint);
+    }
+
+    updatePoint1(vec, point) {
+        this.point_1.x = vec.x + point.x;
+        this.point_1.y = vec.y + point.y;
+    }
+
+    updatePoint2(vec, point) {
+        this.point_2.x = vec.x + point.x;
+        this.point_2.y = vec.y + point.y;
     }
 }
 
