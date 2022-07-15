@@ -39,7 +39,7 @@ export function generateRandomPoints(p5, numberOfPoints) {
 
 export function sliderInit(p5) {
   let ret;
-  ret = p5.createSlider(-p5.PI/4, p5.PI/4, 0, 0.01);
+  ret = p5.createSlider(sliderConfig.min, sliderConfig.max, 0, 0.01);
   ret.position((p5.windowWidth - canvasConfig.trimX)/2 + sliderConfig.x, (p5.windowHeight - canvasConfig.trimY)/2 + sliderConfig.y);
   ret.style('width', '300px');
   return ret;

@@ -1,13 +1,23 @@
 export let palette = { 
-    backgroundFill: "#202020",
+    backgroundFill: "#000000",
 
-    pointStroke: "#ff9200", 
-    pointFill: "#000000",
+    pointStroke: "#fff000", 
+    pointFill: "#fff000",
 
     labelFill: "#1fced9",
 
     segmentFill: "#20c5c5",
 };
+
+export let projectionVecPalette = {
+    uFill: "#05aaaa",
+    vFill: "#d94343",
+    wFill: "#f03c70"
+}
+
+export let projectionVecStyles = {
+    weight: 2
+}
 
 export let styles = {
     pointRadius: 15,
@@ -36,12 +46,14 @@ export let axisConfig = {
 
 export let sliderConfig = { 
     x: 198, 
-    y: -11 
+    y: -11,
+    min: -Math.PI * 2,
+    max: Math.PI * 2
 }
 
 export let trendlineConfig = {
     mInit: 1,
-    bInit: 100
+    bInit: 0
 }
 
 export let debugConfig = {
