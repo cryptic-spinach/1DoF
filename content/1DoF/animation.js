@@ -45,12 +45,15 @@ const part_1DoF = p5 => {
 
     trendline.showAsSegment(p5, "#ffffff", 1);
 
-    points.forEach(p => {
-      trendline.showPerpendicularDistance(p5, p)
-      p.show(p5);
-    });
+    // points.forEach(p => {
+    //   trendline.showPerpendicularDistance(p5, p)
+    //   p.show(p5);
+    // });
 
-    // trendline.getVerticalDistance(p5, points[0])
+
+    trendline.showPerpendicularDistance(p5, points[0])
+
+    trendline.getVerticalDistance(p5, points[0])
 
     // let myDebug = [
     //   {key: "Theta", value: parseFloat(slider.value()/(2 * p5.PI)).toFixed(2)}

@@ -67,15 +67,23 @@ export class Segment {
     }
 
     showPerpendicularDistance(p5, m) {
-        this.getPerpendicularDistance(p5, m).showAsSegment(p5, projectionVecPalette.perpDistFill, projectionVecStyles.weight);
+        this.getPerpendicularDistance(p5, m).showAsVector(p5, projectionVecPalette.perpDistFill, projectionVecStyles.weight);
     }
 
     getVerticalDistance(p5, m) {
-        //let vec = p5.createVector(axisConfig.x - m.x, axisConfig.y - m.y);
-        let vec = this.getPerpendicularDistance(p5, m)
+        let perpDist = this.getPerpendicularDistance(p5, m).getSlopeVec(p5);
+
+        if (perpDist.y > 0) {
+            perpDist.setHeading(p5.PI/2);
+        }
+        else {
+            perpDist.setHeading(-p5.PI/2);
+        }
+
+        this.showVec(p5, m, perpDist.mult(-1), projectionVecPalette.vFill, projectionVecStyles.weight, true)
 
         let myDebug = [
-            {key: "Vec Angle", value: parseFloat(vec.heading()).toFixed(2)},
+            {key: "PerpDist y", value: parseFloat(perpDist.y).toFixed(2)},
         ];
 
         showValues(p5, myDebug);
