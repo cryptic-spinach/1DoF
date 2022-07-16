@@ -1,4 +1,4 @@
-import { axisConfig, sliderConfig, palette, styles, trendlineConfig, projectionVecPalette, projectionVecStyles} from "./configs.js";
+import { axisConfig, sliderConfig, palette, styles, trendlineConfig, projectionVecPalette, projectionVecStyles, distanceConfig} from "./configs.js";
 
 export function controlsInit() {
     let gui = new dat.GUI();
@@ -28,6 +28,7 @@ export function axesGUI(gui) {
 
 export function trendlineGUI(gui) {
     gui.add(trendlineConfig, "bInit", -axisConfig.h/2, axisConfig.h/2).name("b");
+    gui.add(distanceConfig, "showVertical").name("Distance display toggle")
 }
 
 export function projectionVecGUI(gui) {

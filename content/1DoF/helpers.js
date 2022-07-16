@@ -22,7 +22,7 @@ export function generateRandomPoints(p5, numberOfPoints) {
 
   let m = trendlineConfig.mInit;
   let b = trendlineConfig.bInit - axisConfig.x;
-  let errorRange = 200;
+  let errorRange = 70;
 
   for (let i = 0; i < numberOfPoints; i++) {
     let xMin = axisConfig.x - axisConfig.w/2;

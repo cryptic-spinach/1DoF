@@ -13,11 +13,11 @@ export let projectionVecPalette = {
     uFill: "#05aaaa",
     vFill: "#d94343",
     wFill: "#f03c70",
-    perpDistFill: "#17e860",
+    perpDistFill: "#ffffff",
 }
 
 export let projectionVecStyles = {
-    weight: 2
+    weight: 1
 }
 
 export let styles = {
@@ -48,17 +48,23 @@ export let axisConfig = {
 export let sliderConfig = { 
     x: 198, 
     y: -11,
-    min: -Math.PI * 2,
-    max: Math.PI * 2
+    min: -Math.PI / 4,
+    max: Math.PI / 4
 }
 
 export let trendlineConfig = {
     mInit: 1,
-    bInit: 0
+    bInit: 0,
+    extraX: 400,
+    extraY: 400
 }
 
 export let debugConfig = {
     showValueX: 520,
     showValueY: 200,
     showValueSpacer: 200
+}
+
+export let distanceConfig = {
+    showVertical: true
 }

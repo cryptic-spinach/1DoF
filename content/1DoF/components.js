@@ -57,7 +57,7 @@ export class Segment {
         let v = this.getSlopeVec(p5).normalize();
 
         // Calculate the projection of u onto v. Call it w.
-        let w = this.getProjection(p5, u, v)
+        let w = this.getProjection(p5, u, v);
         
         // Draw a line connecting m and the tip of w.
         let perpDistStart = new Point(this.point_1.x + w.x, this.point_1.y + w.y);
@@ -85,13 +85,6 @@ export class Segment {
         }
         else {
             return;
-        }
-    }
-
-    showVerticalDistance(p5, m) {
-        let vertDist = this.getVerticalDistance(p5, m);
-        if (vertDist != null) {
-            this.showVec(p5, m, vertDist, projectionVecPalette.vFill, projectionVecStyles.weight, true);
         }
     }
 
@@ -127,7 +120,14 @@ export class Segment {
     }
 
     showPerpendicularDistance(p5, m) {
-        this.getPerpendicularDistance(p5, m).showAsVector(p5, projectionVecPalette.perpDistFill, projectionVecStyles.weight);
+        this.getPerpendicularDistance(p5, m).showAsSegment(p5, projectionVecPalette.perpDistFill, projectionVecStyles.weight);
+    }
+
+    showVerticalDistance(p5, m) {
+        let vertDist = this.getVerticalDistance(p5, m);
+        if (vertDist != null) {
+            this.showVec(p5, m, vertDist, projectionVecPalette.perpDistFill, projectionVecStyles.weight);
+        }
     }
 
 
