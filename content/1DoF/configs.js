@@ -12,7 +12,8 @@ export let palette = {
 export let projectionVecPalette = {
     uFill: "#05aaaa",
     vFill: "#d94343",
-    wFill: "#f03c70"
+    wFill: "#f03c70",
+    perpDistFill: "#17e860",
 }
 
 export let projectionVecStyles = {

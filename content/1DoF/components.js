@@ -65,9 +65,7 @@ export class Segment {
 
     // Displays perpendicular distance from line l to point m
     getPerpendicularDistance(p5, m) {
-        p5.push();
         // Choose the origin along l.
-
         // Create a vector u with tip at m.
         let u = p5.createVector(m.x - this.point_1.x, m.y - this.point_1.y); 
         this.showVec(p5, this.point_1, u, projectionVecPalette.uFill, projectionVecStyles.weight, true);
@@ -80,10 +78,10 @@ export class Segment {
         this.showVec(p5, this.point_1, w, projectionVecPalette.wFill, projectionVecStyles.weight, true);
         
         // Draw a line connecting m and the tip of w.
-        p5.stroke("#17e860");
-        p5.line(this.point_1.x + w.x, this.point_1.y + w.y, this.point_1.x + u.x, this.point_1.y + u.y);
-
-        p5.pop();
+        let perpDistStart = new Point(this.point_1.x + w.x, this.point_1.y + w.y);
+        let perpDistEnd = new Point(this.point_1.x + u.x, this.point_1.y + u.y);
+        let perpDist = new Segment(perpDistStart, perpDistEnd);
+        perpDist.showAsSegment(p5, projectionVecPalette.perpDistFill, projectionVecStyles.weight);
     }
 
     showAsVector(p5, myColor = palette.segmentFill, myWeight = styles.segmentWeight) {
