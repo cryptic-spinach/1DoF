@@ -66,10 +66,6 @@ export class Segment {
         return perpDist;
     }
 
-    showPerpendicularDistance(p5, m) {
-        this.getPerpendicularDistance(p5, m).showAsVector(p5, projectionVecPalette.perpDistFill, projectionVecStyles.weight);
-    }
-
     getVerticalDistance(p5, m) {
         let perpDist = this.getPerpendicularDistance(p5, m).getSlopeVec(p5);
         let vertDist;
@@ -85,6 +81,16 @@ export class Segment {
 
         if (Math.cos(angle) != 0) {
             vertDist.setMag(perpDist.mag() / Math.cos(angle));
+            return vertDist;
+        }
+        else {
+            return;
+        }
+    }
+
+    showVerticalDistance(p5, m) {
+        let vertDist = this.getVerticalDistance(p5, m);
+        if (vertDist != null) {
             this.showVec(p5, m, vertDist, projectionVecPalette.vFill, projectionVecStyles.weight, true);
         }
     }
@@ -119,6 +125,11 @@ export class Segment {
         }
         p5.pop();
     }
+
+    showPerpendicularDistance(p5, m) {
+        this.getPerpendicularDistance(p5, m).showAsVector(p5, projectionVecPalette.perpDistFill, projectionVecStyles.weight);
+    }
+
 
     rotateSegment(p5, theta, rotateAboutPoint) {
         let vec1 = p5.createVector(this.point_1.x - rotateAboutPoint.x, this.point_1.y - rotateAboutPoint.y)

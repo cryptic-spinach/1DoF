@@ -53,7 +53,7 @@ const part_1DoF = p5 => {
 
     trendline.showPerpendicularDistance(p5, points[0])
 
-    trendline.getVerticalDistance(p5, points[0])
+    trendline.showVerticalDistance(p5, points[0])
 
     // let myDebug = [
     //   {key: "Theta", value: parseFloat(slider.value()/(2 * p5.PI)).toFixed(2)}
