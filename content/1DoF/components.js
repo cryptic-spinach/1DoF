@@ -65,7 +65,6 @@ export class Segment {
 
     // Displays perpendicular distance from line l to point m
     getPerpendicularDistance(p5, m) {
-        
         p5.push();
         // Choose the origin along l.
 
@@ -75,15 +74,15 @@ export class Segment {
 
         // Create unit vector v pointing along l.
         let v = this.getSlopeVec(p5).normalize();
-        // this.showVec(p5, this.point_1, v, projectionVecPalette.vFill, projectionVecStyles.weight, true);
 
         // Calculate the projection of u onto v. Call it w.
         let w = this.getProjection(p5, u, v)
         this.showVec(p5, this.point_1, w, projectionVecPalette.wFill, projectionVecStyles.weight, true);
         
         // Draw a line connecting m and the tip of w.
-        // p5.stroke("#17e860");
-        // p5.line(w.x, w.y, m.x, m.y);
+        p5.stroke("#17e860");
+        p5.line(this.point_1.x + w.x, this.point_1.y + w.y, this.point_1.x + u.x, this.point_1.y + u.y);
+
         p5.pop();
     }
 

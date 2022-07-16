@@ -33,7 +33,7 @@ const part_1DoF = p5 => {
 
     slider.position((p5.windowWidth - canvasConfig.trimX)/2 + sliderConfig.x, (p5.windowHeight - canvasConfig.trimY)/2 + sliderConfig.y);
     points[0].show(p5);
-    let axes = new Axes(axisConfig.x, axisConfig.y, axisConfig.w, axisConfig.h);
+    // let axes = new Axes(axisConfig.x, axisConfig.y, axisConfig.w, axisConfig.h);
     //axes.show(p5);
 
     let trendlineStart = new Point(- axisConfig.w/2 + axisConfig.x, - axisConfig.h/2 + trendlineConfig.bInit + axisConfig.y);
@@ -49,12 +49,12 @@ const part_1DoF = p5 => {
 
     //points.forEach(p => p.show(p5));
 
-    let myDebug = [
-      {key: "Slope", value: parseFloat(trendline.getNumericSlope(p5, slider.value())).toFixed(2)},
-      {key: "Theta", value: parseFloat(slider.value()/(2 * p5.PI)).toFixed(2)}
-    ];
+    // let myDebug = [
+    //   {key: "Slope", value: parseFloat(trendline.getNumericSlope(p5, slider.value())).toFixed(2)},
+    //   {key: "Theta", value: parseFloat(slider.value()/(2 * p5.PI)).toFixed(2)}
+    // ];
 
-    showValues(p5, myDebug);
+    // showValues(p5, myDebug);
   };
 
   p5.windowResized = () => {
