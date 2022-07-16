@@ -1,4 +1,5 @@
-import { palette, styles, projectionVecPalette, projectionVecStyles } from "./configs.js";
+import { palette, styles, projectionVecPalette, projectionVecStyles, axisConfig } from "./configs.js";
+import { showValues } from "./helpers.js";
 
 export class Point {
     constructor (x, y, label = "") {
@@ -41,25 +42,8 @@ export class Segment {
         return p5.createVector(this.point_2.x - this.point_1.x, this.point_2.y - this.point_1.y);
     }
 
-    getNumericSlope(p5, theta) {
-        let slopeVec = this.getSlopeVec(p5);
-        slopeVec.rotate(theta);
-        if (slopeVec.x == 0) {
-            return;
-        }
-        else {
-            return slopeVec.y/slopeVec.x;
-        }
-        
-    }
-
     getProjection(p5, u, v) {
-        if (v.copy().dot(v) == 0) {
-            return;
-        }
-        else {
-            return v.copy().mult(u.copy().dot(v) / v.copy().dot(v)) ;
-        }
+        return v.copy().mult(u.copy().dot(v) / v.copy().dot(v));
     }
 
 
@@ -68,24 +52,33 @@ export class Segment {
         // Choose the origin along l.
         // Create a vector u with tip at m.
         let u = p5.createVector(m.x - this.point_1.x, m.y - this.point_1.y); 
-        //this.showVec(p5, this.point_1, u, projectionVecPalette.uFill, projectionVecStyles.weight, true);
 
         // Create unit vector v pointing along l.
         let v = this.getSlopeVec(p5).normalize();
 
         // Calculate the projection of u onto v. Call it w.
         let w = this.getProjection(p5, u, v)
-        //this.showVec(p5, this.point_1, w, projectionVecPalette.wFill, projectionVecStyles.weight, true);
         
         // Draw a line connecting m and the tip of w.
         let perpDistStart = new Point(this.point_1.x + w.x, this.point_1.y + w.y);
         let perpDistEnd = new Point(this.point_1.x + u.x, this.point_1.y + u.y);
         let perpDist = new Segment(perpDistStart, perpDistEnd);
-        perpDist.showAsSegment(p5, projectionVecPalette.perpDistFill, projectionVecStyles.weight);
+        return perpDist;
+    }
+
+    showPerpendicularDistance(p5, m) {
+        this.getPerpendicularDistance(p5, m).showAsSegment(p5, projectionVecPalette.perpDistFill, projectionVecStyles.weight);
     }
 
     getVerticalDistance(p5, m) {
+        //let vec = p5.createVector(axisConfig.x - m.x, axisConfig.y - m.y);
+        let vec = this.getPerpendicularDistance(p5, m)
 
+        let myDebug = [
+            {key: "Vec Angle", value: parseFloat(vec.heading()).toFixed(2)},
+        ];
+
+        showValues(p5, myDebug);
     }
 
     showAsVector(p5, myColor = palette.segmentFill, myWeight = styles.segmentWeight) {

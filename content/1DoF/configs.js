@@ -1,5 +1,5 @@
 export let palette = { 
-    backgroundFill: "#000000",
+    backgroundFill: "#3d3d3d",
 
     pointStroke: "#ff8700", 
     pointFill: "#000000",
@@ -58,7 +58,7 @@ export let trendlineConfig = {
 }
 
 export let debugConfig = {
-    showValueX: 620,
+    showValueX: 520,
     showValueY: 200,
-    showValueSpacer: 100
+    showValueSpacer: 200
 }
