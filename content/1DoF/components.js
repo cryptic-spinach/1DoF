@@ -62,7 +62,7 @@ export class Segment {
         // Draw a line connecting m and the tip of w.
         let perpDistStart = new Point(this.point_1.x + w.x, this.point_1.y + w.y);
         let perpDistEnd = new Point(this.point_1.x + u.x, this.point_1.y + u.y);
-        let perpDist = new Segment(perpDistStart, perpDistEnd);
+        let perpDist = new Segment(perpDistEnd, perpDistStart);
         return perpDist;
     }
 
@@ -72,21 +72,21 @@ export class Segment {
 
     getVerticalDistance(p5, m) {
         let perpDist = this.getPerpendicularDistance(p5, m).getSlopeVec(p5);
+        let vertDist;
 
         if (perpDist.y > 0) {
-            perpDist.setHeading(p5.PI/2);
+            vertDist = perpDist.copy().setHeading(p5.PI/2);
         }
         else {
-            perpDist.setHeading(-p5.PI/2);
+            vertDist = perpDist.copy().setHeading(-p5.PI/2);
         }
 
-        this.showVec(p5, m, perpDist.mult(-1), projectionVecPalette.vFill, projectionVecStyles.weight, true)
+        let angle = perpDist.angleBetween(vertDist)
 
-        let myDebug = [
-            {key: "PerpDist y", value: parseFloat(perpDist.y).toFixed(2)},
-        ];
-
-        showValues(p5, myDebug);
+        if (Math.cos(angle) != 0) {
+            vertDist.setMag(perpDist.mag() / Math.cos(angle));
+            this.showVec(p5, m, vertDist, projectionVecPalette.vFill, projectionVecStyles.weight, true);
+        }
     }
 
     showAsVector(p5, myColor = palette.segmentFill, myWeight = styles.segmentWeight) {
