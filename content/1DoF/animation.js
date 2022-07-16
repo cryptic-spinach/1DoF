@@ -33,8 +33,8 @@ const part_1DoF = p5 => {
 
     slider.position((p5.windowWidth - canvasConfig.trimX)/2 + sliderConfig.x, (p5.windowHeight - canvasConfig.trimY)/2 + sliderConfig.y);
     points[0].show(p5);
-    // let axes = new Axes(axisConfig.x, axisConfig.y, axisConfig.w, axisConfig.h);
-    //axes.show(p5);
+    let axes = new Axes(axisConfig.x, axisConfig.y, axisConfig.w, axisConfig.h);
+    axes.show(p5);
 
     let trendlineStart = new Point(- axisConfig.w/2 + axisConfig.x, - axisConfig.h/2 + trendlineConfig.bInit + axisConfig.y);
     let trendlineEnd   = new Point(  axisConfig.w/2 + axisConfig.x,   axisConfig.h/2 + trendlineConfig.bInit + axisConfig.y);
@@ -45,9 +45,10 @@ const part_1DoF = p5 => {
 
     trendline.showAsSegment(p5, "#ffffff", 1);
 
-    trendline.getPerpendicularDistance(p5, points[0]);
-
-    //points.forEach(p => p.show(p5));
+    points.forEach(p => {
+      trendline.getPerpendicularDistance(p5, p)
+      p.show(p5);
+    });
 
     // let myDebug = [
     //   {key: "Slope", value: parseFloat(trendline.getNumericSlope(p5, slider.value())).toFixed(2)},

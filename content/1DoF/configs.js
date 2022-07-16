@@ -1,8 +1,8 @@
 export let palette = { 
     backgroundFill: "#000000",
 
-    pointStroke: "#fff000", 
-    pointFill: "#fff000",
+    pointStroke: "#ff8700", 
+    pointFill: "#000000",
 
     labelFill: "#1fced9",
 

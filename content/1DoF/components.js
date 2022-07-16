@@ -68,20 +68,24 @@ export class Segment {
         // Choose the origin along l.
         // Create a vector u with tip at m.
         let u = p5.createVector(m.x - this.point_1.x, m.y - this.point_1.y); 
-        this.showVec(p5, this.point_1, u, projectionVecPalette.uFill, projectionVecStyles.weight, true);
+        //this.showVec(p5, this.point_1, u, projectionVecPalette.uFill, projectionVecStyles.weight, true);
 
         // Create unit vector v pointing along l.
         let v = this.getSlopeVec(p5).normalize();
 
         // Calculate the projection of u onto v. Call it w.
         let w = this.getProjection(p5, u, v)
-        this.showVec(p5, this.point_1, w, projectionVecPalette.wFill, projectionVecStyles.weight, true);
+        //this.showVec(p5, this.point_1, w, projectionVecPalette.wFill, projectionVecStyles.weight, true);
         
         // Draw a line connecting m and the tip of w.
         let perpDistStart = new Point(this.point_1.x + w.x, this.point_1.y + w.y);
         let perpDistEnd = new Point(this.point_1.x + u.x, this.point_1.y + u.y);
         let perpDist = new Segment(perpDistStart, perpDistEnd);
         perpDist.showAsSegment(p5, projectionVecPalette.perpDistFill, projectionVecStyles.weight);
+    }
+
+    getVerticalDistance(p5, m) {
+
     }
 
     showAsVector(p5, myColor = palette.segmentFill, myWeight = styles.segmentWeight) {
