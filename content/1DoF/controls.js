@@ -10,7 +10,7 @@ export function controlsInit() {
     // axesGUI(gui);
     trendlineGUI(gui);
     //projectionVecGUI(gui);
-    //pointGUI(gui);
+    pointGUI(gui);
 }
 
 export function sliderGUI(gui) {
