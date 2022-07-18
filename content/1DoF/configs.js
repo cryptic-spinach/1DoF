@@ -1,7 +1,7 @@
 export let palette = { 
     backgroundFill: "#3d3d3d",
 
-    pointStroke: "#ff8700", 
+    pointStroke: "#42f595", 
     pointFill: "#000000",
 
     labelFill: "#1fced9",
@@ -13,11 +13,11 @@ export let projectionVecPalette = {
     uFill: "#05aaaa",
     vFill: "#d94343",
     wFill: "#f03c70",
-    perpDistFill: "#ffffff",
+    distFill: "#ffbe26",
 }
 
 export let projectionVecStyles = {
-    weight: 1
+    weight: 2
 }
 
 export let styles = {
@@ -43,10 +43,10 @@ export let axisConfig = {
     w: 500,
     h: 500,
     size: 500,
-    horizontalLabelXOffset: 30,
-    horizontalLabelYOffset: 0,
-    verticalLabelXOffset: 30,
-    verticalLabelYOffset: 0,
+    horizontalLabelXOffset: 20,
+    horizontalLabelYOffset: 9,
+    verticalLabelXOffset: -8,
+    verticalLabelYOffset: -26,
 }
 
 export let axisPalette = {
@@ -61,10 +61,11 @@ export let sliderConfig = {
 }
 
 export let trendlineConfig = {
-    mInit: 1,
-    bInit: 0,
-    extraX: 400,
-    extraY: 400
+    mInit: 1.5,
+    bInit: 100,
+    extraX: 0,
+    extraY: 0,
+    maxError: 100
 }
 
 export let debugConfig = {

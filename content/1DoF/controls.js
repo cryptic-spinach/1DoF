@@ -8,7 +8,7 @@ export function controlsInit() {
 
     // sliderGUI(gui);
     // axesGUI(gui);
-    // trendlineGUI(gui);
+    trendlineGUI(gui);
     // projectionVecGUI(gui);
     // pointGUI(gui);
 }
