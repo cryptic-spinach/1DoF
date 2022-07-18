@@ -1,4 +1,4 @@
-import { palette, styles, projectionVecPalette, projectionVecStyles, axisConfig } from "./configs.js";
+import { palette, styles, projectionVecPalette, projectionVecStyles, axisConfig, axisPalette} from "./configs.js";
 import { showValues } from "./helpers.js";
 
 export class Point {
@@ -17,7 +17,7 @@ export class Point {
         p5.pop();
     }
 
-    showLabel(p5, myColor = palette.labelFill) {
+    showLabel(p5, myColor = palette.labelFill, xOffset = styles.labelOffsetX, yOffset = styles.labelOffsetY) {
         p5.push();
         
         p5.translate(this.x, this.y)
@@ -26,7 +26,7 @@ export class Point {
         p5.noStroke();
         p5.fill(myColor);
         p5.textSize(styles.labelTextSize);
-        p5.text(this.label, styles.labelOffsetX, styles.labelOffsetY)
+        p5.text(this.label, xOffset, yOffset)
 
         p5.pop();
     }
@@ -154,23 +154,28 @@ export class Segment {
 }
 
 export class Axes {
-    constructor(x, y, w, h) {
+    constructor(x, y, w, h, xLabel = "", yLabel = "") {
         this.x = x;
         this.y = y;
         this.w = w;
         this.h = h;
+        this.xLabel = xLabel;
+        this.yLabel = yLabel;
     }
 
     show(p5) {
         let xAxisStart = new Point(-this.w/2 + this.x, 0 + this.y);
-        let xAxisEnd = new Point(this.w/2 + this.x, 0 + this.y);
+        let xAxisEnd = new Point(this.w/2 + this.x, 0 + this.y, this.xLabel);
         let xAxis = new Segment(xAxisStart, xAxisEnd);
 
         let yAxisStart = new Point(0 + this.x, -this.h/2 + this.y);
-        let yAxisEnd = new Point(0 + this.x, this.h/2 + this.y);
+        let yAxisEnd = new Point(0 + this.x, this.h/2 + this.y, this.yLabel);
         let yAxis = new Segment(yAxisStart, yAxisEnd);
             
         xAxis.showAsAxis(p5);
         yAxis.showAsAxis(p5);
+
+        xAxisEnd.showLabel(p5, axisPalette.fill, axisConfig.horizontalLabelXOffset, axisConfig.horizontalLabelYOffset);
+        yAxisEnd.showLabel(p5, axisPalette.fill, axisConfig.verticalLabelXOffset, axisConfig.verticalLabelYOffset);
     }
 }

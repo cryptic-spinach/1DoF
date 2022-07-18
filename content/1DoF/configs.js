@@ -43,6 +43,14 @@ export let axisConfig = {
     w: 500,
     h: 500,
     size: 500,
+    horizontalLabelXOffset: 30,
+    horizontalLabelYOffset: 0,
+    verticalLabelXOffset: 30,
+    verticalLabelYOffset: 0,
+}
+
+export let axisPalette = {
+    fill: "#20c5c5",
 }
 
 export let sliderConfig = { 

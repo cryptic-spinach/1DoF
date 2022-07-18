@@ -8,9 +8,9 @@ export function controlsInit() {
 
     // sliderGUI(gui);
     // axesGUI(gui);
-    trendlineGUI(gui);
-    //projectionVecGUI(gui);
-    pointGUI(gui);
+    // trendlineGUI(gui);
+    // projectionVecGUI(gui);
+    // pointGUI(gui);
 }
 
 export function sliderGUI(gui) {
@@ -23,7 +23,13 @@ export function axesGUI(gui) {
     // gui.add(axisControls, "y", -100, 100).name("Axis y");
     // gui.add(axisControls, "w", 0, 600).name("Axis width");
     // gui.add(axisControls, "h", 0, 600).name("Axis height");
-    gui.add(axisConfig, "size", 20, 600).name("Axis size");
+    // gui.add(axisConfig, "size", 20, 600).name("Axis size");
+
+    gui.add(axisConfig, "horizontalLabelXOffset", -100, 100).name("horizontalLabelXOffset");
+    gui.add(axisConfig, "horizontalLabelYOffset", -100, 100).name("horizontalLabelYOffset");
+    gui.add(axisConfig, "verticalLabelXOffset", -100, 100).name("verticalLabelXOffset");
+    gui.add(axisConfig, "verticalLabelYOffset", -100, 100).name("verticalLabelYOffset");
+
 }
 
 export function trendlineGUI(gui) {

@@ -32,7 +32,7 @@ const part_1DoF = p5 => {
     p5.angleMode(p5.RADIANS);
 
     slider.position((p5.windowWidth - canvasConfig.trimX)/2 + sliderConfig.x, (p5.windowHeight - canvasConfig.trimY)/2 + sliderConfig.y);
-    let axes = new Axes(axisConfig.x, axisConfig.y, axisConfig.w, axisConfig.h);
+    let axes = new Axes(axisConfig.x, axisConfig.y, axisConfig.w, axisConfig.h, "x", "y");
     axes.show(p5);
 
     let trendlineStart = new Point(- axisConfig.w/2 + axisConfig.x - trendlineConfig.extraX, - axisConfig.h/2 + trendlineConfig.bInit + axisConfig.y - trendlineConfig.extraY);
