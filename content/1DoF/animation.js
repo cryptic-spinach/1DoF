@@ -1,6 +1,6 @@
 import { canvasConfig, sliderConfig, axisConfig, palette, trendlineConfig, stepperButtonConfig} from "./configs.js";
 import { controlsInit } from "./controls.js";
-import { formatTableAsJson, generateRandomPoints, showValue, showValues, sliderInit, buttonsInit } from "./helpers.js"
+import { formatTableAsJson, generateRandomPoints, showValue, showValues, sliderInit, buttonsInit, positionButton} from "./helpers.js"
 import { Point, Segment, Axes } from "./components.js";
 import { getTrendlineDisplay } from "./stepper.js"
 
@@ -22,7 +22,7 @@ export let sketch_1DoF = p5 => {
     p5.createCanvas(p5.windowWidth - canvasConfig.trimX, p5.windowHeight - canvasConfig.trimY);
   
     controlsInit();
-    p5.buttons = buttonsInit();
+    p5.buttons = buttonsInit(p5);
     slider = sliderInit(p5);
   
     table = formatTableAsJson(data);
@@ -60,6 +60,11 @@ export let sketch_1DoF = p5 => {
   p5.windowResized = () => {
     p5.resizeCanvas(p5.windowWidth - canvasConfig.trimX, p5.windowHeight - canvasConfig.trimY);
     slider.position((p5.windowWidth - canvasConfig.trimX)/2 + sliderConfig.x, (p5.windowHeight - canvasConfig.trimY)/2 + sliderConfig.y);
+    let i = 0;
+    p5.buttons.forEach(b => {
+      positionButton(p5, b, i);
+      i++;
+    })
   }
 
 

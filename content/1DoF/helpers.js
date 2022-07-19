@@ -50,7 +50,7 @@ export function sliderInit(p5) {
   return ret;
 }
 
-export function buttonsInit() {
+export function buttonsInit(p5) {
   let ret = [];
   let cnv = document.querySelector(".part-1DoF")
 
@@ -58,20 +58,21 @@ export function buttonsInit() {
     let stepperButton = document.createElement("button");
     stepperButton.innerHTML = (i+1).toString();
     stepperButton.className = "stepper-buttons";
-    positionButton(stepperButton, i)
-    stepperButton.addEventListener("click", function() {
+    positionButton(p5, stepperButton, i)
+    stepperButton.addEventListener("click", () => {
       part_1DoF.stepper = i + 1;
     })
     cnv.appendChild(stepperButton);
     ret.push(stepperButton);
   }
 
+  
   return ret;
 }
 
-export function positionButton(button, index) {
-  button.style.left = (290 + 90 * index).toString() + "px";
-  button.style.top = "100px";
+export function positionButton(p5, button, index) {
+  button.style.left = parseInt((p5.windowWidth - canvasConfig.trimX)/2 + 90 * index).toString() + "px";
+  button.style.top  = parseInt(-100 + (p5.windowHeight - canvasConfig.trimY)/2).toString() + "px";
 }
 
 
