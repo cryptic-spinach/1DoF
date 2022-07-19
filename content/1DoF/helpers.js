@@ -1,4 +1,4 @@
-import { axisConfig, canvasConfig, sliderConfig, trendlineConfig, debugConfig } from "./configs.js";
+import { axisConfig, canvasConfig, sliderConfig, trendlineConfig, debugConfig, stepperButtonConfig} from "./configs.js";
 import { Point } from "./components.js"
 
 export function toSeconds (milliseconds) {
@@ -45,6 +45,14 @@ export function sliderInit(p5) {
   ret = p5.createSlider(sliderConfig.min, sliderConfig.max, 0, 0.01);
   ret.position((p5.windowWidth - canvasConfig.trimX)/2 + sliderConfig.x, (p5.windowHeight - canvasConfig.trimY)/2 + sliderConfig.y);
   ret.style('width', '300px');
+  return ret;
+}
+
+export function buttonsInit(p5) {
+  let ret;
+  ret = p5.createButton("1");
+  ret.position((p5.windowWidth - canvasConfig.trimX)/2 + stepperButtonConfig.x, (p5.windowHeight - canvasConfig.trimY)/2 + stepperButtonConfig.y);
+  ret.class("stepper-buttons");
   return ret;
 }
 

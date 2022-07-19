@@ -39,7 +39,7 @@ export let canvasConfig = {
 
 export let axisConfig = {
     x: -350,
-    y: 0,
+    y: -110,
     w: 500,
     h: 500,
     size: 500,
@@ -55,7 +55,7 @@ export let axisPalette = {
 
 export let sliderConfig = { 
     x: 198, 
-    y: -11,
+    y: 238,
     min: -Math.PI / 4,
     max: Math.PI / 4
 }
@@ -74,6 +74,7 @@ export let debugConfig = {
     showValueSpacer: 200
 }
 
-export let distanceConfig = {
-    showVertical: true
+export let stepperButtonConfig = {
+    x: -611,
+    y: -349
 }
