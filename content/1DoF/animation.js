@@ -4,14 +4,14 @@ import { formatTableAsJson, generateRandomPoints, showValue, showValues, sliderI
 import { Point, Segment, Axes } from "./components.js";
 import { getTrendlineDisplay } from "./stepper.js"
 
-const part_1DoF = p5 => {
+export let sketch_1DoF = p5 => {
   let sound;
   let table;
   let slider;
   let points;
   let data;
-  let stepper;
-  let buttons;
+  p5.buttons;
+  p5.stepper;
 
   p5.preload = () => {
     sound = p5.loadSound('content/1DoF/assets/sepia-sky.mp3');
@@ -22,12 +22,12 @@ const part_1DoF = p5 => {
     p5.createCanvas(p5.windowWidth - canvasConfig.trimX, p5.windowHeight - canvasConfig.trimY);
   
     controlsInit();
+    p5.buttons = buttonsInit();
     slider = sliderInit(p5);
-    buttons = buttonsInit(p5);
   
     table = formatTableAsJson(data);
     points = generateRandomPoints(p5, 10);
-    stepper = 1;
+    p5.stepper = 1;
   };
 
   p5.draw = () => {
@@ -36,7 +36,6 @@ const part_1DoF = p5 => {
     p5.scale(1, -1);
     p5.angleMode(p5.RADIANS);
 
-    slider.position((p5.windowWidth - canvasConfig.trimX)/2 + sliderConfig.x, (p5.windowHeight - canvasConfig.trimY)/2 + sliderConfig.y);
     let axes = new Axes(axisConfig.x, axisConfig.y, axisConfig.w, axisConfig.h, "x", "y");
     axes.show(p5);
 
@@ -50,7 +49,7 @@ const part_1DoF = p5 => {
     trendline.showAsSegment(p5, "#ffffff", 1.5);
 
     points.forEach(p => {
-      getTrendlineDisplay(p5, stepper, trendline, p)
+      getTrendlineDisplay(p5, p5.stepper, trendline, p)
     });
 
     points.forEach(p => {
@@ -61,8 +60,9 @@ const part_1DoF = p5 => {
   p5.windowResized = () => {
     p5.resizeCanvas(p5.windowWidth - canvasConfig.trimX, p5.windowHeight - canvasConfig.trimY);
     slider.position((p5.windowWidth - canvasConfig.trimX)/2 + sliderConfig.x, (p5.windowHeight - canvasConfig.trimY)/2 + sliderConfig.y);
-    buttons.position((p5.windowWidth - canvasConfig.trimX)/2 + stepperButtonConfig.x, (p5.windowHeight - canvasConfig.trimY)/2 + stepperButtonConfig.y);
   }
+
+
 };
 
-new p5(part_1DoF, document.querySelector("#sketch-container"));
+export let part_1DoF = new p5(sketch_1DoF, document.querySelector(".part-1DoF"));

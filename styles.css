@@ -8,6 +8,10 @@ body {
     position: relative;
 }
 
+.part-1DoF {
+    position: relative;
+}
+
 .mouse-container {
     position: absolute;
     visibility: hidden;
@@ -16,4 +20,5 @@ body {
 .stepper-buttons {
     width: 90px;
     height: 45px;
+    position: absolute;
 }
