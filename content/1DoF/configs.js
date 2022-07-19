@@ -38,7 +38,7 @@ export let canvasConfig = {
 }
 
 export let axisConfig = {
-    x: -350,
+    x: -443,
     y: -110,
     w: 500,
     h: 500,
@@ -54,15 +54,15 @@ export let axisPalette = {
 }
 
 export let sliderConfig = { 
-    x: 198, 
-    y: 238,
+    x: 306, 
+    y: 348,
     min: -Math.PI / 4,
     max: Math.PI / 4
 }
 
 export let trendlineConfig = {
-    mInit: 1.5,
-    bInit: 100,
+    mInit: 1,
+    bInit: 50,
     extraX: 0,
     extraY: 0,
     maxError: 100
@@ -75,6 +75,6 @@ export let debugConfig = {
 }
 
 export let stepperButtonConfig = {
-    x: -611,
+    x: -671,
     y: -349
 }

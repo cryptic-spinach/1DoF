@@ -32,6 +32,7 @@ export function generateRandomPoints(p5, numberOfPoints) {
     let y = p5.random(m*x + b - errorRange, m*x + b + errorRange);
 
     x += axisConfig.x;
+    y += axisConfig.y;
     
     let point = new Point(x, y);
     ret.push(point);
@@ -49,10 +50,15 @@ export function sliderInit(p5) {
 }
 
 export function buttonsInit(p5) {
-  let ret;
-  ret = p5.createButton("1");
-  ret.position((p5.windowWidth - canvasConfig.trimX)/2 + stepperButtonConfig.x, (p5.windowHeight - canvasConfig.trimY)/2 + stepperButtonConfig.y);
-  ret.class("stepper-buttons");
+  let ret = [];
+
+  for (let i = 0; i < 5; i++) {
+    let stepperButton = p5.createButton((i+1).toString());
+    stepperButton.position((p5.windowWidth - canvasConfig.trimX)/2 + stepperButtonConfig.x + 90 * i, (p5.windowHeight - canvasConfig.trimY)/2 + stepperButtonConfig.y);
+    stepperButton.class("stepper-buttons");
+    ret.push(stepperButton);
+  }
+
   return ret;
 }
 

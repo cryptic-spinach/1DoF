@@ -5,14 +5,14 @@ export function controlsInit() {
     gui.width = 300;
 
     // gui.addColor(palette, "backgroundFill").name("Background");
-    gui.add(trendlineConfig, "bInit", -axisConfig.h/2, axisConfig.h/2).name("b");
+    // gui.add(trendlineConfig, "bInit", -axisConfig.h/2, axisConfig.h/2).name("b");
     
-    sliderGUI(gui);
-    axesGUI(gui);
+    // sliderGUI(gui);
+    // axesGUI(gui);
     // trendlineGUI(gui);
     // projectionVecGUI(gui);
     // pointGUI(gui);
-    stepperButtonGUI(gui);
+    // stepperButtonGUI(gui);
 }
 
 export function sliderGUI(gui) {
@@ -21,7 +21,7 @@ export function sliderGUI(gui) {
 }
 
 export function axesGUI(gui) {
-    // gui.add(axisConfig, "x", -500, -100).name("Axis x");
+    gui.add(axisConfig, "x", -500, -100).name("Axis x");
     gui.add(axisConfig, "y", -200, 100).name("Axis y");
     // gui.add(axisConfig, "w", 0, 600).name("Axis width");
     // gui.add(axisConfig, "h", 0, 600).name("Axis height");

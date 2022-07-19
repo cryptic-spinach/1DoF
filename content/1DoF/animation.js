@@ -27,14 +27,10 @@ const part_1DoF = p5 => {
   
     table = formatTableAsJson(data);
     points = generateRandomPoints(p5, 10);
-    stepper = 4;
-    
+    stepper = 1;
   };
 
   p5.draw = () => {
-
-    buttons.position((p5.windowWidth - canvasConfig.trimX)/2 + stepperButtonConfig.x, (p5.windowHeight - canvasConfig.trimY)/2 + stepperButtonConfig.y);
-
     p5.background(palette.backgroundFill);
     p5.translate((p5.windowWidth - canvasConfig.trimX)/2, (p5.windowHeight - canvasConfig.trimY)/2);
     p5.scale(1, -1);
@@ -51,15 +47,15 @@ const part_1DoF = p5 => {
     let rotateAbout = new Point(axisConfig.x, trendlineConfig.bInit + axisConfig.y);
     trendline.rotateSegment(p5, slider.value(), rotateAbout);
 
-    // trendline.showAsSegment(p5, "#ffffff", 1.5);
+    trendline.showAsSegment(p5, "#ffffff", 1.5);
 
-    // points.forEach(p => {
-    //   getTrendlineDisplay(p5, stepper, trendline, p)
-    // });
+    points.forEach(p => {
+      getTrendlineDisplay(p5, stepper, trendline, p)
+    });
 
-    // points.forEach(p => {
-    //   p.show(p5);
-    // });
+    points.forEach(p => {
+      p.show(p5);
+    });
   };
 
   p5.windowResized = () => {
