@@ -1,4 +1,4 @@
-import { canvasConfig, sliderConfig, axisConfig, palette, trendlineConfig, stepperButtonConfig} from "./configs.js";
+import { canvasConfig, sliderConfig, axisConfig, palette, trendlineConfig, stepperButtonConfig, sliderLabelConfig} from "./configs.js";
 import { controlsInit } from "./controls.js";
 import { formatTableAsJson, generateRandomPoints, showValue, showValues, sliderInit, buttonsInit, positionButton} from "./helpers.js"
 import { Point, Segment, Axes } from "./components.js";
@@ -36,11 +36,7 @@ export let sketch_1DoF = p5 => {
     p5.scale(1, -1);
     p5.angleMode(p5.RADIANS);
 
-    let i = 0;
-    p5.buttons.forEach(b => {
-      positionButton(p5, b, i);
-      i++;
-    })
+    let sliderLabel = new Point(sliderLabelConfig.x, sliderLabelConfig.y, "b")
 
     let axes = new Axes(axisConfig.x, axisConfig.y, axisConfig.w, axisConfig.h, "x", "y");
     axes.show(p5);
@@ -61,6 +57,8 @@ export let sketch_1DoF = p5 => {
     points.forEach(p => {
       p.show(p5);
     });
+
+    sliderLabel.showLabel(p5, sliderLabelConfig.labelFill);
   };
 
   p5.windowResized = () => {

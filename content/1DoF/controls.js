@@ -1,4 +1,4 @@
-import { axisConfig, sliderConfig, palette, styles, trendlineConfig, projectionVecPalette, projectionVecStyles, stepperButtonConfig} from "./configs.js";
+import { axisConfig, sliderConfig, palette, styles, trendlineConfig, projectionVecPalette, projectionVecStyles, stepperButtonConfig, sliderLabelConfig} from "./configs.js";
 
 export function controlsInit() {
     let gui = new dat.GUI();
@@ -18,6 +18,8 @@ export function controlsInit() {
 export function sliderGUI(gui) {
     gui.add(sliderConfig, "x", 0, 550).name("Slider x");
     gui.add(sliderConfig, "y", -400, 400).name("Slider y");
+    gui.add(sliderLabelConfig, "x", 0, 700).name("Label x");
+    gui.add(sliderLabelConfig, "y", -500, 0).name("Label y");
 }
 
 export function axesGUI(gui) {

@@ -78,3 +78,9 @@ export let stepperButtonConfig = {
     x: -670,
     y: -345
 }
+
+export let sliderLabelConfig = {
+    x: 0,
+    y: 0,
+    labelFill: "#1fced9"
+}
