@@ -90,3 +90,8 @@ export let trendlineLabelConfig = {
     y: 181,
     labelFill: "#1fced9"
 }
+
+export let squaresConfig = {
+    opacity: 100,
+    fill: "#ffbe26"
+}

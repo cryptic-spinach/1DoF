@@ -1,4 +1,4 @@
-import { palette, styles, projectionVecPalette, projectionVecStyles, axisConfig, axisPalette} from "./configs.js";
+import { palette, styles, projectionVecPalette, projectionVecStyles, axisConfig, axisPalette, squaresConfig} from "./configs.js";
 import { showValues } from "./helpers.js";
 
 export class Point {
@@ -127,6 +127,20 @@ export class Segment {
         let vertDist = this.getVerticalDistance(p5, m);
         if (vertDist != null) {
             this.showVec(p5, m, vertDist, projectionVecPalette.distFill, projectionVecStyles.weight);
+        }
+    }
+
+    showSquaredError(p5, m) {
+        let vertDist = this.getVerticalDistance(p5, m);
+        let myColor = p5.color(squaresConfig.fill);
+        myColor.setAlpha(squaresConfig.opacity);
+        if (vertDist != null) {
+            p5.push();
+            
+            p5.noStroke();
+            p5.fill(myColor);
+            p5.rect(m.x, m.y, vertDist.y, vertDist.y);
+            p5.pop();
         }
     }
 
