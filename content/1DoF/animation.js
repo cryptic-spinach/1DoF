@@ -1,4 +1,4 @@
-import { canvasConfig, sliderConfig, axisConfig, palette, trendlineConfig, stepperButtonConfig, sliderLabelConfig} from "./configs.js";
+import { canvasConfig, sliderConfig, axisConfig, palette, trendlineConfig, stepperButtonConfig, sliderLabelConfig, trendlineLabelConfig} from "./configs.js";
 import { controlsInit } from "./controls.js";
 import { formatTableAsJson, generateRandomPoints, showValue, showValues, sliderInit, buttonsInit, positionButton} from "./helpers.js"
 import { Point, Segment, Axes } from "./components.js";
@@ -36,10 +36,11 @@ export let sketch_1DoF = p5 => {
     p5.scale(1, -1);
     p5.angleMode(p5.RADIANS);
 
+    // Calculation
     let sliderLabel = new Point(sliderLabelConfig.x, sliderLabelConfig.y, "b")
+    let trendlineLabel = new Point(trendlineLabelConfig.x, trendlineLabelConfig.y, "y = bx")
 
     let axes = new Axes(axisConfig.x, axisConfig.y, axisConfig.w, axisConfig.h, "x", "y");
-    axes.show(p5);
 
     let trendlineStart = new Point(- axisConfig.w/2 + axisConfig.x - trendlineConfig.extraX, - axisConfig.h/2 + trendlineConfig.bInit + axisConfig.y - trendlineConfig.extraY);
     let trendlineEnd   = new Point(  axisConfig.w/2 + axisConfig.x + trendlineConfig.extraX,   axisConfig.h/2 + trendlineConfig.bInit + axisConfig.y + trendlineConfig.extraX);
@@ -48,6 +49,8 @@ export let sketch_1DoF = p5 => {
     let rotateAbout = new Point(axisConfig.x, trendlineConfig.bInit + axisConfig.y);
     trendline.rotateSegment(p5, slider.value(), rotateAbout);
 
+    // Display
+    axes.show(p5);
     trendline.showAsSegment(p5, "#ffffff", 1.5);
 
     points.forEach(p => {
@@ -59,6 +62,7 @@ export let sketch_1DoF = p5 => {
     });
 
     sliderLabel.showLabel(p5, sliderLabelConfig.labelFill);
+    trendlineLabel.showLabel(p5, trendlineConfig.labelFill);
   };
 
   p5.windowResized = () => {

@@ -84,3 +84,9 @@ export let sliderLabelConfig = {
     y: -372,
     labelFill: "#1fced9"
 }
+
+export let trendlineLabelConfig = {
+    x: -160,
+    y: 181,
+    labelFill: "#1fced9"
+}

@@ -1,4 +1,4 @@
-import { axisConfig, sliderConfig, palette, styles, trendlineConfig, projectionVecPalette, projectionVecStyles, stepperButtonConfig, sliderLabelConfig} from "./configs.js";
+import { axisConfig, sliderConfig, palette, styles, trendlineConfig, projectionVecPalette, projectionVecStyles, stepperButtonConfig, sliderLabelConfig, trendlineLabelConfig} from "./configs.js";
 
 export function controlsInit() {
     let gui = new dat.GUI();
@@ -7,7 +7,7 @@ export function controlsInit() {
     // gui.addColor(palette, "backgroundFill").name("Background");
     // gui.add(trendlineConfig, "bInit", -axisConfig.h/2, axisConfig.h/2).name("b");
     
-    sliderGUI(gui);
+    // sliderGUI(gui);
     // axesGUI(gui);
     // trendlineGUI(gui);
     // projectionVecGUI(gui);
@@ -38,6 +38,8 @@ export function axesGUI(gui) {
 
 export function trendlineGUI(gui) {
     gui.add(trendlineConfig, "bInit", -axisConfig.h/2, axisConfig.h/2).name("b");
+    gui.add(trendlineLabelConfig, "x", -500, 0).name("Trendline label x");
+    gui.add(trendlineLabelConfig, "y", 0, 500).name("Trendline label y");
 }
 
 export function projectionVecGUI(gui) {
