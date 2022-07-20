@@ -36,6 +36,12 @@ export let sketch_1DoF = p5 => {
     p5.scale(1, -1);
     p5.angleMode(p5.RADIANS);
 
+    let i = 0;
+    p5.buttons.forEach(b => {
+      positionButton(p5, b, i);
+      i++;
+    })
+
     let axes = new Axes(axisConfig.x, axisConfig.y, axisConfig.w, axisConfig.h, "x", "y");
     axes.show(p5);
 

@@ -71,8 +71,8 @@ export function buttonsInit(p5) {
 }
 
 export function positionButton(p5, button, index) {
-  button.style.left = parseInt((p5.windowWidth - canvasConfig.trimX)/2 + 90 * index).toString() + "px";
-  button.style.top  = parseInt(-100 + (p5.windowHeight - canvasConfig.trimY)/2).toString() + "px";
+  button.style.left = parseInt(stepperButtonConfig.x + (p5.windowWidth  - canvasConfig.trimX)/2 + 90 * index).toString() + "px";
+  button.style.top  = parseInt(stepperButtonConfig.y + (p5.windowHeight - canvasConfig.trimY)/2             ).toString() + "px";
 }
 
 
