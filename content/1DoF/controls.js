@@ -7,7 +7,7 @@ export function controlsInit() {
     // gui.addColor(palette, "backgroundFill").name("Background");
     // gui.add(trendlineConfig, "bInit", -axisConfig.h/2, axisConfig.h/2).name("b");
     
-    // sliderGUI(gui);
+    sliderGUI(gui);
     // axesGUI(gui);
     // trendlineGUI(gui);
     // projectionVecGUI(gui);
