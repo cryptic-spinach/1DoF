@@ -2,7 +2,7 @@ import { canvasConfig, sliderConfig, axisConfig, palette, trendlineConfig, stepp
 import { controlsInit } from "./controls.js";
 import { formatTableAsJson, generateRandomPoints, showValue, showValues, sliderInit, buttonsInit, positionButton} from "./helpers.js"
 import { Point, Segment, Axes } from "./components.js";
-import { getTrendlineDisplay } from "./stepper.js"
+import { getTrendlineDisplay, getTrendlineLabelDisplay } from "./stepper.js"
 
 export let sketch_1DoF = p5 => {
   let sound;
@@ -62,7 +62,7 @@ export let sketch_1DoF = p5 => {
     });
 
     sliderLabel.showLabel(p5, sliderLabelConfig.labelFill);
-    trendlineLabel.showLabel(p5, trendlineConfig.labelFill);
+    getTrendlineLabelDisplay(p5, p5.stepper, trendlineLabel)
   };
 
   p5.windowResized = () => {
