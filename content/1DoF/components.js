@@ -9,22 +9,28 @@ export class Point {
     }
 
     show(p5) {
+        let colorWithOpacity = p5.color(palette.pointStroke);
+        colorWithOpacity.setAlpha(styles.pointOpacity);
+
         p5.push();
         p5.fill(palette.pointFill);
-        p5.stroke(palette.pointStroke);
+        p5.stroke(colorWithOpacity);
         p5.strokeWeight(styles.pointStrokeWeight);
         p5.ellipse(this.x, this.y, styles.pointRadius, styles.pointRadius);
         p5.pop();
     }
 
-    showLabel(p5, myColor = palette.labelFill, xOffset = styles.labelOffsetX, yOffset = styles.labelOffsetY) {
+    showLabel(p5, myColor = palette.labelFill, myOpacity = styles.labelOpacity, xOffset = styles.labelOffsetX, yOffset = styles.labelOffsetY) {
+        let colorWithOpacity = p5.color(myColor);
+        colorWithOpacity.setAlpha(myOpacity)
+
         p5.push();
         
         p5.translate(this.x, this.y)
         p5.scale(1, -1);
 
-        p5.noStroke();
-        p5.fill(myColor);
+        p5.stroke(myColor);
+        p5.fill(colorWithOpacity);
         p5.textSize(styles.labelTextSize);
         p5.text(this.label, xOffset, yOffset)
 
@@ -88,27 +94,29 @@ export class Segment {
         }
     }
 
-    showAsVector(p5, myColor = palette.segmentFill, myWeight = styles.segmentWeight) {
+    showAsVector(p5, myColor = palette.segmentFill, myWeight = styles.segmentWeight, myOpacity = styles.segmentOpacity) {
         let slopeVec = this.getSlopeVec(p5);
-        this.showVec(p5, this.point_1, slopeVec, myColor, myWeight, true);
+        this.showVec(p5, this.point_1, slopeVec, myColor, myWeight, myOpacity, true);
     }
     
-    showAsSegment(p5, myColor = palette.segmentFill, myWeight = styles.segmentWeight) {
+    showAsSegment(p5, myColor = palette.segmentFill, myWeight = styles.segmentWeight, myOpacity = styles.segmentOpacity) {
         let slopeVec = this.getSlopeVec(p5);
-        this.showVec(p5, this.point_1, slopeVec, myColor, myWeight, false);
+        this.showVec(p5, this.point_1, slopeVec, myColor, myWeight, myOpacity, false);
     }
 
-    showAsAxis(p5, myColor = palette.segmentFill, myWeight = styles.segmentWeight) {
+    showAsAxis(p5, myColor = palette.segmentFill, myWeight = styles.segmentWeight, myOpacity = axisConfig.axisOpacity) {
         let slopeVec = this.getSlopeVec(p5);
-        this.showVec(p5, this.point_1, slopeVec, myColor, myWeight, true);
-        this.showVec(p5, this.point_2, slopeVec.mult(-1), myColor, myWeight, true);
+        this.showVec(p5, this.point_1, slopeVec, myColor, myWeight, myOpacity, true);
+        this.showVec(p5, this.point_2, slopeVec.mult(-1), myColor, myWeight, myOpacity, true);
     }
 
-    showVec(p5, base, vec, myColor, myWeight, showArrowTip) {
+    showVec(p5, base, vec, myColor, myWeight, myOpacity, showArrowTip) {
+        let colorWithOpacity = p5.color(myColor);
+        colorWithOpacity.setAlpha(myOpacity)
         p5.push();
-        p5.stroke(myColor);
+        p5.stroke(colorWithOpacity);
         p5.strokeWeight(myWeight);
-        p5.fill(myColor);
+        p5.fill(colorWithOpacity);
         p5.translate(base.x, base.y);
         p5.line(0, 0, vec.x, vec.y);
         if(showArrowTip) {
@@ -120,13 +128,13 @@ export class Segment {
     }
 
     showPerpendicularDistance(p5, m) {
-        this.getPerpendicularDistance(p5, m).showAsSegment(p5, projectionVecPalette.distFill, projectionVecStyles.weight);
+        this.getPerpendicularDistance(p5, m).showAsVector(p5, projectionVecPalette.distFill, projectionVecStyles.weight, projectionVecStyles.opacity);
     }
 
     showVerticalDistance(p5, m) {
         let vertDist = this.getVerticalDistance(p5, m);
         if (vertDist != null) {
-            this.showVec(p5, m, vertDist, projectionVecPalette.distFill, projectionVecStyles.weight);
+            this.showVec(p5, m, vertDist, projectionVecPalette.distFill, projectionVecStyles.weight, projectionVecStyles.opacity, projectionVecStyles.opacity, false);
         }
     }
 
@@ -136,7 +144,6 @@ export class Segment {
         myColor.setAlpha(squaresConfig.opacity);
         if (vertDist != null) {
             p5.push();
-            
             p5.noStroke();
             p5.fill(myColor);
             p5.rect(m.x, m.y, vertDist.y, vertDist.y);
@@ -189,7 +196,7 @@ export class Axes {
         xAxis.showAsAxis(p5);
         yAxis.showAsAxis(p5);
 
-        xAxisEnd.showLabel(p5, axisPalette.fill, axisConfig.horizontalLabelXOffset, axisConfig.horizontalLabelYOffset);
-        yAxisEnd.showLabel(p5, axisPalette.fill, axisConfig.verticalLabelXOffset, axisConfig.verticalLabelYOffset);
+        xAxisEnd.showLabel(p5, axisPalette.fill, styles.labelOpacity, axisConfig.horizontalLabelXOffset, axisConfig.horizontalLabelYOffset);
+        yAxisEnd.showLabel(p5, axisPalette.fill, styles.labelOpacity, axisConfig.verticalLabelXOffset, axisConfig.verticalLabelYOffset);
     }
 }

@@ -1,4 +1,4 @@
-import { axisConfig, sliderConfig, palette, styles, trendlineConfig, projectionVecPalette, projectionVecStyles, stepperButtonConfig, sliderLabelConfig, trendlineLabelConfig} from "./configs.js";
+import { axisConfig, sliderConfig, palette, styles, trendlineConfig, projectionVecPalette, projectionVecStyles, stepperButtonConfig, sliderLabelConfig, trendlineLabelConfig, squaresConfig} from "./configs.js";
 
 export function controlsInit() {
     let gui = new dat.GUI();
@@ -13,6 +13,7 @@ export function controlsInit() {
     // projectionVecGUI(gui);
     // pointGUI(gui);
     // stepperButtonGUI(gui);
+    opacityGUI(gui);
 }
 
 export function sliderGUI(gui) {
@@ -58,4 +59,13 @@ export function pointGUI(gui) {
 export function stepperButtonGUI(gui) {
     gui.add(stepperButtonConfig, "x", -1000, 0).name("Button x");
     gui.add(stepperButtonConfig, "y", -500, 0).name("Button y");
+}
+
+export function opacityGUI(gui) {
+    gui.add(projectionVecStyles, "opacity", 0, 255).name("distance opacity");
+    gui.add(styles, "pointOpacity", 0, 255).name("point opacity");
+    gui.add(styles, "segmentOpacity", 0, 255).name("segment opacity");
+    gui.add(styles, "labelOpacity", 0, 255).name("label opacity");
+    gui.add(axisConfig, "axisOpacity", 0, 255).name("axis opacity");
+    gui.add(squaresConfig, "opacity", 0, 255).name("squares opacity");
 }

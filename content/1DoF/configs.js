@@ -17,19 +17,24 @@ export let projectionVecPalette = {
 }
 
 export let projectionVecStyles = {
-    weight: 2
+    weight: 2,
+    opacity: 100
 }
 
 export let styles = {
     pointRadius: 15,
     pointStrokeWeight: 3,
+    pointOpacity: 220,
 
     labelTextSize: 35,
     labelOffsetX: 30,
     labelOffsetY: 0,
+    labelOpacity: 100,
+
     
     segmentArrowSize: 15,
-    segmentWeight: 3
+    segmentWeight: 3,
+    segmentOpacity: 100
 }
 
 export let canvasConfig = {
@@ -43,6 +48,7 @@ export let axisConfig = {
     w: 500,
     h: 500,
     size: 500,
+    axisOpacity: 100,
     horizontalLabelXOffset: 20,
     horizontalLabelYOffset: 9,
     verticalLabelXOffset: -8,

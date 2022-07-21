@@ -1,4 +1,4 @@
-import { canvasConfig, sliderConfig, axisConfig, palette, trendlineConfig, stepperButtonConfig, sliderLabelConfig, trendlineLabelConfig} from "./configs.js";
+import { canvasConfig, sliderConfig, axisConfig, palette, trendlineConfig, stepperButtonConfig, sliderLabelConfig, trendlineLabelConfig, styles } from "./configs.js";
 import { controlsInit } from "./controls.js";
 import { formatTableAsJson, generateRandomPoints, showValue, showValues, sliderInit, buttonsInit, positionButton} from "./helpers.js"
 import { Point, Segment, Axes } from "./components.js";
@@ -51,7 +51,7 @@ export let sketch_1DoF = p5 => {
 
     // Display
     axes.show(p5);
-    trendline.showAsSegment(p5, "#ffffff", 1.5);
+    trendline.showAsSegment(p5, "#ffffff", 1.5, styles.segmentOpacity);
 
     points.forEach(p => {
       getTrendlineDisplay(p5, p5.stepper, trendline, p)
