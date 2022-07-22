@@ -203,29 +203,22 @@ export class Axes {
 
 export class PointCloud {
     constructor(points, xOffset, yOffset) {
-        this.points = points;
-        this.xOffset = xOffset;
-        this.yOffset = yOffset;
-    }
-
-    addOffset() {
         let offsetPoints = [];
-        this.points.forEach(p => {
-            let x = p.x + this.xOffset;
-            let y = p.y + this.yOffset;
+        points.forEach(p => {
+            let x = p.x + xOffset;
+            let y = p.y + yOffset;
             offsetPoints.push(new Point(x, y));
         });
-        return offsetPoints;
+        this.points = offsetPoints;
     }
 
     showAsCurve(myp5) {
         myp5.push()
-        let offsetPoints = this.addOffset();
         myp5.noFill()
         myp5.stroke(255);
       
         myp5.beginShape();
-        for (let v of offsetPoints) {
+        for (let v of this.points) {
           myp5.vertex(v.x, v.y);
         }
         myp5.endShape();

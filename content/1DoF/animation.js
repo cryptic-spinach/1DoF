@@ -56,18 +56,20 @@ export let sketch_1DoF = myp5 => {
     
     trendline.rotateSegment(myp5, slider.value(), rotateAbout);
 
-    let errorCurve = new PointCloud(errorCurvePoints, curveConfig.x, curveConfig.y);
-    errorCurve.showAsCurve(myp5);
+    let errorCurveCloud = new PointCloud(errorCurvePoints, curveConfig.x, curveConfig.y);
+    let linearFitCloud = new PointCloud(linearFitPoints, axisConfig.x, axisConfig.y)
 
     // Display
+    errorCurveCloud.showAsCurve(myp5);
+
     axes.show(myp5);
     trendline.showAsSegment(myp5, "#ffffff", 1.5, styles.segmentOpacity);
 
-    linearFitPoints.forEach(p => {
+    linearFitCloud.points.forEach(p => {
       getTrendlineDisplay(myp5, myp5.stepper, trendline, p);
     });
 
-    linearFitPoints.forEach(p => {
+    linearFitCloud.points.forEach(p => {
       p.show(myp5);
     });
 
