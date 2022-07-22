@@ -1,8 +1,9 @@
 import { canvasConfig, sliderConfig, axisConfig, palette, trendlineConfig, stepperButtonConfig, sliderLabelConfig, trendlineLabelConfig, styles } from "./configs.js";
 import { controlsInit } from "./controls.js";
-import { formatTableAsJson, generateRandomPoints, showValue, showValues, sliderInit, buttonsInit, positionButton} from "./helpers.js"
+import { formatTableAsJson, showValue, showValues, sliderInit, buttonsInit, positionButton} from "./helpers.js"
 import { Point, Segment, Axes, PointCloud } from "./components.js";
 import { getTrendlineDisplay, getTrendlineLabelDisplay } from "./stepper.js"
+import { generateRandomPoints } from "./point-factory.js";
 
 export let sketch_1DoF = p5 => {
   let sound;
@@ -21,13 +22,13 @@ export let sketch_1DoF = p5 => {
   p5.setup = () => {
     p5.createCanvas(p5.windowWidth - canvasConfig.trimX, p5.windowHeight - canvasConfig.trimY);
   
-    // controlsInit();
-    // p5.buttons = buttonsInit(p5);
-    // slider = sliderInit(p5);
+    controlsInit();
+    p5.buttons = buttonsInit(p5);
+    slider = sliderInit(p5);
   
-    // table = formatTableAsJson(data);
-    // points = generateRandomPoints(p5, 10);
-    // p5.stepper = 1;
+    table = formatTableAsJson(data);
+    points = generateRandomPoints(p5, 10);
+    p5.stepper = 1;
     
     
   };
@@ -50,35 +51,35 @@ export let sketch_1DoF = p5 => {
 
     let rotateAbout = new Point(axisConfig.x, trendlineConfig.bInit + axisConfig.y);
     
-    // trendline.rotateSegment(p5, slider.value(), rotateAbout);
+    trendline.rotateSegment(p5, slider.value(), rotateAbout);
 
     let errorCurve = new PointCloud([]);
     errorCurve.getErrorCurve(p5)
 
     // Display
-    // axes.show(p5);
-    // trendline.showAsSegment(p5, "#ffffff", 1.5, styles.segmentOpacity);
+    axes.show(p5);
+    trendline.showAsSegment(p5, "#ffffff", 1.5, styles.segmentOpacity);
 
-    // points.forEach(p => {
-    //   getTrendlineDisplay(p5, p5.stepper, trendline, p)
-    // });
+    points.forEach(p => {
+      getTrendlineDisplay(p5, p5.stepper, trendline, p)
+    });
 
-    // points.forEach(p => {
-    //   p.show(p5);
-    // });
+    points.forEach(p => {
+      p.show(p5);
+    });
 
-    // sliderLabel.showLabel(p5, sliderLabelConfig.labelFill);
-    // getTrendlineLabelDisplay(p5, p5.stepper, trendlineLabel)
+    sliderLabel.showLabel(p5, sliderLabelConfig.labelFill);
+    getTrendlineLabelDisplay(p5, p5.stepper, trendlineLabel)
   };
 
   p5.windowResized = () => {
     p5.resizeCanvas(p5.windowWidth - canvasConfig.trimX, p5.windowHeight - canvasConfig.trimY);
-    // slider.position((p5.windowWidth - canvasConfig.trimX)/2 + sliderConfig.x, (p5.windowHeight - canvasConfig.trimY)/2 + sliderConfig.y);
-    // let i = 0;
-    // p5.buttons.forEach(b => {
-    //   positionButton(p5, b, i);
-    //   i++;
-    // })
+    slider.position((p5.windowWidth - canvasConfig.trimX)/2 + sliderConfig.x, (p5.windowHeight - canvasConfig.trimY)/2 + sliderConfig.y);
+    let i = 0;
+    p5.buttons.forEach(b => {
+      positionButton(p5, b, i);
+      i++;
+    })
   }
 
 
