@@ -1,4 +1,4 @@
-import { canvasConfig, sliderConfig, axisConfig, palette, trendlineConfig, stepperButtonConfig, sliderLabelConfig, trendlineLabelConfig, styles } from "./configs.js";
+import { canvasConfig, sliderConfig, axisConfig, palette, trendlineConfig, stepperButtonConfig, sliderLabelConfig, trendlineLabelConfig, styles, curveConfig } from "./configs.js";
 import { controlsInit } from "./controls.js";
 import { formatTableAsJson, showValue, showValues, sliderInit, buttonsInit, positionButton} from "./helpers.js"
 import { Point, Segment, Axes, PointCloud } from "./components.js";
@@ -40,6 +40,13 @@ export let sketch_1DoF = myp5 => {
     myp5.translate((myp5.windowWidth - canvasConfig.trimX)/2, (myp5.windowHeight - canvasConfig.trimY)/2);
     myp5.scale(1, -1);
     myp5.angleMode(myp5.RADIANS);
+    
+    slider.position((myp5.windowWidth - canvasConfig.trimX)/2 + sliderConfig.x, (myp5.windowHeight - canvasConfig.trimY)/2 + sliderConfig.y);
+    let i = 0;
+    myp5.buttons.forEach(b => {
+      positionButton(myp5, b, i);
+      i++;
+    })
 
     // Calculation
     let sliderLabel = new Point(sliderLabelConfig.x, sliderLabelConfig.y, "b")
@@ -55,8 +62,8 @@ export let sketch_1DoF = myp5 => {
     
     trendline.rotateSegment(myp5, slider.value(), rotateAbout);
 
-    let errorCurve = new PointCloud(errorCurvePoints);
-    errorCurve.getCurve(myp5)
+    let errorCurve = new PointCloud(errorCurvePoints, curveConfig.x, curveConfig.y);
+    errorCurve.getCurve(myp5);
 
     // Display
     axes.show(myp5);

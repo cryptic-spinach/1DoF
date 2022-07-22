@@ -1,4 +1,4 @@
-import { trendlineConfig, axisConfig} from "./configs.js";
+import { trendlineConfig, axisConfig, curveConfig} from "./configs.js";
 import { Point } from "./components.js";
 
 export function generatePlotPoints(myp5, numberOfPoints) {
@@ -31,8 +31,10 @@ export function generateErrorCurvePoints() {
     let a = 0.25;
 
     for (let x = -n/2; x < n/2; x++) {
-        let y = a * x*x;
-        path.push({"x": x, "y": y});
+        let xPos = x;
+        let yPos = a * x*x;
+
+        path.push({"x": xPos, "y": yPos});
     }
 
     return path;

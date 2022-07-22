@@ -101,3 +101,8 @@ export let squaresConfig = {
     opacity: 100,
     fill: "#ffbe26"
 }
+
+export let curveConfig = {
+    x: 443,
+    y: -110
+}

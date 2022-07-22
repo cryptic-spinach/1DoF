@@ -202,8 +202,10 @@ export class Axes {
 }
 
 export class PointCloud {
-    constructor(points) {
+    constructor(points, xOffset, yOffset) {
         this.points = points;
+        this.xOffset = xOffset;
+        this.yOffset = yOffset;
     }
 
     getCurve(myp5) {
@@ -212,7 +214,7 @@ export class PointCloud {
       
         myp5.beginShape();
         for (let v of this.points) {
-          myp5.vertex(v.x, v.y);
+          myp5.vertex(v.x + this.xOffset, v.y + this.yOffset);
         }
         myp5.endShape();
     }
