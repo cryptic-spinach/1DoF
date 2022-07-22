@@ -63,12 +63,12 @@ export let sliderConfig = {
     x: 306, 
     y: 348,
     min: -Math.PI / 4,
-    max: Math.PI / 4
+    max: Math.PI / 6
 }
 
 export let trendlineConfig = {
-    mInit: 1,
-    bInit: 0,
+    slopeInit: 1,
+    yIntInit: 0,
     extraX: 0,
     extraY: 0,
     maxError: 100
@@ -102,7 +102,12 @@ export let squaresConfig = {
     fill: "#ffbe26"
 }
 
+// export let curveConfig = {
+//     x: 443,
+//     y: -110
+// }
+
 export let curveConfig = {
-    x: 443,
-    y: -110
+    x: 300,
+    y: 0
 }

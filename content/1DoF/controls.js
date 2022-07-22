@@ -5,7 +5,6 @@ export function controlsInit() {
     gui.width = 300;
 
     // gui.addColor(palette, "backgroundFill").name("Background");
-    // gui.add(trendlineConfig, "bInit", -axisConfig.h/2, axisConfig.h/2).name("b");
     
     // sliderGUI(gui);
     // axesGUI(gui);
@@ -40,7 +39,6 @@ export function axesGUI(gui) {
 }
 
 export function trendlineGUI(gui) {
-    //gui.add(trendlineConfig, "bInit", -axisConfig.h/2, axisConfig.h/2).name("b");
     gui.add(trendlineLabelConfig, "x", -500, 0).name("Trendline label x");
     gui.add(trendlineLabelConfig, "y", 0, 500).name("Trendline label y");
 }

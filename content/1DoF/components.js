@@ -219,6 +219,7 @@ export class PointCloud {
     }
 
     showAsCurve(myp5) {
+        myp5.push()
         let offsetPoints = this.addOffset();
         myp5.noFill()
         myp5.stroke(255);
@@ -228,5 +229,6 @@ export class PointCloud {
           myp5.vertex(v.x, v.y);
         }
         myp5.endShape();
+        myp5.pop()
     }
 }

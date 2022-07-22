@@ -30,7 +30,7 @@ export let sketch_1DoF = myp5 => {
     table = formatTableAsJson(data);
 
     linearFitPoints = generateLinearFitPoints(myp5, 10);
-    errorCurvePoints = generateErrorCurvePoints();
+    errorCurvePoints = generateErrorCurvePoints(myp5, linearFitPoints);
 
     myp5.stepper = 1;
   };
@@ -48,11 +48,11 @@ export let sketch_1DoF = myp5 => {
 
     let axes = new Axes(axisConfig.x, axisConfig.y, axisConfig.w, axisConfig.h, "x", "y");
 
-    let trendlineStart = new Point(- axisConfig.w/2 + axisConfig.x - trendlineConfig.extraX, - axisConfig.h/2 + trendlineConfig.bInit + axisConfig.y - trendlineConfig.extraY);
-    let trendlineEnd   = new Point(  axisConfig.w/2 + axisConfig.x + trendlineConfig.extraX,   axisConfig.h/2 + trendlineConfig.bInit + axisConfig.y + trendlineConfig.extraX);
+    let trendlineStart = new Point(- axisConfig.w/2 + axisConfig.x - trendlineConfig.extraX, - axisConfig.h/2 + trendlineConfig.yIntInit + axisConfig.y - trendlineConfig.extraY);
+    let trendlineEnd   = new Point(  axisConfig.w/2 + axisConfig.x + trendlineConfig.extraX,   axisConfig.h/2 + trendlineConfig.yIntInit + axisConfig.y + trendlineConfig.extraX);
     let trendline = new Segment(trendlineStart, trendlineEnd);
 
-    let rotateAbout = new Point(axisConfig.x, trendlineConfig.bInit + axisConfig.y);
+    let rotateAbout = new Point(axisConfig.x, trendlineConfig.yIntInit + axisConfig.y);
     
     trendline.rotateSegment(myp5, slider.value(), rotateAbout);
 
@@ -64,7 +64,7 @@ export let sketch_1DoF = myp5 => {
     trendline.showAsSegment(myp5, "#ffffff", 1.5, styles.segmentOpacity);
 
     linearFitPoints.forEach(p => {
-      getTrendlineDisplay(myp5, myp5.stepper, trendline, p)
+      getTrendlineDisplay(myp5, myp5.stepper, trendline, p);
     });
 
     linearFitPoints.forEach(p => {

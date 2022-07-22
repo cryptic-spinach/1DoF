@@ -4,8 +4,8 @@ import { Point, PointCloud } from "./components.js";
 export function generateLinearFitPoints(myp5, numberOfPoints) {
     let ret = []
   
-    let m = trendlineConfig.mInit;
-    let b = trendlineConfig.bInit;
+    let m = trendlineConfig.slopeInit;
+    let b = trendlineConfig.yIntInit;
     let errorRange = trendlineConfig.maxError;
   
     for (let i = 0; i < numberOfPoints; i++) {
@@ -15,8 +15,8 @@ export function generateLinearFitPoints(myp5, numberOfPoints) {
       let x = myp5.random(xMin, xMax);
       let y = myp5.random(m*x + b - errorRange, m*x + b + errorRange);
   
-      x += axisConfig.x;
-      y += axisConfig.y;
+      // x += axisConfig.x;
+      // y += axisConfig.y;
       
       let point = new Point(x, y);
       ret.push(point);
@@ -25,14 +25,19 @@ export function generateLinearFitPoints(myp5, numberOfPoints) {
     return ret;
   }
 
-export function generateErrorCurvePoints() {
-    let n = 600;
+export function generateErrorCurvePoints(myp5, points) {
     let path = [];
-    let a = 0.25;
 
-    for (let x = -n/2; x < n/2; x++) {
-        let xPos = x;
-        let yPos = a * x*x;
+    let xScale = 200;
+    let yScale = 1/1000
+    
+    let qua  = points.map(p => p.x * p.x).reduce((partialSum, a) => partialSum + a, 0)     ;
+    let lin  = points.map(p => p.x * p.y).reduce((partialSum, a) => partialSum + a, 0) * -2;
+    let con  = points.map(p => p.y * p.y).reduce((partialSum, a) => partialSum + a, 0)     ;
+
+    for (let b = 0; b < 2.5; b += 0.01) {
+        let xPos = b * xScale;
+        let yPos = (qua*b*b + lin*b + con) * yScale;
 
         path.push({"x": xPos, "y": yPos});
     }
