@@ -5,7 +5,9 @@ export function controlsInit() {
     gui.width = 300;
 
     // gui.addColor(palette, "backgroundFill").name("Background");
-    
+    // gui.add(trendlineConfig, "yIntInit", -axisConfig.h/2, axisConfig.h/2).name("fitting line y intercept");
+
+
     // sliderGUI(gui);
     // axesGUI(gui);
     // trendlineGUI(gui);
@@ -14,7 +16,7 @@ export function controlsInit() {
     // stepperButtonGUI(gui);
     // opacityGUI(gui);
     // curveConfigGUI(gui);
-    xyGUI(gui);
+    // xyGUI(gui);
 }
 
 export function sliderGUI(gui) {
