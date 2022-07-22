@@ -1,7 +1,7 @@
 import { trendlineConfig, axisConfig} from "./configs.js";
 import { Point } from "./components.js";
 
-export function generateRandomPoints(p5, numberOfPoints) {
+export function generatePlotPoints(p5, numberOfPoints) {
     let ret = []
   
     let m = trendlineConfig.mInit;
@@ -24,3 +24,16 @@ export function generateRandomPoints(p5, numberOfPoints) {
   
     return ret;
   }
+
+export function generateErrorCurvePoints() {
+    let n = 600;
+    let path = [];
+    let a = 0.25;
+
+    for (let x = -n/2; x < n/2; x++) {
+        let y = a * x*x;
+        path.push({"x": x, "y": y});
+    }
+
+    return path;
+}

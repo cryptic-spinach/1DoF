@@ -206,22 +206,13 @@ export class PointCloud {
         this.points = points;
     }
 
-    getErrorCurve(p5) {
-        let n = 600;
-        let path = [];
-        let a = 0.25;
-
-        for (let x = -n/2; x < n/2; x++) {
-            let y = a * x*x;
-            path.push({"x": x, "y": y});
-        }
-
+    getCurve(p5) {
         p5.noFill()
         p5.stroke(255);
       
         p5.beginShape();
-        for (let v of path) {
-          p5.vertex(v.x, a * v.y);
+        for (let v of this.points) {
+          p5.vertex(v.x, v.y);
         }
         p5.endShape();
     }
