@@ -40,13 +40,7 @@ export let sketch_1DoF = myp5 => {
     myp5.translate((myp5.windowWidth - canvasConfig.trimX)/2, (myp5.windowHeight - canvasConfig.trimY)/2);
     myp5.scale(1, -1);
     myp5.angleMode(myp5.RADIANS);
-    
-    slider.position((myp5.windowWidth - canvasConfig.trimX)/2 + sliderConfig.x, (myp5.windowHeight - canvasConfig.trimY)/2 + sliderConfig.y);
-    let i = 0;
-    myp5.buttons.forEach(b => {
-      positionButton(myp5, b, i);
-      i++;
-    })
+    myp5.updateDOM();
 
     // Calculation
     let sliderLabel = new Point(sliderLabelConfig.x, sliderLabelConfig.y, "b")
@@ -83,6 +77,10 @@ export let sketch_1DoF = myp5 => {
 
   myp5.windowResized = () => {
     myp5.resizeCanvas(myp5.windowWidth - canvasConfig.trimX, myp5.windowHeight - canvasConfig.trimY);
+    myp5.updateDOM();
+  }
+
+  myp5.updateDOM = () => {
     slider.position((myp5.windowWidth - canvasConfig.trimX)/2 + sliderConfig.x, (myp5.windowHeight - canvasConfig.trimY)/2 + sliderConfig.y);
     let i = 0;
     myp5.buttons.forEach(b => {
