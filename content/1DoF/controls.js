@@ -13,7 +13,7 @@ export function controlsInit() {
     // projectionVecGUI(gui);
     // pointGUI(gui);
     // stepperButtonGUI(gui);
-    opacityGUI(gui);
+    // opacityGUI(gui);
 }
 
 export function sliderGUI(gui) {

@@ -18,23 +18,23 @@ export let projectionVecPalette = {
 
 export let projectionVecStyles = {
     weight: 2,
-    opacity: 100
+    opacity: 255
 }
 
 export let styles = {
     pointRadius: 15,
     pointStrokeWeight: 3,
-    pointOpacity: 220,
+    pointOpacity: 255,
 
     labelTextSize: 35,
     labelOffsetX: 30,
     labelOffsetY: 0,
-    labelOpacity: 100,
+    labelOpacity: 40,
 
     
     segmentArrowSize: 15,
-    segmentWeight: 3,
-    segmentOpacity: 100
+    segmentWeight: 2,
+    segmentOpacity: 160
 }
 
 export let canvasConfig = {
@@ -48,7 +48,7 @@ export let axisConfig = {
     w: 500,
     h: 500,
     size: 500,
-    axisOpacity: 100,
+    axisOpacity: 160,
     horizontalLabelXOffset: 20,
     horizontalLabelYOffset: 9,
     verticalLabelXOffset: -8,
@@ -68,7 +68,7 @@ export let sliderConfig = {
 
 export let trendlineConfig = {
     mInit: 1,
-    bInit: 50,
+    bInit: 0,
     extraX: 0,
     extraY: 0,
     maxError: 100

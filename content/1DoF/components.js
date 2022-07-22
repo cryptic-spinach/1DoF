@@ -128,13 +128,13 @@ export class Segment {
     }
 
     showPerpendicularDistance(p5, m) {
-        this.getPerpendicularDistance(p5, m).showAsVector(p5, projectionVecPalette.distFill, projectionVecStyles.weight, projectionVecStyles.opacity);
+        this.getPerpendicularDistance(p5, m).showAsSegment(p5, projectionVecPalette.distFill, projectionVecStyles.weight, projectionVecStyles.opacity);
     }
 
     showVerticalDistance(p5, m) {
         let vertDist = this.getVerticalDistance(p5, m);
         if (vertDist != null) {
-            this.showVec(p5, m, vertDist, projectionVecPalette.distFill, projectionVecStyles.weight, projectionVecStyles.opacity, projectionVecStyles.opacity, false);
+            this.showVec(p5, m, vertDist, projectionVecPalette.distFill, projectionVecStyles.weight, projectionVecStyles.opacity, false);
         }
     }
 
