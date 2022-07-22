@@ -5,41 +5,41 @@ import { Point, Segment, Axes, PointCloud } from "./components.js";
 import { getTrendlineDisplay, getTrendlineLabelDisplay } from "./stepper.js"
 import { generatePlotPoints, generateErrorCurvePoints } from "./point-factory.js";
 
-export let sketch_1DoF = p5 => {
+export let sketch_1DoF = myp5 => {
   let sound;
   let table;
   let slider;
   let plotPoints;
   let errorCurvePoints;
   let data;
-  p5.buttons;
-  p5.stepper;
+  myp5.buttons;
+  myp5.stepper;
 
-  p5.preload = () => {
-    sound = p5.loadSound('content/1DoF/assets/sepia-sky.mp3');
-    data = p5.loadTable('content/1DoF/assets/mouse-recording.csv', 'csv', 'header');
+  myp5.preload = () => {
+    sound = myp5.loadSound('content/1DoF/assets/sepia-sky.mp3');
+    data = myp5.loadTable('content/1DoF/assets/mouse-recording.csv', 'csv', 'header');
   }
 
-  p5.setup = () => {
-    p5.createCanvas(p5.windowWidth - canvasConfig.trimX, p5.windowHeight - canvasConfig.trimY);
+  myp5.setup = () => {
+    myp5.createCanvas(myp5.windowWidth - canvasConfig.trimX, myp5.windowHeight - canvasConfig.trimY);
   
     controlsInit();
-    p5.buttons = buttonsInit(p5);
-    slider = sliderInit(p5);
+    myp5.buttons = buttonsInit(myp5);
+    slider = sliderInit(myp5);
   
     table = formatTableAsJson(data);
 
-    plotPoints = generatePlotPoints(p5, 10);
+    plotPoints = generatePlotPoints(myp5, 10);
     errorCurvePoints = generateErrorCurvePoints();
 
-    p5.stepper = 1;
+    myp5.stepper = 1;
   };
 
-  p5.draw = () => {
-    p5.background(palette.backgroundFill);
-    p5.translate((p5.windowWidth - canvasConfig.trimX)/2, (p5.windowHeight - canvasConfig.trimY)/2);
-    p5.scale(1, -1);
-    p5.angleMode(p5.RADIANS);
+  myp5.draw = () => {
+    myp5.background(palette.backgroundFill);
+    myp5.translate((myp5.windowWidth - canvasConfig.trimX)/2, (myp5.windowHeight - canvasConfig.trimY)/2);
+    myp5.scale(1, -1);
+    myp5.angleMode(myp5.RADIANS);
 
     // Calculation
     let sliderLabel = new Point(sliderLabelConfig.x, sliderLabelConfig.y, "b")
@@ -53,33 +53,33 @@ export let sketch_1DoF = p5 => {
 
     let rotateAbout = new Point(axisConfig.x, trendlineConfig.bInit + axisConfig.y);
     
-    trendline.rotateSegment(p5, slider.value(), rotateAbout);
+    trendline.rotateSegment(myp5, slider.value(), rotateAbout);
 
     let errorCurve = new PointCloud(errorCurvePoints);
-    errorCurve.getCurve(p5)
+    errorCurve.getCurve(myp5)
 
     // Display
-    axes.show(p5);
-    trendline.showAsSegment(p5, "#ffffff", 1.5, styles.segmentOpacity);
+    axes.show(myp5);
+    trendline.showAsSegment(myp5, "#ffffff", 1.5, styles.segmentOpacity);
 
     plotPoints.forEach(p => {
-      getTrendlineDisplay(p5, p5.stepper, trendline, p)
+      getTrendlineDisplay(myp5, myp5.stepper, trendline, p)
     });
 
     plotPoints.forEach(p => {
-      p.show(p5);
+      p.show(myp5);
     });
 
-    sliderLabel.showLabel(p5, sliderLabelConfig.labelFill);
-    getTrendlineLabelDisplay(p5, p5.stepper, trendlineLabel)
+    sliderLabel.showLabel(myp5, sliderLabelConfig.labelFill);
+    getTrendlineLabelDisplay(myp5, myp5.stepper, trendlineLabel)
   };
 
-  p5.windowResized = () => {
-    p5.resizeCanvas(p5.windowWidth - canvasConfig.trimX, p5.windowHeight - canvasConfig.trimY);
-    slider.position((p5.windowWidth - canvasConfig.trimX)/2 + sliderConfig.x, (p5.windowHeight - canvasConfig.trimY)/2 + sliderConfig.y);
+  myp5.windowResized = () => {
+    myp5.resizeCanvas(myp5.windowWidth - canvasConfig.trimX, myp5.windowHeight - canvasConfig.trimY);
+    slider.position((myp5.windowWidth - canvasConfig.trimX)/2 + sliderConfig.x, (myp5.windowHeight - canvasConfig.trimY)/2 + sliderConfig.y);
     let i = 0;
-    p5.buttons.forEach(b => {
-      positionButton(p5, b, i);
+    myp5.buttons.forEach(b => {
+      positionButton(myp5, b, i);
       i++;
     })
   }

@@ -1,7 +1,7 @@
 import { trendlineConfig, axisConfig} from "./configs.js";
 import { Point } from "./components.js";
 
-export function generatePlotPoints(p5, numberOfPoints) {
+export function generatePlotPoints(myp5, numberOfPoints) {
     let ret = []
   
     let m = trendlineConfig.mInit;
@@ -12,8 +12,8 @@ export function generatePlotPoints(p5, numberOfPoints) {
       let xMin = - axisConfig.w/2;
       let xMax = axisConfig.w/2;
   
-      let x = p5.random(xMin, xMax);
-      let y = p5.random(m*x + b - errorRange, m*x + b + errorRange);
+      let x = myp5.random(xMin, xMax);
+      let y = myp5.random(m*x + b - errorRange, m*x + b + errorRange);
   
       x += axisConfig.x;
       y += axisConfig.y;

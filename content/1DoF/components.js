@@ -8,33 +8,33 @@ export class Point {
         this.label = label
     }
 
-    show(p5) {
-        let colorWithOpacity = p5.color(palette.pointStroke);
+    show(myp5) {
+        let colorWithOpacity = myp5.color(palette.pointStroke);
         colorWithOpacity.setAlpha(styles.pointOpacity);
 
-        p5.push();
-        p5.fill(palette.pointFill);
-        p5.stroke(colorWithOpacity);
-        p5.strokeWeight(styles.pointStrokeWeight);
-        p5.ellipse(this.x, this.y, styles.pointRadius, styles.pointRadius);
-        p5.pop();
+        myp5.push();
+        myp5.fill(palette.pointFill);
+        myp5.stroke(colorWithOpacity);
+        myp5.strokeWeight(styles.pointStrokeWeight);
+        myp5.ellipse(this.x, this.y, styles.pointRadius, styles.pointRadius);
+        myp5.pop();
     }
 
-    showLabel(p5, myColor = palette.labelFill, myOpacity = styles.labelOpacity, xOffset = styles.labelOffsetX, yOffset = styles.labelOffsetY) {
-        let colorWithOpacity = p5.color(myColor);
+    showLabel(myp5, myColor = palette.labelFill, myOpacity = styles.labelOpacity, xOffset = styles.labelOffsetX, yOffset = styles.labelOffsetY) {
+        let colorWithOpacity = myp5.color(myColor);
         colorWithOpacity.setAlpha(myOpacity)
 
-        p5.push();
+        myp5.push();
         
-        p5.translate(this.x, this.y)
-        p5.scale(1, -1);
+        myp5.translate(this.x, this.y)
+        myp5.scale(1, -1);
 
-        p5.stroke(myColor);
-        p5.fill(colorWithOpacity);
-        p5.textSize(styles.labelTextSize);
-        p5.text(this.label, xOffset, yOffset)
+        myp5.stroke(myColor);
+        myp5.fill(colorWithOpacity);
+        myp5.textSize(styles.labelTextSize);
+        myp5.text(this.label, xOffset, yOffset)
 
-        p5.pop();
+        myp5.pop();
     }
 }
 
@@ -44,26 +44,26 @@ export class Segment {
         this.point_2 = point_2;
     }
 
-    getSlopeVec(p5) {
-        return p5.createVector(this.point_2.x - this.point_1.x, this.point_2.y - this.point_1.y);
+    getSlopeVec(myp5) {
+        return myp5.createVector(this.point_2.x - this.point_1.x, this.point_2.y - this.point_1.y);
     }
 
-    getProjection(p5, u, v) {
+    getProjection(myp5, u, v) {
         return v.copy().mult(u.copy().dot(v) / v.copy().dot(v));
     }
 
 
     // Displays perpendicular distance from line l to point m
-    getPerpendicularDistance(p5, m) {
+    getPerpendicularDistance(myp5, m) {
         // Choose the origin along l.
         // Create a vector u with tip at m.
-        let u = p5.createVector(m.x - this.point_1.x, m.y - this.point_1.y); 
+        let u = myp5.createVector(m.x - this.point_1.x, m.y - this.point_1.y); 
 
         // Create unit vector v pointing along l.
-        let v = this.getSlopeVec(p5).normalize();
+        let v = this.getSlopeVec(myp5).normalize();
 
         // Calculate the projection of u onto v. Call it w.
-        let w = this.getProjection(p5, u, v);
+        let w = this.getProjection(myp5, u, v);
         
         // Draw a line connecting m and the tip of w.
         let perpDistStart = new Point(this.point_1.x + w.x, this.point_1.y + w.y);
@@ -72,15 +72,15 @@ export class Segment {
         return perpDist;
     }
 
-    getVerticalDistance(p5, m) {
-        let perpDist = this.getPerpendicularDistance(p5, m).getSlopeVec(p5);
+    getVerticalDistance(myp5, m) {
+        let perpDist = this.getPerpendicularDistance(myp5, m).getSlopeVec(myp5);
         let vertDist;
 
         if (perpDist.y > 0) {
-            vertDist = perpDist.copy().setHeading(p5.PI/2);
+            vertDist = perpDist.copy().setHeading(myp5.PI/2);
         }
         else {
-            vertDist = perpDist.copy().setHeading(-p5.PI/2);
+            vertDist = perpDist.copy().setHeading(-myp5.PI/2);
         }
 
         let angle = perpDist.angleBetween(vertDist)
@@ -94,69 +94,69 @@ export class Segment {
         }
     }
 
-    showAsVector(p5, myColor = palette.segmentFill, myWeight = styles.segmentWeight, myOpacity = styles.segmentOpacity) {
-        let slopeVec = this.getSlopeVec(p5);
-        this.showVec(p5, this.point_1, slopeVec, myColor, myWeight, myOpacity, true);
+    showAsVector(myp5, myColor = palette.segmentFill, myWeight = styles.segmentWeight, myOpacity = styles.segmentOpacity) {
+        let slopeVec = this.getSlopeVec(myp5);
+        this.showVec(myp5, this.point_1, slopeVec, myColor, myWeight, myOpacity, true);
     }
     
-    showAsSegment(p5, myColor = palette.segmentFill, myWeight = styles.segmentWeight, myOpacity = styles.segmentOpacity) {
-        let slopeVec = this.getSlopeVec(p5);
-        this.showVec(p5, this.point_1, slopeVec, myColor, myWeight, myOpacity, false);
+    showAsSegment(myp5, myColor = palette.segmentFill, myWeight = styles.segmentWeight, myOpacity = styles.segmentOpacity) {
+        let slopeVec = this.getSlopeVec(myp5);
+        this.showVec(myp5, this.point_1, slopeVec, myColor, myWeight, myOpacity, false);
     }
 
-    showAsAxis(p5, myColor = palette.segmentFill, myWeight = styles.segmentWeight, myOpacity = axisConfig.axisOpacity) {
-        let slopeVec = this.getSlopeVec(p5);
-        this.showVec(p5, this.point_1, slopeVec, myColor, myWeight, myOpacity, true);
-        this.showVec(p5, this.point_2, slopeVec.mult(-1), myColor, myWeight, myOpacity, true);
+    showAsAxis(myp5, myColor = palette.segmentFill, myWeight = styles.segmentWeight, myOpacity = axisConfig.axisOpacity) {
+        let slopeVec = this.getSlopeVec(myp5);
+        this.showVec(myp5, this.point_1, slopeVec, myColor, myWeight, myOpacity, true);
+        this.showVec(myp5, this.point_2, slopeVec.mult(-1), myColor, myWeight, myOpacity, true);
     }
 
-    showVec(p5, base, vec, myColor, myWeight, myOpacity, showArrowTip) {
-        let colorWithOpacity = p5.color(myColor);
+    showVec(myp5, base, vec, myColor, myWeight, myOpacity, showArrowTip) {
+        let colorWithOpacity = myp5.color(myColor);
         colorWithOpacity.setAlpha(myOpacity)
-        p5.push();
-        p5.stroke(colorWithOpacity);
-        p5.strokeWeight(myWeight);
-        p5.fill(colorWithOpacity);
-        p5.translate(base.x, base.y);
-        p5.line(0, 0, vec.x, vec.y);
+        myp5.push();
+        myp5.stroke(colorWithOpacity);
+        myp5.strokeWeight(myWeight);
+        myp5.fill(colorWithOpacity);
+        myp5.translate(base.x, base.y);
+        myp5.line(0, 0, vec.x, vec.y);
         if(showArrowTip) {
-            p5.rotate(vec.heading());
-            p5.translate(vec.mag() - styles.segmentArrowSize, 0);
-            p5.triangle(0, styles.segmentArrowSize / 2, 0, -styles.segmentArrowSize / 2, styles.segmentArrowSize, 0);
+            myp5.rotate(vec.heading());
+            myp5.translate(vec.mag() - styles.segmentArrowSize, 0);
+            myp5.triangle(0, styles.segmentArrowSize / 2, 0, -styles.segmentArrowSize / 2, styles.segmentArrowSize, 0);
         }
-        p5.pop();
+        myp5.pop();
     }
 
-    showPerpendicularDistance(p5, m) {
-        this.getPerpendicularDistance(p5, m).showAsSegment(p5, projectionVecPalette.distFill, projectionVecStyles.weight, projectionVecStyles.opacity);
+    showPerpendicularDistance(myp5, m) {
+        this.getPerpendicularDistance(myp5, m).showAsSegment(myp5, projectionVecPalette.distFill, projectionVecStyles.weight, projectionVecStyles.opacity);
     }
 
-    showVerticalDistance(p5, m) {
-        let vertDist = this.getVerticalDistance(p5, m);
+    showVerticalDistance(myp5, m) {
+        let vertDist = this.getVerticalDistance(myp5, m);
         if (vertDist != null) {
-            this.showVec(p5, m, vertDist, projectionVecPalette.distFill, projectionVecStyles.weight, projectionVecStyles.opacity, false);
+            this.showVec(myp5, m, vertDist, projectionVecPalette.distFill, projectionVecStyles.weight, projectionVecStyles.opacity, false);
         }
     }
 
-    showSquaredError(p5, m) {
-        let vertDist = this.getVerticalDistance(p5, m);
-        let myColor = p5.color(squaresConfig.fill);
+    showSquaredError(myp5, m) {
+        let vertDist = this.getVerticalDistance(myp5, m);
+        let myColor = myp5.color(squaresConfig.fill);
         myColor.setAlpha(squaresConfig.opacity);
         if (vertDist != null) {
-            p5.push();
-            p5.noStroke();
-            p5.fill(myColor);
-            p5.rect(m.x, m.y, vertDist.y, vertDist.y);
-            p5.pop();
+            myp5.push();
+            myp5.noStroke();
+            myp5.fill(myColor);
+            myp5.rect(m.x, m.y, vertDist.y, vertDist.y);
+            myp5.pop();
         }
     }
 
 
-    rotateSegment(p5, theta, rotateAboutPoint) {
-        let vec1 = p5.createVector(this.point_1.x - rotateAboutPoint.x, this.point_1.y - rotateAboutPoint.y)
+    rotateSegment(myp5, theta, rotateAboutPoint) {
+        let vec1 = myp5.createVector(this.point_1.x - rotateAboutPoint.x, this.point_1.y - rotateAboutPoint.y)
         let transVec1 = vec1.copy().rotate(theta);
 
-        let vec2 = p5.createVector(this.point_2.x - rotateAboutPoint.x, this.point_2.y - rotateAboutPoint.y)
+        let vec2 = myp5.createVector(this.point_2.x - rotateAboutPoint.x, this.point_2.y - rotateAboutPoint.y)
         let transVec2 = vec2.copy().rotate(theta);
 
         this.updatePoint1(transVec1, rotateAboutPoint);
@@ -184,7 +184,7 @@ export class Axes {
         this.yLabel = yLabel;
     }
 
-    show(p5) {
+    show(myp5) {
         let xAxisStart = new Point(-this.w/2 + this.x, 0 + this.y);
         let xAxisEnd = new Point(this.w/2 + this.x, 0 + this.y, this.xLabel);
         let xAxis = new Segment(xAxisStart, xAxisEnd);
@@ -193,11 +193,11 @@ export class Axes {
         let yAxisEnd = new Point(0 + this.x, this.h/2 + this.y, this.yLabel);
         let yAxis = new Segment(yAxisStart, yAxisEnd);
             
-        xAxis.showAsAxis(p5);
-        yAxis.showAsAxis(p5);
+        xAxis.showAsAxis(myp5);
+        yAxis.showAsAxis(myp5);
 
-        xAxisEnd.showLabel(p5, axisPalette.fill, styles.labelOpacity, axisConfig.horizontalLabelXOffset, axisConfig.horizontalLabelYOffset);
-        yAxisEnd.showLabel(p5, axisPalette.fill, styles.labelOpacity, axisConfig.verticalLabelXOffset, axisConfig.verticalLabelYOffset);
+        xAxisEnd.showLabel(myp5, axisPalette.fill, styles.labelOpacity, axisConfig.horizontalLabelXOffset, axisConfig.horizontalLabelYOffset);
+        yAxisEnd.showLabel(myp5, axisPalette.fill, styles.labelOpacity, axisConfig.verticalLabelXOffset, axisConfig.verticalLabelYOffset);
     }
 }
 
@@ -206,14 +206,14 @@ export class PointCloud {
         this.points = points;
     }
 
-    getCurve(p5) {
-        p5.noFill()
-        p5.stroke(255);
+    getCurve(myp5) {
+        myp5.noFill()
+        myp5.stroke(255);
       
-        p5.beginShape();
+        myp5.beginShape();
         for (let v of this.points) {
-          p5.vertex(v.x, v.y);
+          myp5.vertex(v.x, v.y);
         }
-        p5.endShape();
+        myp5.endShape();
     }
 }

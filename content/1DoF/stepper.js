@@ -1,26 +1,26 @@
 import { trendlineConfig } from "./configs.js";
 
-export function getTrendlineDisplay(p5, stepper, trendline, point) {
+export function getTrendlineDisplay(myp5, stepper, trendline, point) {
     switch (stepper) {
       case 1:
         break;
       case 2:
-        trendline.showVerticalDistance(p5, point);
+        trendline.showVerticalDistance(myp5, point);
         break;
       case 3:
-        trendline.showSquaredError(p5, point);
+        trendline.showSquaredError(myp5, point);
         break;
       case 4:
-        trendline.showPerpendicularDistance(p5, point);
+        trendline.showPerpendicularDistance(myp5, point);
         break;
       case 5:
     }
   }
 
-  export function getTrendlineLabelDisplay(p5, stepper, trendlineLabel) {
+  export function getTrendlineLabelDisplay(myp5, stepper, trendlineLabel) {
     switch (stepper) {
       case 1:
-        trendlineLabel.showLabel(p5, trendlineConfig.labelFill);
+        trendlineLabel.showLabel(myp5, trendlineConfig.labelFill);
         break;
       case 2:
         break;

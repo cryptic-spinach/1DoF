@@ -19,15 +19,15 @@ export function formatTableAsJson (data) {
 }
 
 
-export function sliderInit(p5) {
+export function sliderInit(myp5) {
   let ret;
-  ret = p5.createSlider(sliderConfig.min, sliderConfig.max, 0, 0.01);
-  ret.position((p5.windowWidth - canvasConfig.trimX)/2 + sliderConfig.x, (p5.windowHeight - canvasConfig.trimY)/2 + sliderConfig.y);
+  ret = myp5.createSlider(sliderConfig.min, sliderConfig.max, 0, 0.01);
+  ret.position((myp5.windowWidth - canvasConfig.trimX)/2 + sliderConfig.x, (myp5.windowHeight - canvasConfig.trimY)/2 + sliderConfig.y);
   ret.style('width', '300px');
   return ret;
 }
 
-export function buttonsInit(p5) {
+export function buttonsInit(myp5) {
   let ret = [];
   let cnv = document.querySelector(".part-1DoF")
 
@@ -35,7 +35,7 @@ export function buttonsInit(p5) {
     let stepperButton = document.createElement("button");
     stepperButton.innerHTML = (i+1).toString();
     stepperButton.className = "stepper-buttons";
-    positionButton(p5, stepperButton, i)
+    positionButton(myp5, stepperButton, i)
     stepperButton.addEventListener("click", () => {
       part_1DoF.stepper = i + 1;
     })
@@ -47,21 +47,21 @@ export function buttonsInit(p5) {
   return ret;
 }
 
-export function positionButton(p5, button, index) {
-  button.style.left = parseInt(stepperButtonConfig.x + (p5.windowWidth  - canvasConfig.trimX)/2 + 90 * index).toString() + "px";
-  button.style.top  = parseInt(stepperButtonConfig.y + (p5.windowHeight - canvasConfig.trimY)/2             ).toString() + "px";
+export function positionButton(myp5, button, index) {
+  button.style.left = parseInt(stepperButtonConfig.x + (myp5.windowWidth  - canvasConfig.trimX)/2 + 90 * index).toString() + "px";
+  button.style.top  = parseInt(stepperButtonConfig.y + (myp5.windowHeight - canvasConfig.trimY)/2             ).toString() + "px";
 }
 
 
-export function showValues(p5, pairs) {
+export function showValues(myp5, pairs) {
   for (let i = 0; i < pairs.length; i++) {
-    showValue(p5, pairs[i].key, pairs[i].value, i);
+    showValue(myp5, pairs[i].key, pairs[i].value, i);
   }
 }
 
-export function showValue(p5, key, value, position = 0) {
+export function showValue(myp5, key, value, position = 0) {
   let keyPoint = new Point(debugConfig.showValueX, debugConfig.showValueY + position * 50, key);
   let valuePoint = new Point(debugConfig.showValueX + debugConfig.showValueSpacer, debugConfig.showValueY + position * 50, value);  
-  keyPoint.showLabel(p5, "#ffffff");
-  valuePoint.showLabel(p5, "#ffffff");
+  keyPoint.showLabel(myp5, "#ffffff");
+  valuePoint.showLabel(myp5, "#ffffff");
 }
