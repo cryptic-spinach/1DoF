@@ -3,13 +3,13 @@ import { controlsInit } from "./controls.js";
 import { formatTableAsJson, showValue, showValues, sliderInit, buttonsInit, positionButton} from "./helpers.js"
 import { Point, Segment, Axes, PointCloud } from "./components.js";
 import { getTrendlineDisplay, getTrendlineLabelDisplay } from "./stepper.js"
-import { generatePlotPoints, generateErrorCurvePoints } from "./point-factory.js";
+import { generateLinearFitPoints, generateErrorCurvePoints } from "./point-factory.js";
 
 export let sketch_1DoF = myp5 => {
   let sound;
   let table;
   let slider;
-  let plotPoints;
+  let linearFitPoints;
   let errorCurvePoints;
   let data;
   myp5.buttons;
@@ -29,7 +29,7 @@ export let sketch_1DoF = myp5 => {
   
     table = formatTableAsJson(data);
 
-    plotPoints = generatePlotPoints(myp5, 10);
+    linearFitPoints = generateLinearFitPoints(myp5, 10);
     errorCurvePoints = generateErrorCurvePoints();
 
     myp5.stepper = 1;
@@ -57,22 +57,22 @@ export let sketch_1DoF = myp5 => {
     trendline.rotateSegment(myp5, slider.value(), rotateAbout);
 
     let errorCurve = new PointCloud(errorCurvePoints, curveConfig.x, curveConfig.y);
-    errorCurve.getCurve(myp5);
+    errorCurve.showAsCurve(myp5);
 
     // Display
     axes.show(myp5);
     trendline.showAsSegment(myp5, "#ffffff", 1.5, styles.segmentOpacity);
 
-    plotPoints.forEach(p => {
+    linearFitPoints.forEach(p => {
       getTrendlineDisplay(myp5, myp5.stepper, trendline, p)
     });
 
-    plotPoints.forEach(p => {
+    linearFitPoints.forEach(p => {
       p.show(myp5);
     });
 
     sliderLabel.showLabel(myp5, sliderLabelConfig.labelFill);
-    getTrendlineLabelDisplay(myp5, myp5.stepper, trendlineLabel)
+    getTrendlineLabelDisplay(myp5, myp5.stepper, trendlineLabel);
   };
 
   myp5.windowResized = () => {

@@ -1,7 +1,7 @@
 import { trendlineConfig, axisConfig, curveConfig} from "./configs.js";
-import { Point } from "./components.js";
+import { Point, PointCloud } from "./components.js";
 
-export function generatePlotPoints(myp5, numberOfPoints) {
+export function generateLinearFitPoints(myp5, numberOfPoints) {
     let ret = []
   
     let m = trendlineConfig.mInit;

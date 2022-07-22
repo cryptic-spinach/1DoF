@@ -208,13 +208,24 @@ export class PointCloud {
         this.yOffset = yOffset;
     }
 
-    getCurve(myp5) {
+    addOffset() {
+        let offsetPoints = [];
+        this.points.forEach(p => {
+            let x = p.x + this.xOffset;
+            let y = p.y + this.yOffset;
+            offsetPoints.push(new Point(x, y));
+        });
+        return offsetPoints;
+    }
+
+    showAsCurve(myp5) {
+        let offsetPoints = this.addOffset();
         myp5.noFill()
         myp5.stroke(255);
       
         myp5.beginShape();
-        for (let v of this.points) {
-          myp5.vertex(v.x + this.xOffset, v.y + this.yOffset);
+        for (let v of offsetPoints) {
+          myp5.vertex(v.x, v.y);
         }
         myp5.endShape();
     }
