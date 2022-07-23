@@ -9,12 +9,15 @@ export class Point {
     }
 
     show(myp5) {
-        let colorWithOpacity = myp5.color(palette.pointStroke);
-        colorWithOpacity.setAlpha(styles.pointOpacity);
+        let strokeWithOpacity = myp5.color(palette.pointStroke);
+        strokeWithOpacity.setAlpha(styles.pointStrokeOpacity);
+
+        let fillWithOpacity = myp5.color(palette.pointFill);
+        fillWithOpacity.setAlpha(styles.pointFillOpacity);
 
         myp5.push();
-        myp5.fill(palette.pointFill);
-        myp5.stroke(colorWithOpacity);
+        myp5.fill(fillWithOpacity);
+        myp5.stroke(strokeWithOpacity);
         myp5.strokeWeight(styles.pointStrokeWeight);
         myp5.ellipse(this.x, this.y, styles.pointRadius, styles.pointRadius);
         myp5.pop();

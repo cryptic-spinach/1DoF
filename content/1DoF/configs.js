@@ -13,18 +13,19 @@ export let projectionVecPalette = {
     uFill: "#05aaaa",
     vFill: "#d94343",
     wFill: "#f03c70",
-    distFill: "#ffbe26",
+    distFill: "#eda276",
 }
 
 export let projectionVecStyles = {
-    weight: 2,
+    weight: 1.5,
     opacity: 255
 }
 
 export let styles = {
     pointRadius: 15,
-    pointStrokeWeight: 3,
-    pointOpacity: 255,
+    pointStrokeWeight: 2,
+    pointStrokeOpacity: 255,
+    pointFillOpacity: 255,
 
     labelTextSize: 35,
     labelOffsetX: 30,
