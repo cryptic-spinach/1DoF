@@ -31,3 +31,19 @@ export function getTrendlineDisplay(myp5, stepper, trendline, point) {
       case 5:
     }
   }
+
+  export function getErrorCurveDisplay(myp5, stepper, errorCurveCloud, trendline, linearFitPoints) {
+    switch (stepper) {
+      case 1:
+        break;
+      case 2:
+        break;
+      case 3:
+        break;
+      case 4:
+        break;
+      case 5:
+        errorCurveCloud.showFunctionValue(myp5, trendline, linearFitPoints);
+        break;
+    }
+  }

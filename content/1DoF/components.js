@@ -208,6 +208,9 @@ export class Axes {
 
 export class PointCloud {
     constructor(points, xOffset, yOffset) {
+        this.originalpoints = points;
+        this.xOffset = xOffset;
+        this.yOffset = yOffset;
         let offsetPoints = [];
         points.forEach(p => {
             let x = p.x + xOffset;
@@ -228,5 +231,35 @@ export class PointCloud {
         }
         myp5.endShape();
         myp5.pop()
+    }
+
+    showFunctionValue(myp5, fitline, fitpoints) {
+        let fitlineVec = fitline.getSlopeVec(myp5);
+        // console.log(fitlineVec)
+
+        if (fitlineVec.x != 0) {
+            let b = fitlineVec.y/fitlineVec.x
+
+            let xScale = 200;
+            let yScale = 1/5000;
+            
+            let qua  = fitpoints.map(p => p.x * p.x).reduce((partialSum, a) => partialSum + a, 0)     ;
+            let lin  = fitpoints.map(p => p.x * p.y).reduce((partialSum, a) => partialSum + a, 0) * -2;
+            let con  = fitpoints.map(p => p.y * p.y).reduce((partialSum, a) => partialSum + a, 0)     ;
+        
+            let xPos = b * xScale;
+            let yPos = (qua*b*b + lin*b + con) * yScale;
+
+            let point = new Point(xPos + this.xOffset, yPos + this.yOffset);
+            point.show(myp5);
+
+            let vals = [
+                {key: "slope", value: b.toFixed(2)}
+            ]
+
+            showValues(myp5, vals);
+
+            // console.log(point)
+        }
     }
 }

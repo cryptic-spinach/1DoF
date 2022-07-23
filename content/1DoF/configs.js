@@ -77,8 +77,8 @@ export let trendlineConfig = {
 }
 
 export let debugConfig = {
-    showValueX: 520,
-    showValueY: 200,
+    showValueX: 300,
+    showValueY: -250,
     showValueSpacer: 200
 }
 
