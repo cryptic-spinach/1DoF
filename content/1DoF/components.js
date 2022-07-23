@@ -178,22 +178,24 @@ export class Segment {
 }
 
 export class Axes {
-    constructor(x, y, w, h, xLabel = "", yLabel = "") {
+    constructor(x, y, right, up, left, down, xLabel = "", yLabel = "") {
         this.x = x;
         this.y = y;
-        this.w = w;
-        this.h = h;
+        this.right = right;
+        this.up = up;
+        this.left = left;
+        this.down = down;
         this.xLabel = xLabel;
         this.yLabel = yLabel;
     }
 
     show(myp5) {
-        let xAxisStart = new Point(-this.w/2 + this.x, 0 + this.y);
-        let xAxisEnd = new Point(this.w/2 + this.x, 0 + this.y, this.xLabel);
+        let xAxisStart = new Point(-this.left + this.x, 0 + this.y);
+        let xAxisEnd = new Point(this.right + this.x, 0 + this.y, this.xLabel);
         let xAxis = new Segment(xAxisStart, xAxisEnd);
 
-        let yAxisStart = new Point(0 + this.x, -this.h/2 + this.y);
-        let yAxisEnd = new Point(0 + this.x, this.h/2 + this.y, this.yLabel);
+        let yAxisStart = new Point(0 + this.x, -this.down + this.y);
+        let yAxisEnd = new Point(0 + this.x, this.up + this.y, this.yLabel);
         let yAxis = new Segment(yAxisStart, yAxisEnd);
             
         xAxis.showAsAxis(myp5);

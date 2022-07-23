@@ -9,8 +9,8 @@ export function generateLinearFitPoints(myp5, numberOfPoints) {
     let errorRange = trendlineConfig.maxError;
   
     for (let i = 0; i < numberOfPoints; i++) {
-      let xMin = - axisConfig.w/2;
-      let xMax = axisConfig.w/2;
+      let xMin = - axisConfig.left;
+      let xMax = axisConfig.right;
   
       let x = myp5.random(xMin, xMax);
       let y = myp5.random(m*x + b - errorRange, m*x + b + errorRange);

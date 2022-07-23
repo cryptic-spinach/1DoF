@@ -8,10 +8,10 @@ export function controlsInit() {
     // gui.add(trendlineConfig, "yIntInit", -axisConfig.h/2, axisConfig.h/2).name("fitting line y intercept");
 
     // opacityGUI(gui);
-    // xyGUI(gui);
+    xyGUI(gui);
     // strokeAndFillGUI(gui);
-    weightGUI(gui);
-    // sizeGUI(gui);
+    // weightGUI(gui);
+    sizeGUI(gui);
 }
 
 
@@ -31,7 +31,7 @@ export function xyGUI(gui) {
     gui.add(sliderLabelConfig, "x", 0, 700).name("label x");
     gui.add(sliderLabelConfig, "y", -500, 0).name("label y");
     gui.add(axisConfig, "x", -500, -100).name("axis x");
-    gui.add(axisConfig, "y", -200, 100).name("axis y");
+    gui.add(axisConfig, "y", -500, 100).name("axis y");
     gui.add(trendlineLabelConfig, "x", -500, 0).name("trendline label x");
     gui.add(trendlineLabelConfig, "y", 0, 500).name("trendline label y");
     gui.add(stepperButtonConfig, "x", -1000, 0).name("button x");
@@ -54,6 +54,10 @@ export function weightGUI(gui) {
     gui.add(styles, "pointStrokeWeight").name("point weight");
 } 
 
-export function sizeGUI() {
-    gui.add(styles, "pointRadius").name("point radius");
+export function sizeGUI(gui) {
+    // gui.add(styles, "pointRadius").name("point radius");
+    gui.add(axisConfig, "left", 10, 800).name("axis left");
+    gui.add(axisConfig, "right", 10, 800).name("axis right");
+    gui.add(axisConfig, "down", 10, 800).name("axis down");
+    gui.add(axisConfig, "up", 10, 800).name("axis up");
 }

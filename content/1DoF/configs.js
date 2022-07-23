@@ -46,9 +46,10 @@ export let canvasConfig = {
 export let axisConfig = {
     x: -443,
     y: -110,
-    w: 500,
-    h: 500,
-    size: 500,
+    right: 250,
+    up: 250,
+    left: 250,
+    down: 250,
     axisOpacity: 160,
     horizontalLabelXOffset: 20,
     horizontalLabelYOffset: 9,
