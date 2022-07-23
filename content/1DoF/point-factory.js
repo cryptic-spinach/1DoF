@@ -14,9 +14,6 @@ export function generateLinearFitPoints(myp5, numberOfPoints) {
   
       let x = myp5.random(xMin, xMax);
       let y = myp5.random(m*x + b - errorRange, m*x + b + errorRange);
-  
-      // x += axisConfig.x;
-      // y += axisConfig.y;
       
       let point = new Point(x, y);
       ret.push(point);

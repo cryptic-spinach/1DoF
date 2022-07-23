@@ -62,8 +62,8 @@ export let axisPalette = {
 }
 
 export let sliderConfig = { 
-    x: 306, 
-    y: 348,
+    x: 170, 
+    y: 102,
     min: -Math.PI / 4,
     max: Math.PI / 6
 }
@@ -88,8 +88,8 @@ export let stepperButtonConfig = {
 }
 
 export let sliderLabelConfig = {
-    x: 605,
-    y: -372,
+    x: 700,
+    y: -125,
     labelFill: "#1fced9"
 }
 
@@ -104,12 +104,7 @@ export let squaresConfig = {
     fill: "#ffbe26"
 }
 
-// export let curveConfig = {
-//     x: 443,
-//     y: -110
-// }
-
 export let curveConfig = {
-    x: 300,
+    x: 161,
     y: 0
 }

@@ -23,7 +23,7 @@ export function sliderInit(myp5) {
   let ret;
   ret = myp5.createSlider(sliderConfig.min, sliderConfig.max, 0, 0.01);
   ret.position((myp5.windowWidth - canvasConfig.trimX)/2 + sliderConfig.x, (myp5.windowHeight - canvasConfig.trimY)/2 + sliderConfig.y);
-  ret.style('width', '300px');
+  ret.style('width', '500px');
   return ret;
 }
 

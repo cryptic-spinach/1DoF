@@ -8,10 +8,10 @@ export function controlsInit() {
     // gui.add(trendlineConfig, "yIntInit", -axisConfig.h/2, axisConfig.h/2).name("fitting line y intercept");
 
     // opacityGUI(gui);
-    xyGUI(gui);
+    // xyGUI(gui);
     // strokeAndFillGUI(gui);
     // weightGUI(gui);
-    sizeGUI(gui);
+    // sizeGUI(gui);
 }
 
 

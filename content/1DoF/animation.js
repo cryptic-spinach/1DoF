@@ -59,6 +59,8 @@ export let sketch_1DoF = myp5 => {
     let errorCurveCloud = new PointCloud(errorCurvePoints, curveConfig.x, curveConfig.y);
     let linearFitCloud = new PointCloud(linearFitPoints, axisConfig.x, axisConfig.y)
 
+    // errorCurveCloud.showFunctionValue(myp5);
+
     // Display
     errorCurveCloud.showAsCurve(myp5);
 
