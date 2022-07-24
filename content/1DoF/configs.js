@@ -64,8 +64,8 @@ export let axisPalette = {
 export let sliderConfig = { 
     x: 170, 
     y: 102,
-    min: -Math.PI / 4,
-    max: Math.PI / 6
+    min: -2,
+    max: 2
 }
 
 export let trendlineConfig = {

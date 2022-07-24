@@ -54,7 +54,7 @@ export let sketch_1DoF = myp5 => {
 
     let rotateAbout = new Point(axisConfig.x, trendlineConfig.yIntInit + axisConfig.y);
     
-    trendline.rotateSegment(myp5, slider.value(), rotateAbout);
+    trendline.rotateSegmentBySlope(myp5, slider.value());
 
     let errorCurveCloud = new PointCloud(errorCurvePoints, curveConfig.x, curveConfig.y);
     let linearFitCloud = new PointCloud(linearFitPoints, axisConfig.x, axisConfig.y)
