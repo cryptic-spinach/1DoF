@@ -25,16 +25,13 @@ export function generateLinearFitPoints(myp5, numberOfPoints) {
 export function generateErrorCurvePoints(myp5, points) {
     let path = [];
 
-    let xScale = curveConfig.xScale;
-    let yScale = curveConfig.yScale;
-    
     let qua  = points.map(p => p.x * p.x).reduce((partialSum, a) => partialSum + a, 0)     ;
     let lin  = points.map(p => p.x * p.y).reduce((partialSum, a) => partialSum + a, 0) * -2;
     let con  = points.map(p => p.y * p.y).reduce((partialSum, a) => partialSum + a, 0)     ;
 
     for (let b = sliderConfig.min; b < sliderConfig.max; b += 0.01) {
-        let xPos = b * xScale;
-        let yPos = (qua*b*b + lin*b + con) * yScale;
+        let xPos = b;
+        let yPos = (qua*b*b + lin*b + con);
 
         path.push({"x": xPos, "y": yPos});
     }

@@ -251,10 +251,13 @@ export class PointCloud {
         myp5.push()
         myp5.noFill()
         myp5.stroke(255);
+
+        let xScale = curveConfig.xScale;
+        let yScale = curveConfig.yScale;
       
         myp5.beginShape();
-        for (let v of this.points) {
-          myp5.vertex(v.x, v.y);
+        for (let v of this.originalpoints) {
+          myp5.vertex(v.x * xScale + this.xOffset, v.y * yScale + this.yOffset);
         }
         myp5.endShape();
         myp5.pop()
