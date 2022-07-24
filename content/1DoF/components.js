@@ -1,4 +1,4 @@
-import { palette, styles, projectionVecPalette, projectionVecStyles, axisConfig, axisPalette, squaresConfig} from "./configs.js";
+import { palette, styles, projectionVecPalette, projectionVecStyles, axisConfig, axisPalette, squaresConfig, curveConfig} from "./configs.js";
 import { showValues } from "./helpers.js";
 
 export class Point {
@@ -267,8 +267,8 @@ export class PointCloud {
         if (fitlineVec.x != 0) {
             let b = fitlineVec.y/fitlineVec.x
 
-            let xScale = 200;
-            let yScale = 1/5000;
+            let xScale = curveConfig.xScale;
+            let yScale = curveConfig.yScale;
             
             let qua  = fitpoints.map(p => p.x * p.x).reduce((partialSum, a) => partialSum + a, 0)     ;
             let lin  = fitpoints.map(p => p.x * p.y).reduce((partialSum, a) => partialSum + a, 0) * -2;

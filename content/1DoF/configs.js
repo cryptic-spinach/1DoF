@@ -106,7 +106,9 @@ export let squaresConfig = {
 
 export let curveConfig = {
     x: 161,
-    y: 0
+    y: 0,
+    xScale: 200,
+    yScale: 1/5000
 }
 
 export let testPoint1Config = {

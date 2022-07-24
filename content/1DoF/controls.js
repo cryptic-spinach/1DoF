@@ -11,6 +11,10 @@ export function controlsInit() {
     gui.add(testPoint1Config, "y", -500, 500).name("start y");
     gui.add(testPoint2Config, "x", 0, 800).name("end x");
     gui.add(testPoint2Config, "y", -500, 500).name("end y");
+    gui.add(curveConfig, "xScale", 0, 500).name("x scale");
+    gui.add(curveConfig, "yScale", 0, 0.5).name("y scale");
+    gui.add(curveConfig, "x", 0, 550).name("curve x");
+    gui.add(curveConfig, "y", -400, 400).name("curve y");
 
     // opacityGUI(gui);
     // xyGUI(gui);
