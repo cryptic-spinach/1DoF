@@ -1,4 +1,4 @@
-import { canvasConfig, sliderConfig, axisConfig, palette, trendlineConfig, stepperButtonConfig, sliderLabelConfig, trendlineLabelConfig, styles, curveConfig } from "./configs.js";
+import { canvasConfig, sliderConfig, axisConfig, palette, trendlineConfig, stepperButtonConfig, sliderLabelConfig, trendlineLabelConfig, styles, curveConfig, testPoint1Config, testPoint2Config } from "./configs.js";
 import { controlsInit } from "./controls.js";
 import { formatTableAsJson, showValue, showValues, sliderInit, buttonsInit, positionButton} from "./helpers.js"
 import { Point, Segment, Axes, PointCloud } from "./components.js";
@@ -59,6 +59,9 @@ export let sketch_1DoF = myp5 => {
     let errorCurveCloud = new PointCloud(errorCurvePoints, curveConfig.x, curveConfig.y);
     let linearFitCloud = new PointCloud(linearFitPoints, axisConfig.x, axisConfig.y)
 
+    let testPoint1 = new Point(testPoint1Config.x, testPoint1Config.y);
+    let testPoint2 = new Point(testPoint2Config.x, testPoint2Config.y);
+
     // Display
     errorCurveCloud.showAsCurve(myp5);
 
@@ -78,6 +81,9 @@ export let sketch_1DoF = myp5 => {
 
     getErrorCurveDisplay(myp5, myp5.stepper, errorCurveCloud, trendline, linearFitPoints)
     // myp5.noLoop()
+
+    testPoint1.show(myp5);
+    testPoint2.show(myp5);
   };
 
   myp5.windowResized = () => {

@@ -108,3 +108,13 @@ export let curveConfig = {
     x: 161,
     y: 0
 }
+
+export let testPoint1Config = {
+    x: 175,
+    y: -114
+}
+
+export let testPoint2Config = {
+    x: 670,
+    y: -114
+}

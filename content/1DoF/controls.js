@@ -1,4 +1,4 @@
-import { axisConfig, sliderConfig, palette, styles, trendlineConfig, projectionVecPalette, projectionVecStyles, stepperButtonConfig, sliderLabelConfig, trendlineLabelConfig, squaresConfig, curveConfig} from "./configs.js";
+import { axisConfig, sliderConfig, palette, styles, trendlineConfig, projectionVecPalette, projectionVecStyles, stepperButtonConfig, sliderLabelConfig, trendlineLabelConfig, squaresConfig, curveConfig, testPoint1Config, testPoint2Config} from "./configs.js";
 
 export function controlsInit() {
     let gui = new dat.GUI();
@@ -6,6 +6,11 @@ export function controlsInit() {
 
     // gui.addColor(palette, "backgroundFill").name("Background");
     // gui.add(trendlineConfig, "yIntInit", -axisConfig.h/2, axisConfig.h/2).name("fitting line y intercept");
+
+    gui.add(testPoint1Config, "x", 0, 800).name("start x");
+    gui.add(testPoint1Config, "y", -500, 500).name("start y");
+    gui.add(testPoint2Config, "x", 0, 800).name("end x");
+    gui.add(testPoint2Config, "y", -500, 500).name("end y");
 
     // opacityGUI(gui);
     // xyGUI(gui);
