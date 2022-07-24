@@ -113,6 +113,21 @@ export class Segment {
         this.showVec(myp5, this.point_2, slopeVec.mult(-1), myColor, myWeight, myOpacity, true);
     }
 
+    showAsTrendline(myp5, myColor = palette.segmentFill, myWeight = styles.segmentWeight, myOpacity = styles.segmentOpacity) {
+        let vec1 = myp5.createVector(axisConfig.x - this.point_1.x, axisConfig.y - this.point_1.y)
+        let vec2 = myp5.createVector(axisConfig.x - this.point_2.x, axisConfig.y - this.point_2.y)
+
+        let origin = new Point(axisConfig.x, axisConfig.y);
+
+        let maxMag = myp5.dist(0, 0, axisConfig.right, axisConfig.up)
+
+        vec1.setMag(maxMag);
+        vec2.setMag(maxMag);
+
+        this.showVec(myp5, origin, vec1, myColor, myWeight, myOpacity, false);
+        this.showVec(myp5, origin, vec2, myColor, myWeight, myOpacity, false);
+    }
+
     showVec(myp5, base, vec, myColor, myWeight, myOpacity, showArrowTip) {
         let colorWithOpacity = myp5.color(myColor);
         colorWithOpacity.setAlpha(myOpacity)

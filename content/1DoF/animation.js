@@ -51,8 +51,6 @@ export let sketch_1DoF = myp5 => {
     let trendlineStart = new Point( - axisConfig.left + axisConfig.x - trendlineConfig.extraX, - axisConfig.down + trendlineConfig.yIntInit + axisConfig.y - trendlineConfig.extraY);
     let trendlineEnd   = new Point(  axisConfig.right + axisConfig.x + trendlineConfig.extraX,   axisConfig.up + trendlineConfig.yIntInit + axisConfig.y + trendlineConfig.extraX);
     let trendline = new Segment(trendlineStart, trendlineEnd);
-
-    let rotateAbout = new Point(axisConfig.x, trendlineConfig.yIntInit + axisConfig.y);
     
     trendline.rotateSegmentBySlope(myp5, slider.value());
 
@@ -66,7 +64,7 @@ export let sketch_1DoF = myp5 => {
     errorCurveCloud.showAsCurve(myp5);
 
     axes.show(myp5);
-    trendline.showAsSegment(myp5, "#ffffff", 1.5, styles.segmentOpacity);
+    trendline.showAsTrendline(myp5, "#ffffff", 1.5, styles.segmentOpacity);
 
     linearFitCloud.points.forEach(p => {
       getTrendlineDisplay(myp5, myp5.stepper, trendline, p);
