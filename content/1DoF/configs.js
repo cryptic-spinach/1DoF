@@ -105,10 +105,10 @@ export let squaresConfig = {
 }
 
 export let curveConfig = {
-    x: 161,
+    x: 427,
     y: 0,
-    xScale: 200,
-    yScale: 1/5000
+    xScale: 125,
+    yScale: 0.001
 }
 
 export let testPoint1Config = {
@@ -119,4 +119,11 @@ export let testPoint1Config = {
 export let testPoint2Config = {
     x: 670,
     y: -114
+}
+
+export let canvasSlider = {
+    x: 0,
+    y: 0,
+    min: -2,
+    max: 2
 }

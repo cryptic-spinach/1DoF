@@ -1,7 +1,7 @@
 import { canvasConfig, sliderConfig, axisConfig, palette, trendlineConfig, stepperButtonConfig, sliderLabelConfig, trendlineLabelConfig, styles, curveConfig, testPoint1Config, testPoint2Config } from "./configs.js";
 import { controlsInit } from "./controls.js";
 import { formatTableAsJson, showValue, showValues, sliderInit, buttonsInit, positionButton} from "./helpers.js"
-import { Point, Segment, Axes, PointCloud } from "./components.js";
+import { Point, Segment, Axes, PointCloud, Slider } from "./components.js";
 import { getTrendlineDisplay, getTrendlineLabelDisplay, getErrorCurveDisplay } from "./stepper.js"
 import { generateLinearFitPoints, generateErrorCurvePoints } from "./point-factory.js";
 
@@ -25,7 +25,7 @@ export let sketch_1DoF = myp5 => {
   
     controlsInit();
     myp5.buttons = buttonsInit(myp5);
-    slider = sliderInit(myp5);
+    // slider = sliderInit(myp5);
   
     table = formatTableAsJson(data);
 
@@ -43,28 +43,31 @@ export let sketch_1DoF = myp5 => {
     myp5.updateDOM();
 
     // Calculation
-    let sliderLabel = new Point(sliderLabelConfig.x, sliderLabelConfig.y, "b")
+    // let sliderLabel = new Point(sliderLabelConfig.x, sliderLabelConfig.y, "b")
     let trendlineLabel = new Point(trendlineLabelConfig.x, trendlineLabelConfig.y, "y = bx")
 
-    let axes = new Axes(axisConfig.x, axisConfig.y, axisConfig.right, axisConfig.up, axisConfig.left, axisConfig.down, "x", "y");
+    let trendlineAxes = new Axes(axisConfig.x, axisConfig.y, axisConfig.right, axisConfig.up, axisConfig.left, axisConfig.down, "x", "y");
+    let curveAxes = new Axes(-axisConfig.x, axisConfig.y, axisConfig.right, axisConfig.up, axisConfig.left, axisConfig.down, "b", "E");
 
     let trendlineStart = new Point( - axisConfig.left + axisConfig.x - trendlineConfig.extraX, - axisConfig.down + trendlineConfig.yIntInit + axisConfig.y - trendlineConfig.extraY);
     let trendlineEnd   = new Point(  axisConfig.right + axisConfig.x + trendlineConfig.extraX,   axisConfig.up + trendlineConfig.yIntInit + axisConfig.y + trendlineConfig.extraX);
     let trendline = new Segment(trendlineStart, trendlineEnd);
-    
-    trendline.rotateSegmentBySlope(myp5, slider.value());
 
-    let errorCurveCloud = new PointCloud(errorCurvePoints, curveConfig.x, curveConfig.y);
+    let canvasSlider = new Slider(- axisConfig.x, axisConfig.y, 1, false);
+
+    // trendline.rotateSegmentBySlope(myp5, slider.value());
+    // trendline.rotateSegmentBySlope(myp5, canvasSlider.value);
+
+    let errorCurveCloud = new PointCloud(errorCurvePoints,  -axisConfig.x, axisConfig.y);
     let linearFitCloud = new PointCloud(linearFitPoints, axisConfig.x, axisConfig.y)
-
-    let testPoint1 = new Point(testPoint1Config.x, testPoint1Config.y);
-    let testPoint2 = new Point(testPoint2Config.x, testPoint2Config.y);
 
     // Display
     errorCurveCloud.showAsCurve(myp5);
 
-    axes.show(myp5);
+    trendlineAxes.show(myp5);
     trendline.showAsTrendline(myp5, "#ffffff", 1.5, styles.segmentOpacity);
+
+    curveAxes.show(myp5);
 
     linearFitCloud.points.forEach(p => {
       getTrendlineDisplay(myp5, myp5.stepper, trendline, p);
@@ -74,23 +77,24 @@ export let sketch_1DoF = myp5 => {
       p.show(myp5);
     });
 
-    sliderLabel.showLabel(myp5, sliderLabelConfig.labelFill);
+    // sliderLabel.showLabel(myp5, sliderLabelConfig.labelFill);
     getTrendlineLabelDisplay(myp5, myp5.stepper, trendlineLabel);
 
     getErrorCurveDisplay(myp5, myp5.stepper, errorCurveCloud, trendline, linearFitPoints)
     // myp5.noLoop()
 
-    testPoint1.show(myp5);
-    testPoint2.show(myp5);
+    canvasSlider.show(myp5);
   };
 
   myp5.windowResized = () => {
     myp5.resizeCanvas(myp5.windowWidth - canvasConfig.trimX, myp5.windowHeight - canvasConfig.trimY);
     myp5.updateDOM();
   }
+  
+  myp5.mousePressed
 
   myp5.updateDOM = () => {
-    slider.position((myp5.windowWidth - canvasConfig.trimX)/2 + sliderConfig.x, (myp5.windowHeight - canvasConfig.trimY)/2 + sliderConfig.y);
+    // slider.position((myp5.windowWidth - canvasConfig.trimX)/2 + sliderConfig.x, (myp5.windowHeight - canvasConfig.trimY)/2 + sliderConfig.y);
     let i = 0;
     myp5.buttons.forEach(b => {
       positionButton(myp5, b, i);

@@ -293,3 +293,28 @@ export class PointCloud {
         }
     }
 }
+
+export class Slider {
+    constructor(x, y, value, selected) {
+        this.x = x;
+        this.y = y;
+        this.value = value;
+        this.selected = selected;
+    }
+
+    show(myp5) {
+        let xScale = curveConfig.xScale;
+        let xPos = this.value * xScale;
+        let point = new Point(this.x + xPos, this.y);
+        point.show(myp5);
+    }
+
+    setSelected(isSelected) {
+        this.selected = isSelected;
+    }
+
+    setX(x) {
+        this.x = x
+    }
+    
+}
