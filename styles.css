@@ -22,3 +22,24 @@ body {
     height: 45px;
     position: absolute;
 }
+
+
+.b-control{
+    -webkit-appearance: none;
+    position: relative;
+  
+    background: none;
+    border-radius: 8px;
+    border: 2px solid #d8e698;
+  }
+  
+  .b-control::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width:12px;
+    height:12px;
+    border-radius: 6px;
+    background: #d8e698;
+    outline: none;
+  }
+
+  /* #20c5c5 */

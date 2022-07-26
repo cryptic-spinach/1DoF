@@ -9,6 +9,7 @@ export let sketch_1DoF = myp5 => {
   let sound;
   let table;
   let slider;
+  let canvasSlider
   let linearFitPoints;
   let errorCurvePoints;
   let data;
@@ -25,7 +26,8 @@ export let sketch_1DoF = myp5 => {
   
     controlsInit();
     myp5.buttons = buttonsInit(myp5);
-    // slider = sliderInit(myp5);
+    slider = sliderInit(myp5);
+    // canvasSlider = new Slider(- axisConfig.x, axisConfig.y, 1);
   
     table = formatTableAsJson(data);
 
@@ -43,7 +45,7 @@ export let sketch_1DoF = myp5 => {
     myp5.updateDOM();
 
     // Calculation
-    // let sliderLabel = new Point(sliderLabelConfig.x, sliderLabelConfig.y, "b")
+    let sliderLabel = new Point(sliderLabelConfig.x, sliderLabelConfig.y, "b")
     let trendlineLabel = new Point(trendlineLabelConfig.x, trendlineLabelConfig.y, "y = bx")
 
     let trendlineAxes = new Axes(axisConfig.x, axisConfig.y, axisConfig.right, axisConfig.up, axisConfig.left, axisConfig.down, "x", "y");
@@ -53,9 +55,7 @@ export let sketch_1DoF = myp5 => {
     let trendlineEnd   = new Point(  axisConfig.right + axisConfig.x + trendlineConfig.extraX,   axisConfig.up + trendlineConfig.yIntInit + axisConfig.y + trendlineConfig.extraX);
     let trendline = new Segment(trendlineStart, trendlineEnd);
 
-    let canvasSlider = new Slider(- axisConfig.x, axisConfig.y, 1, false);
-
-    // trendline.rotateSegmentBySlope(myp5, slider.value());
+    trendline.rotateSegmentBySlope(myp5, slider.value());
     // trendline.rotateSegmentBySlope(myp5, canvasSlider.value);
 
     let errorCurveCloud = new PointCloud(errorCurvePoints,  -axisConfig.x, axisConfig.y);
@@ -67,7 +67,7 @@ export let sketch_1DoF = myp5 => {
     trendlineAxes.show(myp5);
     trendline.showAsTrendline(myp5, "#ffffff", 1.5, styles.segmentOpacity);
 
-    curveAxes.show(myp5);
+    // curveAxes.show(myp5);
 
     linearFitCloud.points.forEach(p => {
       getTrendlineDisplay(myp5, myp5.stepper, trendline, p);
@@ -82,27 +82,51 @@ export let sketch_1DoF = myp5 => {
 
     getErrorCurveDisplay(myp5, myp5.stepper, errorCurveCloud, trendline, linearFitPoints)
     // myp5.noLoop()
-
-    canvasSlider.show(myp5);
   };
 
   myp5.windowResized = () => {
     myp5.resizeCanvas(myp5.windowWidth - canvasConfig.trimX, myp5.windowHeight - canvasConfig.trimY);
     myp5.updateDOM();
   }
-  
-  myp5.mousePressed
 
   myp5.updateDOM = () => {
-    // slider.position((myp5.windowWidth - canvasConfig.trimX)/2 + sliderConfig.x, (myp5.windowHeight - canvasConfig.trimY)/2 + sliderConfig.y);
+    slider.position((myp5.windowWidth - canvasConfig.trimX)/2 + sliderConfig.x, (myp5.windowHeight - canvasConfig.trimY)/2 + sliderConfig.y);
     let i = 0;
     myp5.buttons.forEach(b => {
       positionButton(myp5, b, i);
       i++;
     })
   }
+  
+  // myp5.mousePressed = () => {
+  //   let trueMouseX = (myp5.mouseX - myp5.windowWidth/2);
+  //   let trueMouseY = -(myp5.mouseY - myp5.windowHeight/2);
 
+  //   if (myp5.dist(canvasSlider.getSliderPosition(), axisConfig.y, trueMouseX, trueMouseY) < styles.pointRadius) 
+  //   {
+  //     canvasSlider.setSelected(true);
+  //   }
+  // }
 
+  // myp5.mouseDragged = () => {
+  //   let trueMouseX = (myp5.mouseX - myp5.windowWidth/2);
+  //   let pos = canvasSlider.getSliderPosition();
+  //   let min = -axisConfig.x - axisConfig.left;
+  //   let max = -axisConfig.x + axisConfig.right;
+  //   if (canvasSlider.selected && pos >= min && pos <= max) {
+  //     canvasSlider.setValue(trueMouseX);
+  //   }
+  //   if (pos < min) {
+  //     canvasSlider.setValue(min)
+  //   }
+  //   if (pos > max) {
+  //     canvasSlider.setValue(max)
+  //   }
+  // }
+
+  // myp5.mouseReleased = () => {
+  //   canvasSlider.setSelected(false);
+  // }
 };
 
 export let part_1DoF = new p5(sketch_1DoF, document.querySelector(".part-1DoF"));

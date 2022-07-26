@@ -62,7 +62,7 @@ export let axisPalette = {
 }
 
 export let sliderConfig = { 
-    x: 170, 
+    x: 191, 
     y: 102,
     min: -2,
     max: 2
@@ -119,11 +119,4 @@ export let testPoint1Config = {
 export let testPoint2Config = {
     x: 670,
     y: -114
-}
-
-export let canvasSlider = {
-    x: 0,
-    y: 0,
-    min: -2,
-    max: 2
 }

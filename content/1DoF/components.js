@@ -51,6 +51,11 @@ export class Segment {
         return myp5.createVector(this.point_2.x - this.point_1.x, this.point_2.y - this.point_1.y);
     }
 
+    getNumericSlope(myp5) {
+        let slopeVec = this.getSlopeVec(myp5)
+        return slopeVec.y/slopeVec.x;
+    }
+
     getProjection(myp5, u, v) {
         return v.copy().mult(u.copy().dot(v) / v.copy().dot(v));
     }
@@ -283,38 +288,41 @@ export class PointCloud {
             let point = new Point(xPos + this.xOffset, yPos + this.yOffset);
             point.show(myp5);
 
-            let vals = [
-                {key: "slope", value: b.toFixed(2)}
-            ]
+            // let vals = [
+            //     {key: "slope", value: b.toFixed(2)}
+            // ]
 
-            showValues(myp5, vals);
-
-            // console.log(point)
+            // showValues(myp5, vals);
         }
     }
 }
 
 export class Slider {
-    constructor(x, y, value, selected) {
+    constructor(x, y, value) {
         this.x = x;
         this.y = y;
         this.value = value;
-        this.selected = selected;
+        this.selected = false;
     }
 
     show(myp5) {
+        let point = new Point(this.getSliderPosition(), this.y);
+        point.show(myp5);
+    }
+
+    getSliderPosition() {
         let xScale = curveConfig.xScale;
         let xPos = this.value * xScale;
-        let point = new Point(this.x + xPos, this.y);
-        point.show(myp5);
+        return this.x + xPos;
     }
 
     setSelected(isSelected) {
         this.selected = isSelected;
     }
 
-    setX(x) {
-        this.x = x
+    setValue(screenX) {
+        this.value = (screenX - this.x) / curveConfig.xScale;
+
     }
     
 }
