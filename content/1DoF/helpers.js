@@ -1,4 +1,4 @@
-import { axisConfig, canvasConfig, sliderConfig, trendlineConfig, debugConfig, stepperButtonConfig} from "./configs.js";
+import { axisConfig, canvasConfig, sliderConfig, trendlineConfig, debugConfig, stepperButtonConfig, curveConfig} from "./configs.js";
 import { Point } from "./components.js"
 import { part_1DoF } from "./animation.js"
 
@@ -21,9 +21,11 @@ export function formatTableAsJson (data) {
 
 export function sliderInit(myp5) {
   let ret;
+  let sliderWidth = curveConfig.xScale * (sliderConfig.max - sliderConfig.min) * 1.02;
+
   ret = myp5.createSlider(sliderConfig.min, sliderConfig.max, 1, 0.01);
   ret.position((myp5.windowWidth - canvasConfig.trimX)/2 + sliderConfig.x, (myp5.windowHeight - canvasConfig.trimY)/2 + sliderConfig.y);
-  ret.style('width', '500px');
+  ret.style('width', sliderWidth.toString() + "px");
   ret.class("b-control")
   return ret;
 }

@@ -67,7 +67,7 @@ export let sketch_1DoF = myp5 => {
     trendlineAxes.show(myp5);
     trendline.showAsTrendline(myp5, "#ffffff", 1.5, styles.segmentOpacity);
 
-    // curveAxes.show(myp5);
+    curveAxes.show(myp5);
 
     linearFitCloud.points.forEach(p => {
       getTrendlineDisplay(myp5, myp5.stepper, trendline, p);

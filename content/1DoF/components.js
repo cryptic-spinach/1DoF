@@ -1,4 +1,4 @@
-import { palette, styles, projectionVecPalette, projectionVecStyles, axisConfig, axisPalette, squaresConfig, curveConfig} from "./configs.js";
+import { palette, styles, projectionVecPalette, projectionVecStyles, axisConfig, axisPalette, squaresConfig, curveConfig, verticalPalette, verticalStyles} from "./configs.js";
 import { showValues } from "./helpers.js";
 
 export class Point {
@@ -270,7 +270,6 @@ export class PointCloud {
 
     showFunctionValue(myp5, fitline, fitpoints) {
         let fitlineVec = fitline.getSlopeVec(myp5);
-        // console.log(fitlineVec)
 
         if (fitlineVec.x != 0) {
             let b = fitlineVec.y/fitlineVec.x
@@ -285,14 +284,13 @@ export class PointCloud {
             let xPos = b * xScale;
             let yPos = (qua*b*b + lin*b + con) * yScale;
 
-            let point = new Point(xPos + this.xOffset, yPos + this.yOffset);
-            point.show(myp5);
+            let functionValueTracker = new Point(xPos + this.xOffset, yPos + this.yOffset);
+            let inputValueTracker = new Point(xPos + this.xOffset, this.yOffset);
+            let vertical = new Segment(functionValueTracker, inputValueTracker);
 
-            // let vals = [
-            //     {key: "slope", value: b.toFixed(2)}
-            // ]
-
-            // showValues(myp5, vals);
+            vertical.showAsSegment(myp5, verticalPalette.segmentFill, verticalStyles.segmentWeight, vertical.segmentOpacity);
+            functionValueTracker.show(myp5);
+            inputValueTracker.show(myp5);
         }
     }
 }

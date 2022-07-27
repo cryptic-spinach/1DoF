@@ -21,6 +21,16 @@ export let projectionVecStyles = {
     opacity: 255
 }
 
+export let verticalPalette = {
+    segmentFill: "#eda276",
+    
+}
+
+export let verticalStyles = {
+    segmentWeight: 1.5,
+    segmentOpacity: 255
+}
+
 export let styles = {
     pointRadius: 15,
     pointStrokeWeight: 2,
@@ -62,8 +72,8 @@ export let axisPalette = {
 }
 
 export let sliderConfig = { 
-    x: 191, 
-    y: 102,
+    x: 186, 
+    y: 107,
     min: -2,
     max: 2
 }
