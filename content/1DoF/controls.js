@@ -19,7 +19,7 @@ export function controlsInit() {
     // gui.add(axisConfig, "y", -500, 100).name("axis y");
 
     // gui.add(sliderConfig, "x", 0, 550).name("slider x");
-    // gui.add(sliderConfig, "y", -400, 400).name("slider y");
+    gui.add(sliderConfig, "y", -400, 400).name("slider y");
 
     // opacityGUI(gui);
     // xyGUI(gui);
