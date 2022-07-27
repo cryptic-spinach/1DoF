@@ -285,10 +285,13 @@ export class PointCloud {
             let yPos = (qua*b*b + lin*b + con) * yScale;
 
             let functionValueTracker = new Point(xPos + this.xOffset, yPos + this.yOffset);
-            let inputValueTracker = new Point(xPos + this.xOffset, this.yOffset);
-            let vertical = new Segment(functionValueTracker, inputValueTracker);
+            
 
-            vertical.showAsSegment(myp5, verticalPalette.segmentFill, verticalStyles.segmentWeight, vertical.segmentOpacity);
+            let inputValueTracker = new Point(xPos + this.xOffset, this.yOffset);
+            inputValueTracker.show(myp5);
+
+            let vertical = new Segment(functionValueTracker, inputValueTracker);
+            vertical.showAsSegment(myp5, verticalPalette.segmentFill, verticalStyles.segmentWeight, verticalStyles.segmentOpacity);
             functionValueTracker.show(myp5);
             inputValueTracker.show(myp5);
         }

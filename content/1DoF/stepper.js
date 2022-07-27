@@ -1,4 +1,4 @@
-import { trendlineConfig } from "./configs.js";
+import { axisConfig, sliderConfig, trendlineConfig } from "./configs.js";
 
 export function getTrendlineDisplay(myp5, stepper, trendline, point) {
     switch (stepper) {
@@ -14,6 +14,8 @@ export function getTrendlineDisplay(myp5, stepper, trendline, point) {
         trendline.showPerpendicularDistance(myp5, point);
         break;
       case 5:
+        trendline.showSquaredError(myp5, point);
+        break;
     }
   }
 
@@ -29,10 +31,11 @@ export function getTrendlineDisplay(myp5, stepper, trendline, point) {
       case 4:
         break;
       case 5:
+        break;
     }
   }
 
-  export function getErrorCurveDisplay(myp5, stepper, errorCurveCloud, trendline, linearFitPoints) {
+  export function getErrorCurveDisplay(myp5, stepper, errorCurveCloud, trendline, linearFitPoints, axes) {
     switch (stepper) {
       case 1:
         break;
@@ -43,7 +46,27 @@ export function getTrendlineDisplay(myp5, stepper, trendline, point) {
       case 4:
         break;
       case 5:
+        axes.show(myp5);
         errorCurveCloud.showFunctionValue(myp5, trendline, linearFitPoints);
+        break;
+    }
+  }
+
+  export function getSliderDisplay(myp5, stepper, slider) {
+    switch (stepper) {
+      case 1:
+        break;
+      case 2:
+
+        break;
+      case 3:
+
+        break;
+      case 4:
+
+        break;
+      case 5:
+
         break;
     }
   }

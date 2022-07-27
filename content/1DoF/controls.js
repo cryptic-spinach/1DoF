@@ -12,14 +12,14 @@ export function controlsInit() {
     // gui.add(testPoint2Config, "x", 0, 800).name("end x");
     // gui.add(testPoint2Config, "y", -500, 500).name("end y");
     // gui.add(curveConfig, "xScale", 0, 500).name("x scale");
-    gui.add(curveConfig, "yScale", 0, 0.015).name("y scale");
+    // gui.add(curveConfig, "yScale", 0, 0.015).name("y scale");
     // gui.add(curveConfig, "x", 0, 550).name("curve x");
     // gui.add(curveConfig, "y", -400, 400).name("curve y");
     // gui.add(axisConfig, "x", -500, -100).name("axis x");
     // gui.add(axisConfig, "y", -500, 100).name("axis y");
 
-    gui.add(sliderConfig, "x", 0, 550).name("slider x");
-    gui.add(sliderConfig, "y", -400, 400).name("slider y");
+    // gui.add(sliderConfig, "x", 0, 550).name("slider x");
+    // gui.add(sliderConfig, "y", -400, 400).name("slider y");
 
     // opacityGUI(gui);
     // xyGUI(gui);
@@ -59,6 +59,7 @@ export function xyGUI(gui) {
 export function strokeAndFillGUI(gui) {
     gui.addColor(projectionVecPalette, "distFill").name("dist fill");
     gui.addColor(palette, "pointStroke").name("point Stroke");
+    gui.addColor(palette, "pointFill").name("point Fill");
     gui.addColor(palette, "pointFill").name("point Fill");
 }
 

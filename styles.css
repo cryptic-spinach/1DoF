@@ -24,7 +24,7 @@ body {
 }
 
 
-.b-control{
+.b-control-with-axes{
     -webkit-appearance: none;
     position: relative;
   
@@ -35,13 +35,14 @@ body {
     /* border: 2px solid #d8e698; */
   }
   
-  .b-control::-webkit-slider-thumb {
+  .b-control-with-axes::-webkit-slider-thumb {
     -webkit-appearance: none;
     width:20px;
     height:20px;
     border-radius: 20px;
-    background: #d8e698;
+    background: #20c5c5;
     outline: none;
   }
 
+ 
   /* #20c5c5 */

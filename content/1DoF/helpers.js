@@ -26,7 +26,7 @@ export function sliderInit(myp5) {
   ret = myp5.createSlider(sliderConfig.min, sliderConfig.max, 1, 0.01);
   ret.position((myp5.windowWidth - canvasConfig.trimX)/2 + sliderConfig.x, (myp5.windowHeight - canvasConfig.trimY)/2 + sliderConfig.y);
   ret.style('width', sliderWidth.toString() + "px");
-  ret.class("b-control")
+  ret.class("b-control-with-axes");
   return ret;
 }
 

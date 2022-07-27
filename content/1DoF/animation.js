@@ -49,14 +49,13 @@ export let sketch_1DoF = myp5 => {
     let trendlineLabel = new Point(trendlineLabelConfig.x, trendlineLabelConfig.y, "y = bx")
 
     let trendlineAxes = new Axes(axisConfig.x, axisConfig.y, axisConfig.right, axisConfig.up, axisConfig.left, axisConfig.down, "x", "y");
-    let curveAxes = new Axes(-axisConfig.x, axisConfig.y, axisConfig.right, axisConfig.up, axisConfig.left, axisConfig.down, "b", "E");
+    let curveAxes = new Axes(-axisConfig.x, axisConfig.y, axisConfig.right, axisConfig.up, axisConfig.left, axisConfig.down, "b = " + slider.value().toFixed(2), "E");
 
     let trendlineStart = new Point( - axisConfig.left + axisConfig.x - trendlineConfig.extraX, - axisConfig.down + trendlineConfig.yIntInit + axisConfig.y - trendlineConfig.extraY);
     let trendlineEnd   = new Point(  axisConfig.right + axisConfig.x + trendlineConfig.extraX,   axisConfig.up + trendlineConfig.yIntInit + axisConfig.y + trendlineConfig.extraX);
     let trendline = new Segment(trendlineStart, trendlineEnd);
 
     trendline.rotateSegmentBySlope(myp5, slider.value());
-    // trendline.rotateSegmentBySlope(myp5, canvasSlider.value);
 
     let errorCurveCloud = new PointCloud(errorCurvePoints,  -axisConfig.x, axisConfig.y);
     let linearFitCloud = new PointCloud(linearFitPoints, axisConfig.x, axisConfig.y)
@@ -67,7 +66,6 @@ export let sketch_1DoF = myp5 => {
     trendlineAxes.show(myp5);
     trendline.showAsTrendline(myp5, "#ffffff", 1.5, styles.segmentOpacity);
 
-    curveAxes.show(myp5);
 
     linearFitCloud.points.forEach(p => {
       getTrendlineDisplay(myp5, myp5.stepper, trendline, p);
@@ -80,7 +78,7 @@ export let sketch_1DoF = myp5 => {
     // sliderLabel.showLabel(myp5, sliderLabelConfig.labelFill);
     getTrendlineLabelDisplay(myp5, myp5.stepper, trendlineLabel);
 
-    getErrorCurveDisplay(myp5, myp5.stepper, errorCurveCloud, trendline, linearFitPoints)
+    getErrorCurveDisplay(myp5, myp5.stepper, errorCurveCloud, trendline, linearFitPoints, curveAxes)
     // myp5.noLoop()
   };
 

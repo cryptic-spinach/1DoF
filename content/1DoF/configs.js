@@ -13,7 +13,7 @@ export let projectionVecPalette = {
     uFill: "#05aaaa",
     vFill: "#d94343",
     wFill: "#f03c70",
-    distFill: "#eda276",
+    distFill: "#ffbe26",
 }
 
 export let projectionVecStyles = {
@@ -22,7 +22,7 @@ export let projectionVecStyles = {
 }
 
 export let verticalPalette = {
-    segmentFill: "#eda276",
+    segmentFill: "#ffbe26",
     
 }
 
@@ -118,7 +118,7 @@ export let curveConfig = {
     x: 427,
     y: 0,
     xScale: 125,
-    yScale: 0.001
+    yScale: 0.0039
 }
 
 export let testPoint1Config = {
