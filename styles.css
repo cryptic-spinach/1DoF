@@ -24,25 +24,6 @@ body {
 }
 
 
-.b-control-with-axes{
-    -webkit-appearance: none;
-    position: relative;
-  
-    background: #20c5c5;
-    border-radius: 8px;
-    height: 0px;
-    opacity: 0;
-    /* border: 2px solid #d8e698; */
-  }
-  
-  .b-control-with-axes::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width:20px;
-    height:20px;
-    border-radius: 20px;
-    background: #20c5c5;
-    outline: none;
-  }
 
  
   /* #20c5c5 */

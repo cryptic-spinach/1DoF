@@ -56,18 +56,19 @@ export function getTrendlineDisplay(myp5, stepper, trendline, point) {
   export function getSliderDisplay(myp5, stepper, slider) {
     switch (stepper) {
       case 1:
+        slider.style('opacity', '1');
         break;
       case 2:
-
+        slider.style('opacity', '1');
         break;
       case 3:
-
+        slider.style('opacity', '1');
         break;
       case 4:
-
+        slider.style('opacity', '1');
         break;
       case 5:
-
+        slider.style('opacity', '0');
         break;
     }
   }
