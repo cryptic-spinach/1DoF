@@ -3,7 +3,7 @@ import { controlsInit } from "./controls.js";
 import { formatTableAsJson, showValue, showValues, sliderInit, buttonsInit, positionButton} from "./helpers.js"
 import { Point, Segment, Axes, PointCloud, Slider } from "./components.js";
 import { getTrendlineDisplay, getTrendlineLabelDisplay, getErrorCurveDisplay, getSliderDisplay } from "./stepper.js"
-import { generateLinearFitPoints, generateErrorCurvePoints } from "./point-factory.js";
+import { generateLinearFitPoints, generateErrorCurvePoints, hardcodeLinearFitPoints } from "./point-factory.js";
 
 export let sketch_1DoF = myp5 => {
   let sound;
@@ -31,7 +31,8 @@ export let sketch_1DoF = myp5 => {
   
     table = formatTableAsJson(data);
 
-    linearFitPoints = generateLinearFitPoints(myp5, 10);
+    //linearFitPoints = generateLinearFitPoints(myp5, 10);
+    linearFitPoints = hardcodeLinearFitPoints(myp5);
     errorCurvePoints = generateErrorCurvePoints(myp5, linearFitPoints);
 
     myp5.stepper = 1;
@@ -61,7 +62,6 @@ export let sketch_1DoF = myp5 => {
     let linearFitCloud = new PointCloud(linearFitPoints, axisConfig.x, axisConfig.y)
 
     // Display
-
     trendlineAxes.show(myp5);
     trendline.showAsTrendline(myp5, "#ffffff", 1.5, styles.segmentOpacity);
 
@@ -74,7 +74,7 @@ export let sketch_1DoF = myp5 => {
       p.show(myp5);
     });
 
-    // sliderLabel.showLabel(myp5, sliderLabelConfig.labelFill);
+    sliderLabel.showLabel(myp5, sliderLabelConfig.labelFill);
     getTrendlineLabelDisplay(myp5, myp5.stepper, trendlineLabel);
 
     getErrorCurveDisplay(myp5, myp5.stepper, errorCurveCloud, trendline, linearFitPoints, curveAxes);
@@ -97,35 +97,12 @@ export let sketch_1DoF = myp5 => {
     })
   }
   
-  // myp5.mousePressed = () => {
-  //   let trueMouseX = (myp5.mouseX - myp5.windowWidth/2);
-  //   let trueMouseY = -(myp5.mouseY - myp5.windowHeight/2);
+  myp5.keyPressed = () => {
+    if (myp5.keyCode == 80) {
 
-  //   if (myp5.dist(canvasSlider.getSliderPosition(), axisConfig.y, trueMouseX, trueMouseY) < styles.pointRadius) 
-  //   {
-  //     canvasSlider.setSelected(true);
-  //   }
-  // }
-
-  // myp5.mouseDragged = () => {
-  //   let trueMouseX = (myp5.mouseX - myp5.windowWidth/2);
-  //   let pos = canvasSlider.getSliderPosition();
-  //   let min = -axisConfig.x - axisConfig.left;
-  //   let max = -axisConfig.x + axisConfig.right;
-  //   if (canvasSlider.selected && pos >= min && pos <= max) {
-  //     canvasSlider.setValue(trueMouseX);
-  //   }
-  //   if (pos < min) {
-  //     canvasSlider.setValue(min)
-  //   }
-  //   if (pos > max) {
-  //     canvasSlider.setValue(max)
-  //   }
-  // }
-
-  // myp5.mouseReleased = () => {
-  //   canvasSlider.setSelected(false);
-  // }
+      console.log(linearFitPoints);
+    }
+  }
 };
 
 export let part_1DoF = new p5(sketch_1DoF, document.querySelector(".part-1DoF"));

@@ -15,7 +15,7 @@ export function generateLinearFitPoints(myp5, numberOfPoints) {
       let x = myp5.random(xMin, xMax);
       let y = myp5.random(m*x + b - errorRange, m*x + b + errorRange);
       
-      let point = new Point(x, y);
+      let point = new Point(parseInt(x), parseInt(y));
       ret.push(point);
     }
   
@@ -37,4 +37,18 @@ export function generateErrorCurvePoints(myp5, points) {
     }
 
     return path;
+}
+
+
+export function hardcodeLinearFitPoints(myp5) {
+  let ret = [];
+
+  let pointData = [ { "x": 30, "y": 48, "label": "" }, { "x": -164, "y": -75, "label": "" }, { "x": -246, "y": -288, "label": "" }, { "x": 91, "y": 149, "label": "" }, { "x": 240, "y": 216, "label": "" }, { "x": -117, "y": -44, "label": "" }, { "x": 79, "y": 111, "label": "" }, { "x": -130, "y": -199, "label": "" }, { "x": 148, "y": 124, "label": "" }, { "x": -90, "y": -145, "label": "" } ];
+
+  pointData.forEach(p => {
+    let point = new Point(p.x, p.y);
+    ret.push(point);
+  })
+
+  return ret
 }

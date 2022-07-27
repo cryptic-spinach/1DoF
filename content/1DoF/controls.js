@@ -4,22 +4,6 @@ export function controlsInit() {
     let gui = new dat.GUI();
     gui.width = 300;
 
-    // gui.addColor(palette, "backgroundFill").name("Background");
-    // gui.add(trendlineConfig, "yIntInit", -axisConfig.h/2, axisConfig.h/2).name("fitting line y intercept");
-
-    // gui.add(testPoint1Config, "x", 0, 800).name("start x");
-    // gui.add(testPoint1Config, "y", -500, 500).name("start y");
-    // gui.add(testPoint2Config, "x", 0, 800).name("end x");
-    // gui.add(testPoint2Config, "y", -500, 500).name("end y");
-    // gui.add(curveConfig, "xScale", 0, 500).name("x scale");
-    // gui.add(curveConfig, "yScale", 0, 0.015).name("y scale");
-    // gui.add(curveConfig, "x", 0, 550).name("curve x");
-    // gui.add(curveConfig, "y", -400, 400).name("curve y");
-    // gui.add(axisConfig, "x", -500, -100).name("axis x");
-    // gui.add(axisConfig, "y", -500, 100).name("axis y");
-
-    // gui.add(sliderConfig, "x", 0, 550).name("slider x");
-    gui.add(sliderConfig, "y", -400, 400).name("slider y");
 
     // opacityGUI(gui);
     // xyGUI(gui);
