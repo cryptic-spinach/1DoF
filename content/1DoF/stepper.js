@@ -47,6 +47,7 @@ export function getTrendlineDisplay(myp5, stepper, trendline, point) {
         break;
       case 5:
         axes.show(myp5);
+        errorCurveCloud.showAsCurve(myp5);
         errorCurveCloud.showFunctionValue(myp5, trendline, linearFitPoints);
         break;
     }

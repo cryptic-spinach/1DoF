@@ -61,7 +61,6 @@ export let sketch_1DoF = myp5 => {
     let linearFitCloud = new PointCloud(linearFitPoints, axisConfig.x, axisConfig.y)
 
     // Display
-    errorCurveCloud.showAsCurve(myp5);
 
     trendlineAxes.show(myp5);
     trendline.showAsTrendline(myp5, "#ffffff", 1.5, styles.segmentOpacity);
