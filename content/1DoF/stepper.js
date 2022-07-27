@@ -1,4 +1,4 @@
-import { axisConfig, sliderConfig, trendlineConfig } from "./configs.js";
+import { axisConfig, sliderConfig, trendlineConfig, sliderLabelConfig} from "./configs.js";
 
 export function getTrendlineDisplay(myp5, stepper, trendline, point) {
     switch (stepper) {
@@ -53,19 +53,23 @@ export function getTrendlineDisplay(myp5, stepper, trendline, point) {
     }
   }
 
-  export function getSliderDisplay(myp5, stepper, slider) {
+  export function getSliderDisplay(myp5, stepper, slider, sliderLabel) {
     switch (stepper) {
       case 1:
         slider.style('opacity', '1');
+        sliderLabel.showLabel(myp5, sliderLabelConfig.labelFill);
         break;
       case 2:
         slider.style('opacity', '1');
+        sliderLabel.showLabel(myp5, sliderLabelConfig.labelFill);
         break;
       case 3:
         slider.style('opacity', '1');
+        sliderLabel.showLabel(myp5, sliderLabelConfig.labelFill);
         break;
       case 4:
         slider.style('opacity', '1');
+        sliderLabel.showLabel(myp5, sliderLabelConfig.labelFill);
         break;
       case 5:
         slider.style('opacity', '0');

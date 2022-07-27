@@ -74,12 +74,11 @@ export let sketch_1DoF = myp5 => {
       p.show(myp5);
     });
 
-    sliderLabel.showLabel(myp5, sliderLabelConfig.labelFill);
     getTrendlineLabelDisplay(myp5, myp5.stepper, trendlineLabel);
 
     getErrorCurveDisplay(myp5, myp5.stepper, errorCurveCloud, trendline, linearFitPoints, curveAxes);
 
-    getSliderDisplay(myp5, myp5.stepper, slider);
+    getSliderDisplay(myp5, myp5.stepper, slider, sliderLabel);
     // myp5.noLoop()
   };
 
