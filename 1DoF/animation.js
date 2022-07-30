@@ -2,7 +2,7 @@ import { canvasConfig, sliderConfig, axisConfig, palette, trendlineConfig, stepp
 import { controlsInit } from "./controls.js";
 import { formatTableAsJson, showValue, showValues, sliderInit, positionButton} from "./helpers.js"
 import { Point, Segment, Axes, PointCloud, Slider } from "./components.js";
-import { getTrendlineDisplay, getTrendlineLabelDisplay, getErrorCurveDisplay, getSliderDisplay } from "./stepper.js"
+import { getTrendlineDisplay, getTrendlineLabelDisplay, getErrorCurveDisplay, getSliderDisplay, getCoordinateLabelDisplay } from "./stepper.js"
 import { generateLinearFitPoints, generateErrorCurvePoints, hardcodeLinearFitPoints } from "./point-factory.js";
 
 export let sketch_1DoF = myp5 => {
@@ -68,14 +68,15 @@ export let sketch_1DoF = myp5 => {
       p.show(myp5);
     });
 
-    linearFitCloud.points.forEach(p => {
-      let needsFlip = myp5.originalTrendline.getNeedsFlip(myp5, p);
-      p.showCoordinates(myp5, needsFlip)
-    });
+    // linearFitCloud.points.forEach(p => {
+    //   let needsFlip = myp5.originalTrendline.getNeedsFlip(myp5, p);
+    //   p.showCoordinates(myp5, needsFlip)
+    // });
 
     getTrendlineLabelDisplay(myp5, myp5.stepper, trendlineLabel);
     getErrorCurveDisplay(myp5, myp5.stepper, errorCurveCloud, trendline, linearFitPoints, curveAxes);
     getSliderDisplay(myp5, myp5.stepper, myp5.slider, sliderLabel);
+    getCoordinateLabelDisplay(myp5, myp5.stepper, myp5.originalTrendline, linearFitCloud.points);
     
     // myp5.noLoop()
   };

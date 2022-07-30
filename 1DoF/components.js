@@ -23,7 +23,7 @@ export class Point {
         myp5.pop();
     }
 
-    showLabel(myp5, myColor = palette.labelFill, myOpacity = styles.labelOpacity, xOffset = styles.labelOffsetX, yOffset = styles.labelOffsetY, myTextSize = styles.labelTextSize, useCenterRectMode = false) {
+    showLabel(myp5, myColor = palette.labelFill, myOpacity = styles.labelOpacity, xOffset = styles.labelOffsetX, yOffset = styles.labelOffsetY, myTextSize = styles.labelTextSize) {
         let colorWithOpacity = myp5.color(myColor);
         colorWithOpacity.setAlpha(myOpacity)
 
@@ -31,9 +31,6 @@ export class Point {
         myp5.translate(this.x, this.y)
         myp5.scale(1, -1);
 
-        if(useCenterRectMode) {
-            myp5.rectMode(myp5.CENTER)
-        }
 
         myp5.stroke(myColor);
         myp5.fill(colorWithOpacity);

@@ -87,3 +87,26 @@ export function getTrendlineDisplay(myp5, stepper, trendline, point) {
         break;
     }
   }
+
+
+
+export function getCoordinateLabelDisplay(myp5, stepper, trendline, points) {
+  switch (stepper) {
+    case 1:
+      break;
+    case 2:
+      break;
+    case 3:
+      points.forEach(p => {
+        let needsFlip = trendline.getNeedsFlip(myp5, p);
+        p.showCoordinates(myp5, needsFlip)
+      });
+      break;
+    case 4:
+      break;
+    case 5:
+      break;
+    case 6:
+      break;
+  }
+}
