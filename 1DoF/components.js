@@ -23,14 +23,17 @@ export class Point {
         myp5.pop();
     }
 
-    showLabel(myp5, myColor = palette.labelFill, myOpacity = styles.labelOpacity, xOffset = styles.labelOffsetX, yOffset = styles.labelOffsetY, myTextSize = styles.labelTextSize) {
+    showLabel(myp5, myColor = palette.labelFill, myOpacity = styles.labelOpacity, xOffset = styles.labelOffsetX, yOffset = styles.labelOffsetY, myTextSize = styles.labelTextSize, useCenterRectMode = false) {
         let colorWithOpacity = myp5.color(myColor);
         colorWithOpacity.setAlpha(myOpacity)
 
         myp5.push();
-        
         myp5.translate(this.x, this.y)
         myp5.scale(1, -1);
+
+        if(useCenterRectMode) {
+            myp5.rectMode(myp5.CENTER)
+        }
 
         myp5.stroke(myColor);
         myp5.fill(colorWithOpacity);
@@ -42,19 +45,21 @@ export class Point {
 
     showCoordinates(myp5, needsFlip) {
         let flip = 1;
+        let staticOffset = 0;
 
         if (needsFlip) {
             flip = -1;
+            staticOffset = -70;
         }
 
         let label = "(x , y )"
         let mainLabel = new Point(this.x, this.y, label)
-        mainLabel.showLabel(myp5, coordinatesLabelConfig.textStroke, styles.labelOpacity, flip * coordinatesLabelConfig.labelX,  flip * coordinatesLabelConfig.labelY, 30);
+        mainLabel.showLabel(myp5, coordinatesLabelConfig.textStroke, styles.labelOpacity, flip * coordinatesLabelConfig.labelX + staticOffset,  flip * coordinatesLabelConfig.labelY, 30, true);
         
 
         let subscript = new Point(this.x, this.y, this.label);
-        subscript.showLabel(myp5, coordinatesLabelConfig.textStroke, 255, flip * coordinatesLabelConfig.labelX + coordinatesLabelConfig.firstSubscriptX, flip * coordinatesLabelConfig.labelY + coordinatesLabelConfig.firstSubscriptY, 15);
-        subscript.showLabel(myp5, coordinatesLabelConfig.textStroke, 255, flip * coordinatesLabelConfig.labelX + coordinatesLabelConfig.secondSubscriptX, flip * coordinatesLabelConfig.labelY + coordinatesLabelConfig.secondSubscriptY, 15);
+        subscript.showLabel(myp5, coordinatesLabelConfig.textStroke, 255, flip * coordinatesLabelConfig.labelX + coordinatesLabelConfig.firstSubscriptX + staticOffset, flip * coordinatesLabelConfig.labelY + coordinatesLabelConfig.firstSubscriptY, 15, true);
+        subscript.showLabel(myp5, coordinatesLabelConfig.textStroke, 255, flip * coordinatesLabelConfig.labelX + coordinatesLabelConfig.secondSubscriptX + staticOffset, flip * coordinatesLabelConfig.labelY + coordinatesLabelConfig.secondSubscriptY, 15, true);
     }
 }
 

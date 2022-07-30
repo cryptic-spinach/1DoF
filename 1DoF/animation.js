@@ -54,7 +54,6 @@ export let sketch_1DoF = myp5 => {
     let errorCurveCloud = new PointCloud(errorCurvePoints,  -axisConfig.x, axisConfig.y);
     let linearFitCloud = new PointCloud(linearFitPoints, axisConfig.x, axisConfig.y)
 
-    console.log(linearFitPoints);
 
     // Display
     trendlineAxes.show(myp5);
@@ -98,7 +97,6 @@ export let sketch_1DoF = myp5 => {
   myp5.keyPressed = () => {
     if (myp5.keyCode == 80) {
 
-      console.log(linearFitPoints);
     }
   }
 
