@@ -6,6 +6,11 @@ export function controlsInit() {
 
     gui.addColor(coordinatesLabelConfig, "textStroke").name("coordinates label");
 
+    gui.add(coordinatesLabelConfig, "firstSubscriptX", -100, 100).name("1st sub x");
+    gui.add(coordinatesLabelConfig, "firstSubscriptY", -100, 100).name("1st sub y");
+    gui.add(coordinatesLabelConfig, "secondSubscriptX", -100, 100).name("2nd sub x");
+    gui.add(coordinatesLabelConfig, "secondSubscriptY", -100, 100).name("2nd sub y");
+
     // opacityGUI(gui);
     // xyGUI(gui);
     // strokeAndFillGUI(gui);

@@ -71,7 +71,7 @@ export let sketch_1DoF = myp5 => {
     getErrorCurveDisplay(myp5, myp5.stepper, errorCurveCloud, trendline, linearFitPoints, curveAxes);
     getSliderDisplay(myp5, myp5.stepper, myp5.slider, sliderLabel);
     
-    myp5.noLoop()
+    // myp5.noLoop()
   };
 
   myp5.windowResized = () => {

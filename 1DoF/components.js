@@ -43,12 +43,12 @@ export class Point {
     showCoordinates(myp5) {
         let label = "(x , y )"
         let mainLabel = new Point(this.x, this.y, label)
-        mainLabel.showLabel(myp5, coordinatesLabelConfig.textStroke, styles.labelOpacity, -100, -100, 25);
+        mainLabel.showLabel(myp5, coordinatesLabelConfig.textStroke, styles.labelOpacity, coordinatesLabelConfig.labelX, coordinatesLabelConfig.labelY, 30);
 
 
         let subscript = new Point(this.x, this.y, this.label);
-        subscript.showLabel(myp5, coordinatesLabelConfig.textStroke, styles.labelOpacity, -100, -100, 25);
-        subscript.showLabel(myp5, coordinatesLabelConfig.textStroke, styles.labelOpacity, -100, -100, 25);
+        subscript.showLabel(myp5, coordinatesLabelConfig.textStroke, styles.labelOpacity, coordinatesLabelConfig.labelX + coordinatesLabelConfig.firstSubscriptX, coordinatesLabelConfig.labelY + coordinatesLabelConfig.firstSubscriptY, 15);
+        subscript.showLabel(myp5, coordinatesLabelConfig.textStroke, styles.labelOpacity, coordinatesLabelConfig.labelX + coordinatesLabelConfig.secondSubscriptX, coordinatesLabelConfig.labelY + coordinatesLabelConfig.secondSubscriptY, 15);
     }
 }
 

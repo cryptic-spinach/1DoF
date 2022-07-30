@@ -55,6 +55,12 @@ export let canvasConfig = {
 
 export let coordinatesLabelConfig = {
     textStroke: "#db9aff",
+    labelX: -100,
+    labelY: -100,
+    firstSubscriptX: 71,
+    firstSubscriptY: 11,
+    secondSubscriptX: 25,
+    secondSubscriptY: 11,
 }
 
 export let axisConfig = {
