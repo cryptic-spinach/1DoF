@@ -12,18 +12,8 @@ body {
     position: relative;
 }
 
-.mouse-container {
-    position: absolute;
-    visibility: hidden;
-}
-
 .stepper-buttons {
     width: 90px;
     height: 45px;
     position: absolute;
 }
-
-
-
- 
-  /* #20c5c5 */

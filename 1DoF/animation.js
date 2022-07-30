@@ -6,20 +6,11 @@ import { getTrendlineDisplay, getTrendlineLabelDisplay, getErrorCurveDisplay, ge
 import { generateLinearFitPoints, generateErrorCurvePoints, hardcodeLinearFitPoints } from "./point-factory.js";
 
 export let sketch_1DoF = myp5 => {
-  let sound;
-  let table;
   let slider;
-  let canvasSlider
   let linearFitPoints;
   let errorCurvePoints;
-  let data;
   myp5.buttons;
   myp5.stepper;
-
-  myp5.preload = () => {
-    sound = myp5.loadSound('content/1DoF/assets/sepia-sky.mp3');
-    data = myp5.loadTable('content/1DoF/assets/mouse-recording.csv', 'csv', 'header');
-  }
 
   myp5.setup = () => {
     myp5.createCanvas(myp5.windowWidth - canvasConfig.trimX, myp5.windowHeight - canvasConfig.trimY);
@@ -27,11 +18,7 @@ export let sketch_1DoF = myp5 => {
     controlsInit();
     myp5.buttons = buttonsInit(myp5);
     slider = sliderInit(myp5);
-    // canvasSlider = new Slider(- axisConfig.x, axisConfig.y, 1);
-  
-    table = formatTableAsJson(data);
 
-    //linearFitPoints = generateLinearFitPoints(myp5, 10);
     linearFitPoints = hardcodeLinearFitPoints(myp5);
     errorCurvePoints = generateErrorCurvePoints(myp5, linearFitPoints);
 
