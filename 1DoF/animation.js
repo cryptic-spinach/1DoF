@@ -48,6 +48,8 @@ export let sketch_1DoF = myp5 => {
     let errorCurveCloud = new PointCloud(errorCurvePoints,  -axisConfig.x, axisConfig.y);
     let linearFitCloud = new PointCloud(linearFitPoints, axisConfig.x, axisConfig.y)
 
+    console.log(linearFitPoints);
+
     // Display
     trendlineAxes.show(myp5);
     trendline.showAsTrendline(myp5, "#ffffff", 1.5, styles.segmentOpacity);
@@ -61,11 +63,15 @@ export let sketch_1DoF = myp5 => {
       p.show(myp5);
     });
 
+    linearFitCloud.points.forEach(p => {
+      p.showCoordinates(myp5)
+    });
+
     getTrendlineLabelDisplay(myp5, myp5.stepper, trendlineLabel);
     getErrorCurveDisplay(myp5, myp5.stepper, errorCurveCloud, trendline, linearFitPoints, curveAxes);
     getSliderDisplay(myp5, myp5.stepper, myp5.slider, sliderLabel);
     
-    // myp5.noLoop()
+    myp5.noLoop()
   };
 
   myp5.windowResized = () => {

@@ -1,4 +1,4 @@
-import { palette, styles, projectionVecPalette, projectionVecStyles, axisConfig, axisPalette, squaresConfig, curveConfig, verticalPalette, verticalStyles} from "./configs.js";
+import { palette, styles, projectionVecPalette, projectionVecStyles, axisConfig, axisPalette, squaresConfig, curveConfig, verticalPalette, verticalStyles, coordinatesLabelConfig} from "./configs.js";
 import { showValues } from "./helpers.js";
 
 export class Point {
@@ -23,7 +23,7 @@ export class Point {
         myp5.pop();
     }
 
-    showLabel(myp5, myColor = palette.labelFill, myOpacity = styles.labelOpacity, xOffset = styles.labelOffsetX, yOffset = styles.labelOffsetY) {
+    showLabel(myp5, myColor = palette.labelFill, myOpacity = styles.labelOpacity, xOffset = styles.labelOffsetX, yOffset = styles.labelOffsetY, myTextSize = styles.labelTextSize) {
         let colorWithOpacity = myp5.color(myColor);
         colorWithOpacity.setAlpha(myOpacity)
 
@@ -34,10 +34,21 @@ export class Point {
 
         myp5.stroke(myColor);
         myp5.fill(colorWithOpacity);
-        myp5.textSize(styles.labelTextSize);
+        myp5.textSize(myTextSize);
         myp5.text(this.label, xOffset, yOffset)
 
         myp5.pop();
+    }
+
+    showCoordinates(myp5) {
+        let label = "(x , y )"
+        let mainLabel = new Point(this.x, this.y, label)
+        mainLabel.showLabel(myp5, coordinatesLabelConfig.textStroke, styles.labelOpacity, -100, -100, 25);
+
+
+        let subscript = new Point(this.x, this.y, this.label);
+        subscript.showLabel(myp5, coordinatesLabelConfig.textStroke, styles.labelOpacity, -100, -100, 25);
+        subscript.showLabel(myp5, coordinatesLabelConfig.textStroke, styles.labelOpacity, -100, -100, 25);
     }
 }
 
@@ -247,7 +258,8 @@ export class PointCloud {
         points.forEach(p => {
             let x = p.x + xOffset;
             let y = p.y + yOffset;
-            offsetPoints.push(new Point(x, y));
+            let label = p.label;
+            offsetPoints.push(new Point(x, y, label));
         });
         this.points = offsetPoints;
     }

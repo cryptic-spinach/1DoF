@@ -1,11 +1,11 @@
-import { axisConfig, sliderConfig, palette, styles, trendlineConfig, projectionVecPalette, projectionVecStyles, stepperButtonConfig, sliderLabelConfig, trendlineLabelConfig, squaresConfig, curveConfig, testPoint1Config, testPoint2Config} from "./configs.js";
+import { axisConfig, sliderConfig, palette, styles, trendlineConfig, projectionVecPalette, projectionVecStyles, stepperButtonConfig, sliderLabelConfig, trendlineLabelConfig, squaresConfig, curveConfig, coordinatesLabelConfig} from "./configs.js";
 
 export function controlsInit() {
     let gui = new dat.GUI();
     gui.width = 300;
 
-    gui.add(stepperButtonConfig, "x", -1000, 0).name("button x");
-    gui.add(stepperButtonConfig, "y", -500, 0).name("button y");
+    gui.addColor(coordinatesLabelConfig, "textStroke").name("coordinates label");
+
     // opacityGUI(gui);
     // xyGUI(gui);
     // strokeAndFillGUI(gui);

@@ -53,6 +53,10 @@ export let canvasConfig = {
     trimY: 0,
 }
 
+export let coordinatesLabelConfig = {
+    textStroke: "#db9aff",
+}
+
 export let axisConfig = {
     x: -443,
     y: -110,
