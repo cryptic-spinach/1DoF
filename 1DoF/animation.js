@@ -99,7 +99,7 @@ export let sketch_1DoF = myp5 => {
       stepperButton.className = "stepper-buttons";
       positionButton(myp5, stepperButton, i)
       stepperButton.addEventListener("click", () => {
-        part_1DoF.stepper = i + 1;
+        myp5.stepper = i + 1;
       })
       cnv.appendChild(stepperButton);
       ret.push(stepperButton);
@@ -110,4 +110,4 @@ export let sketch_1DoF = myp5 => {
   }
 };
 
-export let part_1DoF = new p5(sketch_1DoF, document.querySelector(".part-1DoF"));
+// export let part_1DoF = new p5(sketch_1DoF, document.querySelector(".part-1DoF"));
