@@ -1,6 +1,6 @@
 import { canvasConfig, sliderConfig, axisConfig, palette, trendlineConfig, stepperButtonConfig, sliderLabelConfig, trendlineLabelConfig, styles, curveConfig, testPoint1Config, testPoint2Config } from "./configs.js";
 import { controlsInit } from "./controls.js";
-import { formatTableAsJson, showValue, showValues, sliderInit, buttonsInit, positionButton} from "./helpers.js"
+import { formatTableAsJson, showValue, showValues, sliderInit, positionButton} from "./helpers.js"
 import { Point, Segment, Axes, PointCloud, Slider } from "./components.js";
 import { getTrendlineDisplay, getTrendlineLabelDisplay, getErrorCurveDisplay, getSliderDisplay } from "./stepper.js"
 import { generateLinearFitPoints, generateErrorCurvePoints, hardcodeLinearFitPoints } from "./point-factory.js";
@@ -16,7 +16,7 @@ export let sketch_1DoF = myp5 => {
     myp5.createCanvas(myp5.windowWidth - canvasConfig.trimX, myp5.windowHeight - canvasConfig.trimY);
   
     controlsInit();
-    myp5.buttons = buttonsInit(myp5);
+    myp5.buttons = myp5.buttonsInit(myp5);
     slider = sliderInit(myp5);
 
     linearFitPoints = hardcodeLinearFitPoints(myp5);
@@ -62,10 +62,9 @@ export let sketch_1DoF = myp5 => {
     });
 
     getTrendlineLabelDisplay(myp5, myp5.stepper, trendlineLabel);
-
     getErrorCurveDisplay(myp5, myp5.stepper, errorCurveCloud, trendline, linearFitPoints, curveAxes);
-
     getSliderDisplay(myp5, myp5.stepper, slider, sliderLabel);
+    
     // myp5.noLoop()
   };
 
@@ -88,6 +87,26 @@ export let sketch_1DoF = myp5 => {
 
       console.log(linearFitPoints);
     }
+  }
+
+  myp5.buttonsInit = () => {
+    let ret = [];
+    let cnv = document.querySelector(".part-1DoF")
+  
+    for (let i = 0; i < 5; i++) {
+      let stepperButton = document.createElement("button");
+      stepperButton.innerHTML = (i+1).toString();
+      stepperButton.className = "stepper-buttons";
+      positionButton(myp5, stepperButton, i)
+      stepperButton.addEventListener("click", () => {
+        part_1DoF.stepper = i + 1;
+      })
+      cnv.appendChild(stepperButton);
+      ret.push(stepperButton);
+    }
+  
+    
+    return ret;
   }
 };
 

@@ -1,6 +1,6 @@
 import { axisConfig, canvasConfig, sliderConfig, trendlineConfig, debugConfig, stepperButtonConfig, curveConfig} from "./configs.js";
 import { Point } from "./components.js"
-import { part_1DoF } from "./animation.js"
+
 
 export function toSeconds (milliseconds) {
     return (milliseconds / 1000).toFixed(2);
@@ -30,25 +30,6 @@ export function sliderInit(myp5) {
   return ret;
 }
 
-export function buttonsInit(myp5) {
-  let ret = [];
-  let cnv = document.querySelector(".part-1DoF")
-
-  for (let i = 0; i < 5; i++) {
-    let stepperButton = document.createElement("button");
-    stepperButton.innerHTML = (i+1).toString();
-    stepperButton.className = "stepper-buttons";
-    positionButton(myp5, stepperButton, i)
-    stepperButton.addEventListener("click", () => {
-      part_1DoF.stepper = i + 1;
-    })
-    cnv.appendChild(stepperButton);
-    ret.push(stepperButton);
-  }
-
-  
-  return ret;
-}
 
 export function positionButton(myp5, button, index) {
   button.style.left = parseInt(stepperButtonConfig.x + (myp5.windowWidth  - canvasConfig.trimX)/2 + 90 * index).toString() + "px";
