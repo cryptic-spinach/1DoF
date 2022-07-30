@@ -8,6 +8,7 @@ export function getTrendlineDisplay(myp5, stepper, trendline, point) {
         trendline.showVerticalDistance(myp5, point);
         break;
       case 3:
+        trendline.showVerticalDistance(myp5, point);
         break;
       case 4:
         trendline.showSquaredError(myp5, point);

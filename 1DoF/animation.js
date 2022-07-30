@@ -9,6 +9,7 @@ export let sketch_1DoF = myp5 => {
   myp5.slider;
   let linearFitPoints;
   let errorCurvePoints;
+  myp5.originalTrendline;
   myp5.buttons;
   myp5.stepper;
 
@@ -19,10 +20,15 @@ export let sketch_1DoF = myp5 => {
     myp5.buttons = myp5.buttonsInit(myp5);
     myp5.slider = sliderInit(myp5);
 
-    linearFitPoints = hardcodeLinearFitPoints(myp5);
+    linearFitPoints = generateLinearFitPoints(myp5, 5);
     errorCurvePoints = generateErrorCurvePoints(myp5, linearFitPoints);
 
     myp5.stepper = 1;
+
+
+    let trendlineStart = new Point( - axisConfig.left + axisConfig.x - trendlineConfig.extraX, - axisConfig.down + trendlineConfig.yIntInit + axisConfig.y - trendlineConfig.extraY);
+    let trendlineEnd   = new Point(  axisConfig.right + axisConfig.x + trendlineConfig.extraX,   axisConfig.up + trendlineConfig.yIntInit + axisConfig.y + trendlineConfig.extraX);
+    myp5.originalTrendline = new Segment(trendlineStart, trendlineEnd);
   };
 
   myp5.draw = () => {
@@ -64,7 +70,8 @@ export let sketch_1DoF = myp5 => {
     });
 
     linearFitCloud.points.forEach(p => {
-      p.showCoordinates(myp5)
+      let needsFlip = myp5.originalTrendline.getNeedsFlip(myp5, p);
+      p.showCoordinates(myp5, needsFlip)
     });
 
     getTrendlineLabelDisplay(myp5, myp5.stepper, trendlineLabel);

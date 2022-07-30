@@ -40,15 +40,21 @@ export class Point {
         myp5.pop();
     }
 
-    showCoordinates(myp5) {
+    showCoordinates(myp5, needsFlip) {
+        let flip = 1;
+
+        if (needsFlip) {
+            flip = -1;
+        }
+
         let label = "(x , y )"
         let mainLabel = new Point(this.x, this.y, label)
-        mainLabel.showLabel(myp5, coordinatesLabelConfig.textStroke, styles.labelOpacity, coordinatesLabelConfig.labelX, coordinatesLabelConfig.labelY, 30);
-
+        mainLabel.showLabel(myp5, coordinatesLabelConfig.textStroke, styles.labelOpacity, flip * coordinatesLabelConfig.labelX,  flip * coordinatesLabelConfig.labelY, 30);
+        
 
         let subscript = new Point(this.x, this.y, this.label);
-        subscript.showLabel(myp5, coordinatesLabelConfig.textStroke, styles.labelOpacity, coordinatesLabelConfig.labelX + coordinatesLabelConfig.firstSubscriptX, coordinatesLabelConfig.labelY + coordinatesLabelConfig.firstSubscriptY, 15);
-        subscript.showLabel(myp5, coordinatesLabelConfig.textStroke, styles.labelOpacity, coordinatesLabelConfig.labelX + coordinatesLabelConfig.secondSubscriptX, coordinatesLabelConfig.labelY + coordinatesLabelConfig.secondSubscriptY, 15);
+        subscript.showLabel(myp5, coordinatesLabelConfig.textStroke, 255, flip * coordinatesLabelConfig.labelX + coordinatesLabelConfig.firstSubscriptX, flip * coordinatesLabelConfig.labelY + coordinatesLabelConfig.firstSubscriptY, 15);
+        subscript.showLabel(myp5, coordinatesLabelConfig.textStroke, 255, flip * coordinatesLabelConfig.labelX + coordinatesLabelConfig.secondSubscriptX, flip * coordinatesLabelConfig.labelY + coordinatesLabelConfig.secondSubscriptY, 15);
     }
 }
 
@@ -112,6 +118,12 @@ export class Segment {
             return;
         }
     }
+
+    getNeedsFlip(myp5, m) {
+        let perpDist = this.getPerpendicularDistance(myp5, m).getSlopeVec(myp5);
+        return perpDist.y > 0
+    }
+
 
     showAsVector(myp5, myColor = palette.segmentFill, myWeight = styles.segmentWeight, myOpacity = styles.segmentOpacity) {
         let slopeVec = this.getSlopeVec(myp5);
