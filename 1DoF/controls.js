@@ -4,7 +4,8 @@ export function controlsInit() {
     let gui = new dat.GUI();
     gui.width = 300;
 
-
+    gui.add(stepperButtonConfig, "x", -1000, 0).name("button x");
+    gui.add(stepperButtonConfig, "y", -500, 0).name("button y");
     // opacityGUI(gui);
     // xyGUI(gui);
     // strokeAndFillGUI(gui);

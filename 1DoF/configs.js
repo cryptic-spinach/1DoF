@@ -93,7 +93,7 @@ export let debugConfig = {
 }
 
 export let stepperButtonConfig = {
-    x: -670,
+    x: -712,
     y: -345
 }
 

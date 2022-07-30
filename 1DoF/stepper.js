@@ -8,12 +8,14 @@ export function getTrendlineDisplay(myp5, stepper, trendline, point) {
         trendline.showVerticalDistance(myp5, point);
         break;
       case 3:
-        trendline.showSquaredError(myp5, point);
         break;
       case 4:
-        trendline.showPerpendicularDistance(myp5, point);
+        trendline.showSquaredError(myp5, point);
         break;
       case 5:
+        trendline.showPerpendicularDistance(myp5, point);
+        break;
+      case 6:
         trendline.showSquaredError(myp5, point);
         break;
     }
@@ -32,6 +34,8 @@ export function getTrendlineDisplay(myp5, stepper, trendline, point) {
         break;
       case 5:
         break;
+      case 6:
+        break;
     }
   }
 
@@ -46,6 +50,8 @@ export function getTrendlineDisplay(myp5, stepper, trendline, point) {
       case 4:
         break;
       case 5:
+        break;
+      case 6:
         axes.show(myp5);
         errorCurveCloud.showAsCurve(myp5);
         errorCurveCloud.showFunctionValue(myp5, trendline, linearFitPoints);
@@ -72,6 +78,10 @@ export function getTrendlineDisplay(myp5, stepper, trendline, point) {
         sliderLabel.showLabel(myp5, sliderLabelConfig.labelFill);
         break;
       case 5:
+        slider.style('opacity', '1');
+        sliderLabel.showLabel(myp5, sliderLabelConfig.labelFill);
+        break;
+      case 6:
         slider.style('opacity', '0');
         break;
     }

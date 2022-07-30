@@ -93,7 +93,7 @@ export let sketch_1DoF = myp5 => {
     let ret = [];
     let cnv = document.querySelector(".part-1DoF")
   
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 6; i++) {
       let stepperButton = document.createElement("button");
       stepperButton.innerHTML = (i+1).toString();
       stepperButton.className = "stepper-buttons";
