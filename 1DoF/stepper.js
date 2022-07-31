@@ -101,6 +101,9 @@ export function getCoordinateLabelDisplay(myp5, stepper, trendline, points) {
         let needsFlip = trendline.getNeedsFlip(myp5, p);
         p.showCoordinates(myp5, needsFlip)
       });
+      points.forEach(p => {
+        trendline.showVerticalDistanceMidpoint(myp5, p)
+      })
       break;
     case 4:
       break;

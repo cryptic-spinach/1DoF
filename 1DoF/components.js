@@ -122,6 +122,23 @@ export class Segment {
         }
     }
 
+    showVerticalDistanceMidpoint(myp5, m) {
+        let vertDist = this.getVerticalDistance(myp5, m);
+        let topVec = myp5.createVector(m.x, m.y);
+        let bottomVec = topVec.copy().add(vertDist)
+        if (vertDist != null) {
+            // let bottom = new Point(bottomVec.x, bottomVec.y)
+            // bottom.show(myp5);
+            let midX = (topVec.x + bottomVec.x)/2;
+            let midY = (topVec.y + bottomVec.y)/2;
+            let midPoint = new Point(midX, midY, "r");
+            // midPoint.show(myp5)
+            midPoint.showLabel(myp5, coordinatesLabelConfig.textStroke, styles.labelOpacity, coordinatesLabelConfig.verticalLabelX,  coordinatesLabelConfig.verticalLabelY, coordinatesLabelConfig.textSize, 0.5);
+        
+        }
+
+    }
+
     getNeedsFlip(myp5, m) {
         let perpDist = this.getPerpendicularDistance(myp5, m).getSlopeVec(myp5);
         return perpDist.y > 0

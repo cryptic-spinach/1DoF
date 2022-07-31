@@ -62,7 +62,9 @@ export let coordinatesLabelConfig = {
     secondSubscriptX: 63,
     secondSubscriptY: 9,
     textSize: 30,
-    subTextSize: 15
+    subTextSize: 15,
+    verticalLabelX: 10,
+    verticalLabelY: 7
 }
 
 export let axisConfig = {
