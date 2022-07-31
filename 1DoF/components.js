@@ -51,12 +51,12 @@ export class Point {
 
         let label = "(x , y )"
         let mainLabel = new Point(this.x, this.y, label)
-        mainLabel.showLabel(myp5, coordinatesLabelConfig.textStroke, styles.labelOpacity, flip * coordinatesLabelConfig.labelX + staticOffset,  flip * coordinatesLabelConfig.labelY, 30, true);
+        mainLabel.showLabel(myp5, coordinatesLabelConfig.textStroke, styles.labelOpacity, flip * coordinatesLabelConfig.labelX + staticOffset,  flip * coordinatesLabelConfig.labelY, coordinatesLabelConfig.textSize, true);
         
 
         let subscript = new Point(this.x, this.y, this.label);
-        subscript.showLabel(myp5, coordinatesLabelConfig.textStroke, 255, flip * coordinatesLabelConfig.labelX + coordinatesLabelConfig.firstSubscriptX + staticOffset, flip * coordinatesLabelConfig.labelY + coordinatesLabelConfig.firstSubscriptY, 15, true);
-        subscript.showLabel(myp5, coordinatesLabelConfig.textStroke, 255, flip * coordinatesLabelConfig.labelX + coordinatesLabelConfig.secondSubscriptX + staticOffset, flip * coordinatesLabelConfig.labelY + coordinatesLabelConfig.secondSubscriptY, 15, true);
+        subscript.showLabel(myp5, coordinatesLabelConfig.textStroke, 255, flip * coordinatesLabelConfig.labelX + coordinatesLabelConfig.firstSubscriptX + staticOffset, flip * coordinatesLabelConfig.labelY + coordinatesLabelConfig.firstSubscriptY, coordinatesLabelConfig.subTextSize, true);
+        subscript.showLabel(myp5, coordinatesLabelConfig.textStroke, 255, flip * coordinatesLabelConfig.labelX + coordinatesLabelConfig.secondSubscriptX + staticOffset, flip * coordinatesLabelConfig.labelY + coordinatesLabelConfig.secondSubscriptY, coordinatesLabelConfig.subTextSize, true);
     }
 }
 

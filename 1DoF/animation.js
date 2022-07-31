@@ -68,11 +68,6 @@ export let sketch_1DoF = myp5 => {
       p.show(myp5);
     });
 
-    // linearFitCloud.points.forEach(p => {
-    //   let needsFlip = myp5.originalTrendline.getNeedsFlip(myp5, p);
-    //   p.showCoordinates(myp5, needsFlip)
-    // });
-
     getTrendlineLabelDisplay(myp5, myp5.stepper, trendlineLabel);
     getErrorCurveDisplay(myp5, myp5.stepper, errorCurveCloud, trendline, linearFitPoints, curveAxes);
     getSliderDisplay(myp5, myp5.stepper, myp5.slider, sliderLabel);
@@ -97,7 +92,7 @@ export let sketch_1DoF = myp5 => {
   
   myp5.keyPressed = () => {
     if (myp5.keyCode == 80) {
-
+      console.log(linearFitPoints);
     }
   }
 
