@@ -252,7 +252,7 @@ export class Segment {
 
 
 export class Axes {
-    constructor(x, y, right, up, left, down, xLabel = "", yLabel = "") {
+    constructor(x, y, right, up, left, down, xLabel = "", yLabel = "", horizontalLabelXOffset = axisConfig.horizontalLabelXOffset, horizontalLabelYOffset = axisConfig.horizontalLabelYOffset, verticalLabelXOffset = axisConfig.verticalLabelXOffset, verticalLabelYOffset = axisConfig.verticalLabelYOffset) {
         this.x = x;
         this.y = y;
         this.right = right;
@@ -261,6 +261,10 @@ export class Axes {
         this.down = down;
         this.xLabel = xLabel;
         this.yLabel = yLabel;
+        this.horizontalLabelXOffset = horizontalLabelXOffset;
+        this.horizontalLabelYOffset = horizontalLabelYOffset;
+        this.verticalLabelXOffset = verticalLabelXOffset;
+        this.verticalLabelYOffset = verticalLabelYOffset;
     }
 
     show(myp5) {
@@ -275,8 +279,8 @@ export class Axes {
         xAxis.showAsAxis(myp5);
         yAxis.showAsAxis(myp5);
 
-        xAxisEnd.showLabel(myp5, axisPalette.fill, styles.labelOpacity, axisConfig.horizontalLabelXOffset, axisConfig.horizontalLabelYOffset);
-        yAxisEnd.showLabel(myp5, axisPalette.fill, styles.labelOpacity, axisConfig.verticalLabelXOffset, axisConfig.verticalLabelYOffset);
+        xAxisEnd.showLabel(myp5, axisPalette.fill, styles.labelOpacity, this.horizontalLabelXOffset, this.horizontalLabelYOffset);
+        yAxisEnd.showLabel(myp5, axisPalette.fill, styles.labelOpacity, this.verticalLabelXOffset, this.verticalLabelYOffset);
     }
 }
 
