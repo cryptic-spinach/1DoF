@@ -127,14 +127,13 @@ export class Segment {
         let topVec = myp5.createVector(m.x, m.y);
         let bottomVec = topVec.copy().add(vertDist)
         if (vertDist != null) {
-            // let bottom = new Point(bottomVec.x, bottomVec.y)
-            // bottom.show(myp5);
             let midX = (topVec.x + bottomVec.x)/2;
             let midY = (topVec.y + bottomVec.y)/2;
             let midPoint = new Point(midX, midY, "r");
-            // midPoint.show(myp5)
             midPoint.showLabel(myp5, coordinatesLabelConfig.textStroke, styles.labelOpacity, coordinatesLabelConfig.verticalLabelX,  coordinatesLabelConfig.verticalLabelY, coordinatesLabelConfig.textSize, 0.5);
         
+            let subscript = new Point(midX, midY, m.label);
+            subscript.showLabel(myp5, coordinatesLabelConfig.textStroke, styles.labelOpacity, coordinatesLabelConfig.verticalSubLabelX,  coordinatesLabelConfig.verticalSubLabelY, coordinatesLabelConfig.subTextSize, 0.5);
         }
 
     }
