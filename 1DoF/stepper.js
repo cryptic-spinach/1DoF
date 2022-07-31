@@ -1,4 +1,4 @@
-import { axisConfig, sliderConfig, trendlineConfig, sliderLabelConfig} from "./configs.js";
+import { axisConfig, sliderConfig, trendlineConfig, sliderLabelConfig, palette} from "./configs.js";
 
 export function getTrendlineDisplay(myp5, stepper, trendline, point) {
     switch (stepper) {
@@ -56,6 +56,12 @@ export function getTrendlineDisplay(myp5, stepper, trendline, point) {
         axes.show(myp5);
         errorCurveCloud.showAsCurve(myp5);
         errorCurveCloud.showFunctionValue(myp5, trendline, linearFitPoints);
+        myp5.push();
+        myp5.fill(palette.backgroundFill);
+        myp5.noStroke();
+        myp5.rect(-20 - axisConfig.x - axisConfig.left, axisConfig.y + axisConfig.up + 60, axisConfig.right + axisConfig.left + 40, 2000);
+        myp5.pop();
+        
         break;
     }
   }
