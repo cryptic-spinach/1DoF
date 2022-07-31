@@ -23,7 +23,7 @@ export class Point {
         myp5.pop();
     }
 
-    showLabel(myp5, myColor = palette.labelFill, myOpacity = styles.labelOpacity, xOffset = styles.labelOffsetX, yOffset = styles.labelOffsetY, myTextSize = styles.labelTextSize) {
+    showLabel(myp5, myColor = palette.labelFill, myOpacity = styles.labelOpacity, xOffset = styles.labelOffsetX, yOffset = styles.labelOffsetY, myTextSize = styles.labelTextSize, myStrokeWeight = 1) {
         let colorWithOpacity = myp5.color(myColor);
         colorWithOpacity.setAlpha(myOpacity)
 
@@ -34,6 +34,7 @@ export class Point {
 
         myp5.stroke(myColor);
         myp5.fill(colorWithOpacity);
+        myp5.strokeWeight(myStrokeWeight)
         myp5.textSize(myTextSize);
         myp5.text(this.label, xOffset, yOffset)
 
@@ -51,12 +52,12 @@ export class Point {
 
         let label = "(x , y )"
         let mainLabel = new Point(this.x, this.y, label)
-        mainLabel.showLabel(myp5, coordinatesLabelConfig.textStroke, styles.labelOpacity, flip * coordinatesLabelConfig.labelX + staticOffset,  flip * coordinatesLabelConfig.labelY, coordinatesLabelConfig.textSize, true);
+        mainLabel.showLabel(myp5, coordinatesLabelConfig.textStroke, styles.labelOpacity, flip * coordinatesLabelConfig.labelX + staticOffset,  flip * coordinatesLabelConfig.labelY, coordinatesLabelConfig.textSize, 0.5);
         
 
         let subscript = new Point(this.x, this.y, this.label);
-        subscript.showLabel(myp5, coordinatesLabelConfig.textStroke, 255, flip * coordinatesLabelConfig.labelX + coordinatesLabelConfig.firstSubscriptX + staticOffset, flip * coordinatesLabelConfig.labelY + coordinatesLabelConfig.firstSubscriptY, coordinatesLabelConfig.subTextSize, true);
-        subscript.showLabel(myp5, coordinatesLabelConfig.textStroke, 255, flip * coordinatesLabelConfig.labelX + coordinatesLabelConfig.secondSubscriptX + staticOffset, flip * coordinatesLabelConfig.labelY + coordinatesLabelConfig.secondSubscriptY, coordinatesLabelConfig.subTextSize, true);
+        subscript.showLabel(myp5, coordinatesLabelConfig.textStroke, styles.labelOpacity, flip * coordinatesLabelConfig.labelX + coordinatesLabelConfig.firstSubscriptX + staticOffset, flip * coordinatesLabelConfig.labelY + coordinatesLabelConfig.firstSubscriptY, coordinatesLabelConfig.subTextSize, 0.5);
+        subscript.showLabel(myp5, coordinatesLabelConfig.textStroke, styles.labelOpacity, flip * coordinatesLabelConfig.labelX + coordinatesLabelConfig.secondSubscriptX + staticOffset, flip * coordinatesLabelConfig.labelY + coordinatesLabelConfig.secondSubscriptY, coordinatesLabelConfig.subTextSize, 0.5);
     }
 }
 

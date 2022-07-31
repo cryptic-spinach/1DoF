@@ -5,6 +5,8 @@ export function controlsInit() {
     gui.width = 300;
 
     gui.addColor(coordinatesLabelConfig, "textStroke").name("coordinates label");
+    gui.add(coordinatesLabelConfig, "textSize", 10, 800).name("Text Size");
+    gui.add(coordinatesLabelConfig, "subTextSize", 10, 800).name("Subtext Size");
 
     // opacityGUI(gui);
     // xyGUI(gui);
@@ -58,4 +60,7 @@ export function sizeGUI(gui) {
     gui.add(axisConfig, "right", 10, 800).name("axis right");
     gui.add(axisConfig, "down", 10, 800).name("axis down");
     gui.add(axisConfig, "up", 10, 800).name("axis up");
+
+    gui.add(coordinatesLabelConfig, "textSize", 10, 800).name("Text Size");
+    gui.add(coordinatesLabelConfig, "subTextSize", 10, 800).name("Subtext Size");
 }
