@@ -20,7 +20,8 @@ export let sketch_1DoF = myp5 => {
     myp5.buttons = myp5.buttonsInit(myp5);
     myp5.slider = sliderInit(myp5);
 
-    linearFitPoints = generateLinearFitPoints(myp5, 5);
+    linearFitPoints = hardcodeLinearFitPoints(myp5);
+    //linearFitPoints = generateLinearFitPoints(myp5, 5);
     errorCurvePoints = generateErrorCurvePoints(myp5, linearFitPoints);
 
     myp5.stepper = 1;
