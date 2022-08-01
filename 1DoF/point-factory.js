@@ -43,8 +43,8 @@ export function generateErrorCurvePoints(myp5, points) {
 export function hardcodeLinearFitPoints(myp5) {
   let ret = [];
 
-  // let pointData = [ { "x": 30, "y": 48, "label": "1" }, { "x": -164, "y": -75, "label": "2" }, { "x": -246, "y": -288, "label": "3" }, { "x": 91, "y": 149, "label": "4" }, { "x": 240, "y": 216, "label": "5" }, { "x": -117, "y": -44, "label": "6" }, { "x": 79, "y": 111, "label": "7" }, { "x": -130, "y": -199, "label": "8" }, { "x": 148, "y": 124, "label": "9" }];
-  let pointData = [ { "x": 154, "y": 105, "label": "1" }, { "x": -109, "y": -39, "label": "2" }, { "x": 222, "y": 303, "label": "3" }, { "x": 24, "y": 70, "label": "4" }, { "x": -74, "y": -143, "label": "5" } ]
+  let pointData = [ { "x": -200, "y": -130, "label": "" }, { "x": -120, "y": -60, "label": "" }, { "x": -30, "y": -80, "label": "" }, { "x": 40, "y": 50, "label": "" }, { "x": 120, "y": 30, "label": "" }, { "x": 200, "y": 60, "label": "" } ]
+  
   pointData.forEach(p => {
     let point = new Point(p.x, p.y, p.label);
     ret.push(point);
