@@ -40,7 +40,7 @@ export let sketch_1DoF = myp5 => {
     myp5.updateDOM();
 
     // Calculation
-    let sliderLabel = new Point(sliderLabelConfig.x, sliderLabelConfig.y, "b")
+    let sliderLabel = new Point(sliderLabelConfig.x, sliderLabelConfig.y, "b = " + myp5.slider.value().toFixed(2))
     let trendlineLabel = new Point(trendlineLabelConfig.x, trendlineLabelConfig.y, "y = bx")
 
     let trendlineAxes = new Axes(axisConfig.x, axisConfig.y, axisConfig.right, axisConfig.up, axisConfig.left, axisConfig.down, "x", "y");
