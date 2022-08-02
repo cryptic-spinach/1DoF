@@ -8,11 +8,11 @@ export class Point {
         this.label = label
     }
 
-    show(myp5) {
-        let strokeWithOpacity = myp5.color(palette.pointStroke);
+    show(myp5, myStroke = palette.pointStroke, myFill = palette.pointFill) {
+        let strokeWithOpacity = myp5.color(myStroke);
         strokeWithOpacity.setAlpha(styles.pointStrokeOpacity);
 
-        let fillWithOpacity = myp5.color(palette.pointFill);
+        let fillWithOpacity = myp5.color(myFill);
         fillWithOpacity.setAlpha(styles.pointFillOpacity);
 
         myp5.push();
@@ -327,6 +327,7 @@ export class PointCloud {
         let fitlineVec = fitline.getSlopeVec(myp5);
 
         if (fitlineVec.x != 0) {
+            myp5.push();
             let b = fitlineVec.y/fitlineVec.x
 
             let xScale = curveConfig.xScale;
@@ -346,9 +347,15 @@ export class PointCloud {
             inputValueTracker.show(myp5);
 
             let vertical = new Segment(functionValueTracker, inputValueTracker);
-            vertical.showAsSegment(myp5, verticalPalette.segmentFill, verticalStyles.segmentWeight, verticalStyles.segmentOpacity);
-            functionValueTracker.show(myp5);
-            inputValueTracker.show(myp5);
+
+            myp5.dashedLine(functionValueTracker.x, functionValueTracker.y, inputValueTracker.x, inputValueTracker.y)
+            
+            myp5.fill("#3d64eb");
+            myp5.stroke("#3d64eb");
+            // vertical.showAsSegment(myp5, verticalPalette.segmentFill, verticalStyles.segmentWeight, verticalStyles.segmentOpacity);
+            functionValueTracker.show(myp5, "#3d64eb", "#3d64eb");
+            inputValueTracker.show(myp5, "#3d64eb", "#3d64eb");
+            myp5.pop();
         }
     }
 }
