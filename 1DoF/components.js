@@ -134,6 +134,14 @@ export class Segment {
         
             let subscript = new Point(midX, midY, m.label);
             subscript.showLabel(myp5, coordinatesLabelConfig.textStroke, styles.labelOpacity, coordinatesLabelConfig.verticalSubLabelX,  coordinatesLabelConfig.verticalSubLabelY, coordinatesLabelConfig.subTextSize, 0.5);
+        } else {
+            let midX = m.x;
+            let midY = m.y;
+            let midPoint = new Point(midX, midY, "r");
+            midPoint.showLabel(myp5, coordinatesLabelConfig.textStroke, styles.labelOpacity, coordinatesLabelConfig.verticalLabelX,  coordinatesLabelConfig.verticalLabelY, coordinatesLabelConfig.textSize, 0.5);
+        
+            let subscript = new Point(midX, midY, m.label);
+            subscript.showLabel(myp5, coordinatesLabelConfig.textStroke, styles.labelOpacity, coordinatesLabelConfig.verticalSubLabelX,  coordinatesLabelConfig.verticalSubLabelY, coordinatesLabelConfig.subTextSize, 0.5);
         }
 
     }
