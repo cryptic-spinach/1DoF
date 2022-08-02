@@ -43,7 +43,7 @@ export function generateErrorCurvePoints(myp5, points) {
 export function hardcodeLinearFitPoints(myp5) {
   let ret = [];
 
-  let pointData = [ { "x": -200, "y": -130, "label": "1" }, { "x": -120, "y": -60, "label": "2" }, { "x": -30, "y": -80, "label": "3" }, { "x": 40, "y": 50, "label": "4" }, { "x": 120, "y": 30, "label": "5" }, { "x": 200, "y": 60, "label": "6" } ]
+  let pointData = [ { "x": -200, "y": -130, "label": "1" }, { "x": -120, "y": -60, "label": "2" }, { "x": -45, "y": -80, "label": "3" }, { "x": 10, "y": 30, "label": "4" }, { "x": 70, "y": 50, "label": "5" }, { "x": 200, "y": 110, "label": "6" } ]
   
   pointData.forEach(p => {
     let point = new Point(p.x, p.y, p.label);
