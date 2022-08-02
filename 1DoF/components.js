@@ -183,6 +183,57 @@ export class Segment {
         this.showVec(myp5, origin, vec2, myColor, myWeight, myOpacity, false);
     }
 
+    showAsDashedLine(myp5) {
+        myp5.push();
+        let d = 5; //dashed line length
+        let P1 = myp5.createVector(this.point_1.x,this.point_1.y); //point 1
+        let P2 = myp5.createVector(this.point_2.x,this.point_2.y); //point 2
+        let P21 = p5.Vector.sub(P2, P1); // P2 - P1. 
+        let L = p5.Vector.mag(P21); // length of line
+        let u = p5.Vector.mult(P21,1/L) //unit vector in direction of line
+      
+        myp5.stroke('White');
+        myp5.strokeWeight(2);
+      
+      
+        // Calculate n and s
+        let n;
+        let s;
+        if (3*d > L) {
+          if (d > L) {
+            n = 1;
+            d = L;
+            s = 0;
+          } else {
+            n = 2;
+            s = L-2*d;
+          }
+        } else {
+          n = myp5.floor((L+d)/(2*d)); //number of dashes
+          s = (L-n*d)/(n-1); //spacing distance
+        }
+      
+        // Plot n lines
+        for (let i = 1; i < n+1; i++) {
+          let q1 = (i-1)*d+(i-1)*s;
+          let q2 = i*d+(i-1)*s;
+      
+          let StartDash = p5.Vector.add(p5.Vector.mult(u,q1), P1);
+          let EndDash = p5.Vector.add(p5.Vector.mult(u,q2),P1);
+      
+          let x1 = StartDash.x;
+          let y1 = StartDash.y;
+    
+      
+          let x2 = EndDash.x;
+          let y2 = EndDash.y;
+    
+      
+          myp5.line(x1,y1,x2,y2);
+        }
+        myp5.pop()
+    }
+
     showVec(myp5, base, vec, myColor, myWeight, myOpacity, showArrowTip) {
         let colorWithOpacity = myp5.color(myColor);
         colorWithOpacity.setAlpha(myOpacity)
@@ -342,17 +393,13 @@ export class PointCloud {
 
             let functionValueTracker = new Point(xPos + this.xOffset, yPos + this.yOffset);
             
-
             let inputValueTracker = new Point(xPos + this.xOffset, this.yOffset);
-            inputValueTracker.show(myp5);
 
             let vertical = new Segment(functionValueTracker, inputValueTracker);
-
-            myp5.dashedLine(functionValueTracker.x, functionValueTracker.y, inputValueTracker.x, inputValueTracker.y)
             
-            myp5.fill("#3d64eb");
-            myp5.stroke("#3d64eb");
             // vertical.showAsSegment(myp5, verticalPalette.segmentFill, verticalStyles.segmentWeight, verticalStyles.segmentOpacity);
+
+            vertical.showAsDashedLine(myp5)
             functionValueTracker.show(myp5, "#3d64eb", "#3d64eb");
             inputValueTracker.show(myp5, "#3d64eb", "#3d64eb");
             myp5.pop();
