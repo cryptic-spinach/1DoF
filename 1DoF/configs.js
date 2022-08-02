@@ -23,12 +23,12 @@ export let projectionVecStyles = {
 
 export let verticalPalette = {
     segmentFill: "#ffffff",
-    pointFill: "#3d64eb",
-    pointStroke: "#3d64eb",
+    pointFill: "#2778d4",
+    pointStroke: "#2778d4",
 }
 
 export let parabolaPalette = {
-    parabolaStroke: "#43a2d1"
+    parabolaStroke: "#2778d4"
 }
 
 export let verticalStyles = {

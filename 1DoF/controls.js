@@ -1,10 +1,14 @@
-import { axisConfig, sliderConfig, palette, styles, trendlineConfig, projectionVecPalette, projectionVecStyles, stepperButtonConfig, sliderLabelConfig, trendlineLabelConfig, squaresConfig, curveConfig, coordinatesLabelConfig} from "./configs.js";
+import { axisConfig, sliderConfig, palette, styles, trendlineConfig, projectionVecPalette, projectionVecStyles, stepperButtonConfig, sliderLabelConfig, trendlineLabelConfig, squaresConfig, curveConfig, coordinatesLabelConfig, verticalPalette, parabolaPalette} from "./configs.js";
 
 export function controlsInit() {
     let gui = new dat.GUI();
     gui.width = 300;
 
-    gui.addColor(coordinatesLabelConfig, "textStroke").name("coordinates label");
+    // gui.addColor(coordinatesLabelConfig, "textStroke").name("coordinates label");
+    // gui.addColor(verticalPalette, "pointStroke").name("Point Stroke");
+    // gui.addColor(verticalPalette, "pointFill").name("Point Fill");
+    // gui.addColor(parabolaPalette, "parabolaStroke").name("Parabola Stroke");
+    
     // gui.add(coordinatesLabelConfig, "textSize", 10, 800).name("Text Size");
     // gui.add(coordinatesLabelConfig, "subTextSize", 10, 800).name("Subtext Size");
 
