@@ -1,4 +1,4 @@
-import { palette, styles, projectionVecPalette, projectionVecStyles, axisConfig, axisPalette, squaresConfig, curveConfig, verticalPalette, verticalStyles, coordinatesLabelConfig} from "./configs.js";
+import { palette, styles, projectionVecPalette, projectionVecStyles, axisConfig, axisPalette, squaresConfig, curveConfig, verticalPalette, verticalStyles, coordinatesLabelConfig, parabolaPalette} from "./configs.js";
 import { showValues } from "./helpers.js";
 
 export class Point {
@@ -361,7 +361,8 @@ export class PointCloud {
     showAsCurve(myp5) {
         myp5.push()
         myp5.noFill()
-        myp5.stroke(255);
+        myp5.stroke(parabolaPalette.parabolaStroke);
+        myp5.strokeWeight(3)
 
         let xScale = curveConfig.xScale;
         let yScale = curveConfig.yScale;
@@ -378,7 +379,6 @@ export class PointCloud {
         let fitlineVec = fitline.getSlopeVec(myp5);
 
         if (fitlineVec.x != 0) {
-            myp5.push();
             let b = fitlineVec.y/fitlineVec.x
 
             let xScale = curveConfig.xScale;
@@ -396,13 +396,10 @@ export class PointCloud {
             let inputValueTracker = new Point(xPos + this.xOffset, this.yOffset);
 
             let vertical = new Segment(functionValueTracker, inputValueTracker);
-            
-            // vertical.showAsSegment(myp5, verticalPalette.segmentFill, verticalStyles.segmentWeight, verticalStyles.segmentOpacity);
 
             vertical.showAsDashedLine(myp5)
-            functionValueTracker.show(myp5, "#3d64eb", "#3d64eb");
-            inputValueTracker.show(myp5, "#3d64eb", "#3d64eb");
-            myp5.pop();
+            functionValueTracker.show(myp5, verticalPalette.pointStroke, verticalPalette.pointFill);
+            inputValueTracker.show(myp5, verticalPalette.pointStroke, verticalPalette.pointFill);
         }
     }
 }
