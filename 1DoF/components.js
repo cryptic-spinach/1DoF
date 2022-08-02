@@ -113,7 +113,7 @@ export class Segment {
 
         let angle = perpDist.angleBetween(vertDist)
 
-        if (Math.cos(angle) != 0) {
+        if (Math.cos(angle) != 0 && perpDist.y != 0) {
             vertDist.setMag(perpDist.mag() / Math.cos(angle));
             return vertDist;
         }
