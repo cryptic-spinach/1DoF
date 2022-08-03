@@ -5,7 +5,7 @@ import { Point, Segment, Axes, PointCloud, Slider } from "./components.js";
 import { getTrendlineDisplay, getTrendlineLabelDisplay, getErrorCurveDisplay, getSliderDisplay, getCoordinateLabelDisplay, getStaticCoordinateLabelDisplay } from "./stepper.js"
 import { generateLinearFitPoints, generateErrorCurvePoints, hardcodeLinearFitPoints } from "./point-factory.js";
 
-export let sketch_1DoF = myp5 => {
+export let fitline_sketch = myp5 => {
   myp5.slider;
   let linearFitPoints;
   let errorCurvePoints;
@@ -100,7 +100,7 @@ export let sketch_1DoF = myp5 => {
 
   myp5.buttonsInit = () => {
     let ret = [];
-    let cnv = document.querySelector(".part-1DoF")
+    let cnv = document.querySelector(".fitline-sketch")
   
     for (let i = 0; i < 6; i++) {
       let stepperButton = document.createElement("button");
